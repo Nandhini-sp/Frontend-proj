@@ -1,248 +1,363 @@
 import React from 'react'
+import { useState } from 'react';
 import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CForm,
-  CFormInput,
-  CFormLabel,
-  CFormTextarea,
-  CRow,
-} from '@coreui/react'
-import { DocsExample } from 'src/components'
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Radio,
+  RadioGroup,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-const FormControl = () => {
+const formControl = () => {
+  const [state, setState] = useState({
+    procedureStartTime:"",
+procedureType:"",
+procedureEndTime:"",
+deviceMethod:"",
+technicianID:"",
+deviceSize:"",  
+outcome:"", 
+successfull:"",
+treatment:"",
+totalTime:"",
+treatmentType:"",
+administrativeRoute:""
+	})
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setState((prevProps) => ({
+		  ...prevProps,
+		  [name]: value
+		}));
+	  };
+	
+	  const submitHandler = (event) => {
+		event.preventDefault();
+		console.log(state);
+	  };
+
+
+
   return (
-    <CRow>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="forms/form-control">
-              <CForm>
-                <div className="mb-3">
-                  <CFormLabel htmlFor="exampleFormControlInput1">Email address</CFormLabel>
-                  <CFormInput
-                    type="email"
-                    id="exampleFormControlInput1"
-                    placeholder="name@example.com"
+  
+    <form
+    onSubmit={submitHandler}
+    method="post"
+    encType="multipart/form-data"
+    className="form-horizontal"
+    >
+    
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Paper variant="outlined" sx={{ p: 2, width: "100%" }}>
+          <Typography color="textSecondary" gutterBottom>
+            Procedure
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6} lg={4}>
+              <Stack spacing={2}>
+                <Stack direction="row" spacing={2}>
+                  <Button
+                    // onClick={() =>
+                    //   handleChange(
+                    //     "Proc_Time_Start",
+                    //     new Date().toLocaleTimeString("en-US")
+                    //   )
+                    // }
+                    fullWidth
+                    variant="outlined"
+                  >
+                    Start Time
+                  </Button>
+                  <TextField
+                    // onClick={() =>
+                    //   handleChange(
+                    //     "Proc_Time_Start",
+                    //     new Date().toLocaleTimeString("en-US")
+                    //   )
+                    // }
+                    // value={intervention[page - 1].Proc_Time_Start}
+                    fullWidth
+                    size="small"
+                    name='procedureStartTime'
+								    value={state.procedureStartTime}
+                      			onChange={handleInputChange}
                   />
-                </div>
-                <div className="mb-3">
-                  <CFormLabel htmlFor="exampleFormControlTextarea1">Example textarea</CFormLabel>
-                  <CFormTextarea id="exampleFormControlTextarea1" rows="3"></CFormTextarea>
-                </div>
-              </CForm>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Sizing</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Set heights using <code>size</code> property like <code>size=&#34;lg&#34;</code> and{' '}
-              <code>size=&#34;sm&#34;</code>.
-            </p>
-            <DocsExample href="forms/form-control#sizing">
-              <CFormInput
-                type="text"
-                size="lg"
-                placeholder="Large input"
-                aria-label="lg input example"
-              />
-              <br />
-              <CFormInput
-                type="text"
-                placeholder="Default input"
-                aria-label="default input example"
-              />
-              <br />
-              <CFormInput
-                type="text"
-                size="sm"
-                placeholder="Small input"
-                aria-label="sm input example"
-              />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Disabled</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add the <code>disabled</code> boolean attribute on an input to give it a grayed out
-              appearance and remove pointer events.
-            </p>
-            <DocsExample href="forms/form-control#disabled">
-              <CFormInput
-                type="text"
-                placeholder="Disabled input"
-                aria-label="Disabled input example"
-                disabled
-              />
-              <br />
-              <CFormInput
-                type="text"
-                placeholder="Disabled readonly input"
-                aria-label="Disabled input example"
-                disabled
-                readOnly
-              />
-              <br />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Readonly</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add the <code>readOnly</code> boolean attribute on an input to prevent modification of
-              the input&#39;s value. Read-only inputs appear lighter (just like disabled inputs),
-              but retain the standard cursor.
-            </p>
-            <DocsExample href="forms/form-control#readonly">
-              <CFormInput
-                type="text"
-                placeholder="Readonly input here..."
-                aria-label="readonly input example"
-                readOnly
-              />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Readonly plain text</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              If you want to have <code>&lt;input readonly&gt;</code> elements in your form styled
-              as plain text, use the <code>plainText</code> boolean property to remove the default
-              form field styling and preserve the correct margin and padding.
-            </p>
-            <DocsExample href="components/accordion">
-              <CRow className="mb-3">
-                <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">
-                  Email
-                </CFormLabel>
-                <div className="col-sm-10">
-                  <CFormInput
-                    type="text"
-                    id="staticEmail"
-                    defaultValue="email@example.com"
-                    readOnly
-                    plainText
+                </Stack>
+                <Stack direction="row" spacing={2}>
+                  <Button
+                    // onClick={() =>
+                    //   handleChange(
+                    //     "Proc_Time_End",
+                    //     new Date().toLocaleTimeString("en-US")
+                    //   )
+                    // }
+                    fullWidth
+                    variant="outlined"
+                  >
+                    End Time
+                  </Button>
+                  <TextField
+                    // onClick={() =>
+                    //   handleChange(
+                    //     "Proc_Time_End",
+                    //     new Date().toLocaleTimeString("en-US")
+                    //   )
+                    // }
+                    // value={intervention[page - 1].Proc_Time_End}
+                    fullWidth
+                    size="small"
+                    name='procedureEndTime'
+								    value={state.procedureEndTime}
+                      			onChange={handleInputChange}
                   />
-                </div>
-              </CRow>
-              <CRow className="mb-3">
-                <CFormLabel htmlFor="inputPassword" className="col-sm-2 col-form-label">
-                  Password
-                </CFormLabel>
-                <div className="col-sm-10">
-                  <CFormInput type="password" id="inputPassword" />
-                </div>
-              </CRow>
-            </DocsExample>
-            <DocsExample href="components/accordion">
-              <CForm className="row g-3">
-                <div className="col-auto">
-                  <CFormLabel htmlFor="staticEmail2" className="visually-hidden">
-                    Email
-                  </CFormLabel>
-                  <CFormInput
-                    type="text"
-                    id="staticEmail2"
-                    defaultValue="email@example.com"
-                    readOnly
-                    plainText
-                  />
-                </div>
-                <div className="col-auto">
-                  <CFormLabel htmlFor="inputPassword2" className="visually-hidden">
-                    Password
-                  </CFormLabel>
-                  <CFormInput type="password" id="inputPassword2" placeholder="Password" />
-                </div>
-                <div className="col-auto">
-                  <CButton type="submit" className="mb-3">
-                    Confirm identity
-                  </CButton>
-                </div>
-              </CForm>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>File input</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="forms/form-control#file-input">
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFile">Default file input example</CFormLabel>
-                <CFormInput type="file" id="formFile" />
-              </div>
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFileMultiple">Multiple files input example</CFormLabel>
-                <CFormInput type="file" id="formFileMultiple" multiple />
-              </div>
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFileDisabled">Disabled file input example</CFormLabel>
-                <CFormInput type="file" id="formFileDisabled" disabled />
-              </div>
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFileSm">Small file input example</CFormLabel>
-                <CFormInput type="file" size="sm" id="formFileSm" />
-              </div>
-              <div>
-                <CFormLabel htmlFor="formFileLg">Large file input example</CFormLabel>
-                <CFormInput type="file" size="lg" id="formFileLg" />
-              </div>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Color</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="forms/form-control#color">
-              <CFormLabel htmlFor="exampleColorInput">Color picker</CFormLabel>
-              <CFormInput
-                type="color"
-                id="exampleColorInput"
-                defaultValue="#563d7c"
-                title="Choose your color"
+                </Stack>
+              </Stack>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <Stack spacing={2}>
+                <TextField
+
+                  label="Type of Procedure"
+                  size='small'
+                  fullWidth
+                  name='procedureType'
+								value={state.procedureType}
+                      			onChange={handleInputChange}
+                
+                >
+
+                </TextField>
+                <TextField
+
+                    label="Device Method"
+                    size='small'
+                    fullWidth
+                    name='deviceMethod'
+								value={state.deviceMethod}
+                      			onChange={handleInputChange}
+
+                    >
+
+                  </TextField>
+              </Stack>
+            </Grid>
+            {/* <Grid item xs={12} md={6} lg={4} alignItems="flex-start" sx={{display: { xs: 'none', lg: 'block'}}}>
+              
+            </Grid> */}
+            {/* {intervention[page - 1].Procedur === "Other" && ( */}
+              <Grid item xs={12} md={6} lg={4} alignItems="flex-start" sx={{display: { xs: 'block', lg: 'none'}}}>
+                <TextField
+                  size="small"
+                  label="Other"
+                  // name="Proc_Other"
+                  // value={intervention[page - 1].Proc_Other}
+                  // onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  fullWidth
+                />
+              </Grid>
+            {/* )} */}
+            <Grid item xs={12} md={3}>
+              <TextField
+                size="small"
+                label="Technician ID"
+                name='technicianID'
+								value={state.technicianID}
+                      			onChange={handleInputChange}
+                // value={intervention[page - 1].Procedur_Technician}
+                // onChange={(e) => handleChange(e.target.name, e.target.value)}
+                fullWidth
               />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </CRow>
-  )
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <TextField
+                size="small"
+                label="Device Size"
+                name='deviceSize'
+								value={state.deviceSize}
+                      			onChange={handleInputChange}
+                // value={intervention[page - 1].Device_Size}
+                // onChange={(e) => handleChange(e.target.name, e.target.value)}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth size="small">
+                <InputLabel id="device-method-label">Outcome</InputLabel>
+                <Select
+                  labelId="device-method-label"
+                  id="device-method"
+                  label="Outcome"
+                  defaultValue=""
+                  name='outcome'
+								value={state.outcome}
+                      			onChange={handleInputChange}
+                  // value={intervention[page - 1].Procedur_outcome}
+                  // onChange={(e) =>
+                  //   handleChange("Procedur_outcome", e.target.value)
+                  // }
+                >
+                  <MenuItem value="Stable">Stable</MenuItem>
+                  <MenuItem value="Improved">Improved</MenuItem>
+                  <MenuItem value="Deteriorated">Deteriorated</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl>
+                <FormLabel id="successful-radio-group">Successful</FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="successful-radio-group"
+                  name='successfull'
+								value={state.successfull}
+                      			onChange={handleInputChange}
+                  // value={intervention[page - 1].Procedur_success}
+                  // onChange={(e) => handleChange(e.target.name, e.target.value)}
+                >
+                  <FormControlLabel
+                    value="Yes"
+                    control={<Radio />}
+                    label="Yes"
+                  />
+                  <FormControlLabel value="No" control={<Radio />} label="No" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper variant="outlined" sx={{ p: 2, width: "100%" }}>
+          <Typography color="textSecondary" gutterBottom>
+            Treatment
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid
+              item
+              container
+              xs={12}
+              md={8}
+              spacing={3}
+              alignItems="flex-end"
+            >
+              <Grid item xs={12} md={6} alignItems="flex-end">
+                
+                <TextField
+                  fullWidth
+                  size='small'
+                  label="Treatment"
+                  name='treatment'
+								value={state.treatment}
+                      			onChange={handleInputChange}
+                >
+
+                </TextField>
+
+              </Grid>
+              <Grid item xs={12} md={6} alignItems="flex-end">
+                <Stack direction="row" spacing={2}>
+                  <Button
+                    // onClick={() =>
+                    //   handleChange(
+                    //     "Treatment_time",
+                    //     new Date().toLocaleTimeString("en-US")
+                    //   )
+                    // }
+                    fullWidth
+                    variant="outlined"
+                  >
+                    Total Time
+                  </Button>
+                  <TextField
+                    // value={intervention[page - 1].Treatment_time}
+                    // onChange={(e) =>
+                    //   handleChange("Treatment_time", e.target.value)
+                    // }
+                    fullWidth
+                    size="small"
+                    name='totalTime'
+								    value={state.totalTime}
+                      			onChange={handleInputChange}
+                  />
+                </Stack>
+              </Grid>
+            </Grid>
+            {/* <Grid item container spacing={1} xs={12} md={4}>
+              
+         
+            </Grid> */}
+            <Grid item xs={12} md={6}>
+              <Stack spacing={2}>
+                <FormControl fullWidth size="small">
+                  <InputLabel id="treatment-type-label">
+                    Type of Treatment
+                  </InputLabel>
+                  <Select
+                    labelId="treatment-type-label"
+                    id="treatment-type"
+                    label="Type of Treatment"
+                    defaultValue=""
+                    name='treatmentType'
+								value={state.treatmentType}
+                      			onChange={handleInputChange}
+                    // value={intervention[page - 1].Treatment_Type}
+                    // onChange={(e) =>
+                    //   handleChange("Treatment_Type", e.target.value)
+                    // }
+                  >
+                    <MenuItem value="Medication">Medication</MenuItem>
+                    <MenuItem value="IV Fluid">IV Fluid</MenuItem>
+                    <MenuItem value="Oxygen">Oxygen</MenuItem>
+                    <MenuItem value="Defibrillation">Defibrillation</MenuItem>
+                    <MenuItem value="No Treatment">No Treatment</MenuItem>
+                  </Select>
+                </FormControl>
+                
+              </Stack>
+            </Grid>
+            <Grid item xs={12} md={6} alignItems="flex-start">
+              <Stack spacing={2}>
+                <TextField
+                  label="Administrative Route"
+                  fullWidth
+                  size='small'
+                  name='administrativeRoute'
+								value={state.administrativeRoute}
+                      			onChange={handleInputChange}
+
+                >
+
+                </TextField>
+                {/* {intervention[page - 1].Admin_Route === "Other" && ( */}
+                  
+              </Stack>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+    </Grid>
+    <button
+                    type="submit"
+                    size="sm"
+                    color="primary"
+                    className="ml-2"
+                  >
+                     Submit
+                </button>
+
+</form>
+    
+  );
 }
 
-export default FormControl
+export default formControl

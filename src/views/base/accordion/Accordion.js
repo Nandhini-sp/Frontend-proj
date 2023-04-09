@@ -1,127 +1,247 @@
 import React from 'react'
-import { FormControl, FormControlLabel, FormLabel, Grid, InputLabel, Radio, RadioGroup, Select, TextField } from '@mui/material'
-// import { useSelector, useDispatch } from 'react-redux';
-// import { setPatientDetails } from '../../features/patientDetails';
+import  { useState } from "react"
 
-// const races = ["African American", "Asian", "Caucasian", "Hispanic", "Latino", "Native"];
-// const medicareOrigins = ["NB", "NS", "PE", "NF", "QC", "ON", "MAN", "SK", "AB", "BC", "Yukon", "NWT", "Nunavut"];
+// import {
+// 	Autocomplete,
+// 	Button,
+// 	FormControl,
+// 	Grid,
+// 	InputLabel,
+// 	MenuItem,
+// 	Paper,
+// 	Select,
+// 	Stack,
+// 	TextField,
+// 	Typography,
+// } from '@mui/material'
+
+import {
+	FormControl,
+	FormControlLabel,
+	FormLabel,
+	Grid,
+	InputLabel,
+	Radio,
+	RadioGroup,
+	Select,
+	TextField,
+	Paper,
+	Typography,
+	MenuItem,
+	
+} from '@mui/material'
+
 
 const accordion = () => {
-	// let dispatch = useDispatch();
-	// let patientDetails = useSelector(state => state.patientDetails);
 
-	// const handleChange = (name, value) => dispatch(setPatientDetails({ name, value }));
+
+		
+	const [state, setState] = useState({
+		firstname: "",
+		surname: "",
+		street:"",
+		city:"",
+		state:"",
+		postal_code:"",
+		country:"",
+		telephone_no:"",
+		aadhar_no:"",
+		DOB:"",
+		age:"",
+		gender:"",
+		medical_ins:"",
+		typesOfInsurance:"",
+		govt_ins_Id:"",
+		coverage_Amount:"",
+		govt_benefits:"",
+		private_ins_id:"",
+		private_benefits:"",
+		hospital_chart_no:"",
+		commends:"",
+	  });
+	
+	  const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setState((prevProps) => ({
+		  ...prevProps,
+		  [name]: value
+		}));
+	  };
+	
+	  const submitHandler = (event) => {
+		event.preventDefault();
+		console.log(state);
+	  };
+
+	  const Types_ins = ['Private',
+						'Goverment'];
+	
+	const Benefides_scheme = ['Aayushman Bharat Yojana','Pradhan Mantri Jeeven Jyoti Beema Yojana']		
+	
+	const Private_Benefides_scheme = [
+		'Individual',
+		'Family Floater',
+		'Group Health',
+		'Senior Citizen health',
+		'Maternity Health ',
+		'Critical Illness ',
+		'Top-up health plan',
+	]
+
+
 
 	return (
+		
+			
+    <form 
+				onSubmit={submitHandler}
+                method="post"
+                encType="multipart/form-data"
+                className="form-horizontal"
+              >
 		<Grid container spacing={3}>
+
 			<Grid item xs={12} md={6}>
 				<TextField
-					label="First Name"
+					name = "firstname"
+					label="FirstName"
 					fullWidth
 					size="small"
-					// value={patientDetails.Given_Name}
-					// onChange={(e) => handleChange('Given_Name', e.target.value)}
+					value={state.firstname}
+                      onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={12} md={6}>
 				<TextField
-					label="Last Name"
+					name="surname"
+					label="Surname"
 					fullWidth
 					size="small"
-					// value={patientDetails.Surname}
-					// onChange={(e) => handleChange('Surname', e.target.value)}
+					value={state.surname}
+					onChange={handleInputChange}
 				/>
+
 			</Grid>
 			<Grid item xs={6} md={12}>
 				<TextField
+					name="street"
 					label="Street Address"
 					fullWidth
 					size="small"
-					// value={patientDetails.Street}
-					// onChange={(e) => handleChange('Street', e.target.value)}
+					value={state.street}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={6} md={4}>
 				<TextField
+					name="city"
 					label="City"
 					fullWidth
 					size="small"
-					// value={patientDetails.Community}
-					// onChange={(e) => handleChange('Community', e.target.value)}
+					value={state.city}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={6} md={4}>
 				<TextField
-					label="Province"
+					name="state"
+					label="State"
 					fullWidth
 					size="small"
 					// value={patientDetails.Province}
 					// onChange={(e) => handleChange('Province', e.target.value)}
+					// value={name} 
+                    //   onChange={(e) => {
+                    //     setName(e.target.value);
+                    //     alert(e.target.value);
+                    //   }}
+					value={state.state}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={6} md={4}>
 				<TextField
+					name="postal_code"
 					label="Postal Code"
 					fullWidth
 					size="small"
 					// value={patientDetails.PostalCode}
 					// onChange={(e) => handleChange('PostalCode', e.target.value)}
+					// value={name}
+                    //   onChange={(e) => {
+                    //     setName(e.target.value);
+                    //     alert(e.target.value);
+                    //   }}
+					value={state.postal_code}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={12} md={4}>
 				<TextField
+					name='country'
 					label="Country"
 					fullWidth
 					size="small"
 					// value={patientDetails.Country}
 					// onChange={(e) => handleChange('Country', e.target.value)}
+					// value={name}
+                    //   onChange={(e) => {
+                    //     setName(e.target.value);
+                    //     alert(e.target.value);
+                    //   }}
+					value={state.country}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={12} md={4}>
 				<TextField
+					name='telephone_no'
 					label="Telephone No."
 					fullWidth
 					size="small"
 					// value={patientDetails.Tel_No}
 					// onChange={(e) => handleChange('Tel_No', e.target.value)}
+					// value={name}
+                    //   onChange={(e) => {
+                    //     setName(e.target.value);
+                    //     alert(e.target.value);
+                    //   }}
+					value={state.telephone_no}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={12} md={4}>
-				<FormControl size="small" fullWidth>
-					<InputLabel id="race-label">Race</InputLabel>
-					<Select
-						labelId="race-label"
-						id="race"
-						name="Race"
-						label="Race"
-						defaultValue=""
-						// value={patientDetails.Race}
-						// onChange={(e) => handleChange(e.target.name, e.target.value)}
-					>
-						{/* {races.map((item, index) => (
-							<MenuItem key={index} value={item}>{item}</MenuItem>
-						))} */}
-					</Select>
-				</FormControl>
+					<TextField
+						name="aadhar_no"
+						fullWidth
+						size="small"
+						label="Aadhar Number"
+						value={state.aadhar_no}
+						onChange={handleInputChange}
+					/>
+					
 			</Grid>
 			<Grid item xs={12} md={4}>
 				<TextField
+					name='DOB'
 					label="Date of Birth"
 					fullWidth
 					size="small"
-					// value={patientDetails.DOB}
-					// onChange={(e) => handleChange('DOB', e.target.value)}
+					value={state.DOB}
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={12} md={4}>
 				<TextField
+					name='age'
 					label="Age"
 					fullWidth
 					size="small"
 					pattern="[0-9]*"
-					// value={patientDetails.Age}
-					// onChange={(e) => handleChange('Age', e.target.value)}
+					value={state.age}
+					onChange={handleInputChange}
 				/>
+
 			</Grid>
 			<Grid item xs={12} md={4}>
 				<FormControl size="small" fullWidth>
@@ -129,9 +249,9 @@ const accordion = () => {
 					<RadioGroup
 						row
 						aria-labelledby="gender-radio-group-label"
-						name="gender-radio-group"
-						// value={patientDetails.Gender}
-						// onChange={(event, value) => handleChange('Gender', value)}
+						name="gender"
+						value={state.gender}
+						onChange={handleInputChange}
 					>
 						<FormControlLabel value="female" control={<Radio />} label="Female" />
 						<FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -139,54 +259,211 @@ const accordion = () => {
 					</RadioGroup>
 				</FormControl>
 			</Grid>
-			<Grid item xs={12} md={4}>
-				<TextField
-					label="Medicare No."
-					fullWidth
-					size="small"
-					// value={patientDetails.Medicare_No}
-					// onChange={(e) => handleChange('Medicare_No', e.target.value)}
-				/>
-			</Grid>
-			<Grid item xs={12} md={4}>
+			{/* <Grid item xs={12} md={4}>
 				<FormControl size="small" fullWidth>
-					<InputLabel id="medicare-origin-label">Medicare Origin</InputLabel>
-					<Select
-						labelId="medicare-origin-label"
-						id="medicare-origin"
-						name="Medicare_Origin"
-						label="Medicare Origin"
-						defaultValue=""
-						// value={patientDetails.Medicare_Origin}
-						// onChange={(e) => handleChange(e.target.name, e.target.value)}
+					<FormLabel id="gender-radio-group-label">Medical Insurance</FormLabel>
+					<RadioGroup
+						row
+						// aria-labelledby="gender-radio-group-label"
+						name="medical_ins"
+						value={state.medical_ins}
+						onChange={handleInputChange}
 					>
-						{/* {medicareOrigins.map((item, index) => (
-							<MenuItem key={index} value={item}>{item}</MenuItem>
-						))} */}
-					</Select>
+						<FormControlLabel value="yes" control={<Radio />} label="Yes" />
+						<FormControlLabel value="no" control={<Radio />} label="No" />
+						
+					</RadioGroup>
 				</FormControl>
+			</Grid> */}
+			<Grid item xs={12}>
+				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
+				<FormControl size="small" fullWidth>
+					<FormLabel id="gender-radio-group-label">Medical Insurance</FormLabel>
+					<RadioGroup
+						row
+						// aria-labelledby="gender-radio-group-label"
+						name="medical_ins"
+						value={state.medical_ins}
+						onChange={handleInputChange}
+					>
+						<FormControlLabel value="yes" control={<Radio />} label="Yes" />
+						<FormControlLabel value="no" control={<Radio />} label="No" />
+						
+					</RadioGroup>
+				</FormControl>
+					<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
+						(fill the below details only if Medical Insurance exist)
+					</Typography>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<FormControl fullWidth size="small">
+								<InputLabel>Type Of Insurance</InputLabel>
+								<Select
+									labelId="dest-facility-code-label"
+									id="dest-facility-code"
+									name="Dest_Facility_Code"
+									defaultValue=""
+									// value={incidentDetails.Dest_Facility_Code}
+									// onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
+									label="Facility Code"
+									
+									className="typesOfInsurance"
+					
+									value={state.type}
+									onChange={handleInputChange}
+
+								>
+									{Types_ins.map((item, index) => (
+										<MenuItem key={index} value={item}>
+											{item}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
+						<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
+						(For Goverment Insurance)
+						</Typography>
+							<TextField
+								label="Insurance Id Number"
+								size="small"
+								fullWidth
+								name="govt_ins_Id"
+					
+									value={state.govt_ins_Id}
+									onChange={handleInputChange}
+								// value={incidentDetails.Dest_Street}
+								// onChange={(e) => handleChange('Dest_Street', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="Maximum Coverage Amount"
+								size="small"
+								fullWidth
+								name="coverage_Amount"
+					
+									value={state.coverage_Amount}
+									onChange={handleInputChange}
+								// value={incidentDetails.Dest_Community}
+								// onChange={(e) => handleChange('Dest_Community', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+						<FormControl fullWidth size="small">
+								<InputLabel>Types Of Benefides Scheme</InputLabel>
+								<Select
+									labelId="dest-facility-code-label"
+									id="dest-facility-code"
+									name="Benefides_scheme"
+									defaultValue=""
+									// value={incidentDetails.Dest_Facility_Code}
+									// onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
+									label="Types Benefides Scheme"
+									className="govt_benefits"
+					
+									value={state.type}
+									onChange={handleInputChange}
+
+								>
+									{Benefides_scheme.map((item, index) => (
+										<MenuItem key={index} value={item}>
+											{item}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+
+						</Grid>
+						<Grid item xs={12}>
+						<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
+						(For Private Insurance)
+						</Typography>
+							<TextField
+								label="Insurance Id Number"
+								size="small"
+								fullWidth
+								name="private_ins_id"
+					
+									value={state.private_ins_id}
+									onChange={handleInputChange}
+								// value={incidentDetails.Dest_Street}
+								// onChange={(e) => handleChange('Dest_Street', e.target.value)}
+							/>
+						</Grid>
+						
+						<Grid item xs={12}>
+						<FormControl fullWidth size="small">
+								<InputLabel>Types Of Benefides Scheme</InputLabel>
+								<Select
+									labelId="dest-facility-code-label"
+									id="dest-facility-code"
+									name="Benefides_scheme"
+									defaultValue=""
+									// value={incidentDetails.Dest_Facility_Code}
+									// onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
+									label="Types Benefides Scheme"
+									className="private_benefits"
+					
+									value={state.type}
+									onChange={handleInputChange}
+
+								>
+									{Private_Benefides_scheme.map((item, index) => (
+										<MenuItem key={index} value={item}>
+											{item}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+
+						</Grid>
+						
+					</Grid>
+				</Paper>
 			</Grid>
+			
 			<Grid item xs={12} md={4}>
 				<TextField
+					name="hospital_chart_no"
 					label="Hospital Chart No."
 					fullWidth
 					size="small"
-					// value={patientDetails.Hospital_Chart_No}
-					// onChange={(e) => handleChange('Hospital_Chart_No', e.target.value)}
+					value={state.hospital_chart_no}
+					onChange={handleInputChange}
 				/>
+
 			</Grid>
 			<Grid item xs={12}>
 				<TextField
-					label="Comments"
+					name='commends'
+					label="Commends"
 					fullWidth
 					size="small"
 					multiline
 					rows={6}
-					// value={patientDetails.P_Comments}
-					// onChange={(e) => handleChange('P_Comments', e.target.value)}
+					value={state.commends}
+					onChange={handleInputChange}
 				/>
 			</Grid>
-		</Grid>
+
+			<button
+                    type="submit"
+                    size="sm"
+                    color="primary"
+                    className="ml-2"
+                  >
+                     Submit
+                  </button>
+                  {/* <CButton type="reset" size="sm" color="danger">
+                    <cIcon name="cil-ban" /> Reset
+                  </CButton> */}
+
+				  </Grid>
+			</form>
+			
+		
 	)
 }
 

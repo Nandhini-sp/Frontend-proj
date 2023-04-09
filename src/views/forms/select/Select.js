@@ -1,99 +1,289 @@
 import React from 'react'
-import { CCard, CCardBody, CCardHeader, CCol, CFormSelect, CRow } from '@coreui/react'
-import { DocsExample } from 'src/components'
+import { useState } from 'react'
+import {
+	// Checkbox,
+	// FormControl,
+	// FormControlLabel,
+	// FormGroup,
+	Grid,
+	// InputLabel,
+	// MenuItem,
+	Paper,
+	// Select,
+	// Stack,
+	// TextField,
+	// ToggleButton,
+	// ToggleButtonGroup,
+	TextField,
+	Typography,
+} from '@mui/material'
 
 const Select = () => {
-  return (
-    <CRow>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Select</strong> <small>Default</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="forms/select">
-              <CFormSelect aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CFormSelect>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Select</strong> <small>Sizing</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              You may also choose from small and large custom selects to match our similarly sized
-              text inputs.
-            </p>
-            <DocsExample href="forms/select#sizing">
-              <CFormSelect size="lg" className="mb-3" aria-label="Large select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CFormSelect>
-              <CFormSelect size="sm" className="mb-3" aria-label="Small select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CFormSelect>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              The <code>multiple</code> attribute is also supported:
-            </p>
-            <DocsExample href="forms/select#sizing">
-              <CFormSelect size="lg" multiple aria-label="Multiple select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CFormSelect>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              As is the <code>htmlSize</code> property:
-            </p>
-            <DocsExample href="forms/select#sizing">
-              <CFormSelect size="lg" multiple aria-label="Multiple select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CFormSelect>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Select</strong> <small>Disabled</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add the <code>disabled</code> boolean attribute on a select to give it a grayed out
-              appearance and remove pointer events.
-            </p>
-            <DocsExample href="forms/select#disabled">
-              <CFormSelect aria-label="Disabled select example" disabled>
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CFormSelect>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </CRow>
-  )
+
+	const [state, setState] = useState({
+    assessmentTime: "",
+    consciousnessLevel: "",
+    pulseRate: "",
+    siteOfPulseCheck: "",
+    temperature: "",
+    siteOfTemperatureCheck: "",
+    skinColor: "",
+    moisture: "",
+    bloodPressure: "",
+      systolic: "",
+    diastolic: "",
+    respiration: "",
+      bloodGlucose: "",
+    oxygenSaturation: "",
+    preOxygen: "",
+    postOxygen: ""
+  })
+
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setState((prevProps) => ({
+		  ...prevProps,
+		  [name]: value
+		}));
+	  };
+	
+	  const submitHandler = (event) => {
+		event.preventDefault();
+		console.log(state);
+	  };
+
+	
+
+	return (
+
+		<form
+		onSubmit={submitHandler}
+                method="post"
+                encType="multipart/form-data"
+                className="form-horizontal"
+		>
+		<Grid item xs={12} md={6} lg={4}>
+			<Paper variant="outlined" sx={{ p: 2, width: '100%' }}>
+				{/* <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
+					Nero Response
+				</Typography> */}
+				<Grid container spacing={3}>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Time Of Assessment"
+							fullWidth
+							size="small"
+							// value={patientDetails.Given_Name}
+							// onChange={(e) => handleChange('Given_Name', e.target.value)}
+								name='assessmentTime'
+								value={state.assessmentTime}
+                      			onChange={handleInputChange}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Level Of Consciousness"
+							fullWidth
+							size="small"
+								name='consciousnessLevel'
+								value={state.consciousnessLevel}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Pulse Rate"
+							fullWidth
+							name='pulseRate'
+								value={state.pulseRate}
+                      			onChange={handleInputChange}
+							size="small"
+							// value={patientDetails.Given_Name}
+							// onChange={(e) => handleChange('Given_Name', e.target.value)}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Site Of Pulse Check"
+							fullWidth
+							size="small"
+								name='siteOfPulseCheck'
+								value={state.siteOfPulseCheck}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Site Of Temperature Check"
+							fullWidth
+							size="small"
+							name='siteOfTemperatureCheck'
+								value={state.siteOfTemperatureCheck}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Given_Name}
+							// onChange={(e) => handleChange('Given_Name', e.target.value)}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Skin Color"
+							fullWidth
+							size="small"
+
+								name='skinColor'
+								value={state.skinColor}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Temperature"
+							fullWidth
+							size="small"
+
+								name='temperature'
+								value={state.temperature}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<TextField
+							label="Moisture"
+							fullWidth
+							size="small"
+
+								name='moisture'
+								value={state.moisture}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Blood Pressure"
+							fullWidth
+							size="small"
+
+								name='bloodPressure'
+								value={state.bloodPressure}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Systolic"
+							fullWidth
+							size="small"
+
+								name='systolic'
+								value={state.systolic}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Diastolic"
+							fullWidth
+							size="small"
+
+								name='diastolic'
+								value={state.diastolic}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Respiration"
+							fullWidth
+							size="small"
+
+								name='respiration'
+								value={state.respiration}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Blood Glucose"
+							fullWidth
+							size="small"
+
+								name='bloodGlucose'
+								value={state.bloodGlucose}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Oxygen Saturtion"
+							fullWidth
+							size="small"
+
+								name='oxygenSaturation'
+								value={state.oxygenSaturation}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Pre-Oxygen"
+							fullWidth
+							size="small"
+
+								name='preOxygen'
+								value={state.preOxygen}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+          <Grid item xs={12} md={6}>
+						<TextField
+							label="Post-Oxygen"
+							fullWidth
+							size="small"
+
+								name='postOxygen'
+								value={state.postOxygen}
+                      			onChange={handleInputChange}
+							// value={patientDetails.Surname}
+							// onChange={(e) => handleChange('Surname', e.target.value)}
+						/>
+					</Grid>
+				</Grid>
+			</Paper>
+		</Grid>
+		<button
+                    type="submit"
+                    size="sm"
+                    color="primary"
+                    className="ml-2"
+                  >
+                     Submit
+                </button>
+		</form>
+	)
 }
 
 export default Select

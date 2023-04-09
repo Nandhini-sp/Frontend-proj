@@ -1,906 +1,870 @@
 import React from 'react'
+import { useState } from 'react'
 import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardGroup,
-  CCardHeader,
-  CCardImage,
-  CCardLink,
-  CCardSubtitle,
-  CCardText,
-  CCardTitle,
-  CListGroup,
-  CListGroupItem,
-  CNav,
-  CNavItem,
-  CNavLink,
-  CCol,
-  CRow,
-} from '@coreui/react'
-import { DocsExample } from 'src/components'
+	Autocomplete,
+	Button,
+	FormControl,
+	Grid,
+	InputLabel,
+	MenuItem,
+	Paper,
+	Select,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material'
+// import { useSelector, useDispatch } from 'react-redux'
+// import { setIncidentDetails, setIncidentLocation } from '../../features/incidentDetails'
+// import ListboxComponent from '../../components/ListboxComponent'
+// import DispatchCodeMask from '../../components/DispatchCodeMask'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
-import ReactImg from 'src/assets/images/react.jpg'
+const serviceCodes = [
+	'1A',
+	'1B',
+	'1C',
+	'1D',
+	'1E',
+	'1F',
+	'1G',
+	'1H',
+	'1I',
+	'1J',
+	'1K',
+	'1L',
+	'1M',
+	'1N',
+	'1O',
+	'1P',
+	'1Q',
+	'1R',
+	'1S',
+	'1T',
+	'1U',
+	'1V',
+	'1W',
+	'1X',
+	'1Y',
+	'1Z',
+	'2A',
+	'2B',
+	'2C',
+	'2D',
+	'2E',
+	'2F',
+	'2G',
+	'2H',
+	'2I',
+	'2J',
+	'2K',
+	'2L',
+	'2M',
+	'2N',
+	'2O',
+	'2P',
+	'2Q',
+	'2R',
+	'2S',
+	'2T',
+	'2U',
+	'2V',
+	'2W',
+	'2X',
+	'2Y',
+	'2Z',
+	'3A',
+	'3B',
+	'3C',
+	'3D',
+	'3E',
+	'3F',
+	'3G',
+	'3H',
+	'3I',
+	'3J',
+	'3K',
+	'3L',
+	'3M',
+	'3N',
+	'3O',
+	'3P',
+	'3Q',
+	'3R',
+	'3S',
+	'3T',
+	'3U',
+	'3V',
+	'3W',
+	'3X',
+	'3Y',
+	'3Z',
+	'4A',
+	'4B',
+	'4C',
+	'4D',
+	'4E',
+	'4F',
+	'4G',
+	'4H',
+	'4I',
+	'4J',
+	'4K',
+	'4L',
+	'4M',
+	'4N',
+	'4O',
+	'4P',
+	'4Q',
+	'4R',
+	'4S',
+	'4T',
+	'4U',
+	'4V',
+	'4W',
+	'4X',
+	'4Y',
+	'4Z',
+	'5A',
+	'5B',
+	'5C',
+	'5D',
+	'5E',
+	'5F',
+	'5G',
+	'5H',
+	'5I',
+	'5J',
+	'5K',
+	'5L',
+	'5M',
+	'5N',
+	'5O',
+	'5P',
+	'5Q',
+	'5R',
+	'5S',
+	'5T',
+	'5U',
+	'5V',
+	'5W',
+	'5X',
+	'5Y',
+	'5Z',
+	'6A',
+	'6B',
+	'6C',
+	'6D',
+	'6E',
+	'6F',
+	'6G',
+	'6H',
+	'6I',
+	'6J',
+	'6K',
+	'6L',
+	'6M',
+	'6N',
+	'6O',
+	'6P',
+	'6Q',
+	'6R',
+	'6S',
+	'6T',
+	'6U',
+	'6V',
+	'6W',
+	'6X',
+	'6Y',
+	'6Z',
+	'7A',
+	'7B',
+	'7C',
+	'7D',
+	'7E',
+	'7F',
+	'7G',
+	'7H',
+	'7I',
+	'7J',
+	'7K',
+	'7L',
+	'7M',
+	'7N',
+	'7O',
+	'7P',
+	'7Q',
+	'7R',
+	'7S',
+	'7T',
+	'7U',
+	'7V',
+	'7W',
+	'7X',
+	'7Y',
+	'7Z',
+	'8A',
+	'8B',
+	'8C',
+	'8D',
+	'8E',
+	'8F',
+	'8G',
+	'8H',
+	'8I',
+	'8J',
+	'8K',
+	'8L',
+	'8M',
+	'8N',
+	'8O',
+	'8P',
+	'8Q',
+	'8R',
+	'8S',
+	'8T',
+	'8U',
+	'8V',
+	'8W',
+	'8X',
+	'8Y',
+	'8Z',
+	'9A',
+	'9B',
+	'9C',
+	'9D',
+	'9E',
+	'9F',
+	'9G',
+	'9H',
+	'9I',
+	'9J',
+	'9K',
+	'9L',
+	'9M',
+	'9N',
+	'9O',
+	'9P',
+	'9Q',
+	'9R',
+	'9S',
+	'9T',
+	'9U',
+	'9V',
+	'9W',
+	'9X',
+	'9Y',
+	'9Z',
+]
+const serviceTypes = [
+	'911',
+	'IHT (Scheduled)',
+	'IHT (Unscheduled)',
+	'Intercept',
+	'Mutual Aid',
+	'Stand By',
+]
+const destinationDeterminations = [
+	'Protocol',
+	'Patient or Family preference',
+	'Closest facility',
+	'Diversion',
+	'Law Enforcement Choice',
+	'On-Line Md Choice',
+	"Patient's Md Choice",
+	'Specialty Resource Centre',
+	'Other',
+]
+const destinationLocationTypes = [
+	'Hospital',
+	'EMH ',
+	'Nursing home',
+	'Recreation / sport area',
+	"Doctor's office",
+	'Airport',
+	'Job site',
+	'Highway or street',
+	'Residence',
+	'Public building',
+	'Educational institution',
+	'Other EMS unit',
+	'Other',
+]
+const sceneFacilityCodes = [
+	'15',
+	'39',
+	'61',
+	'22',
+	'51',
+	'62',
+	'53',
+	'41',
+	'31',
+	'35',
+	'42',
+	'27',
+	'36',
+	'63',
+	'37',
+	'33',
+	'72',
+	'11',
+	'12',
+	'34',
+	'49',
+	'48',
+	'13',
+	'23',
+	'25',
+	'43',
+	'14',
+	'32',
+	'21',
+	'26',
+	'64',
+	'38',
+]
+const facilityCodes = [
+	'Saint John Regional Hospital',
+	"St. Joseph's Hospital",
+	'Ridewood Veterans Wing',
+	'Sussex Health Center',
+	'Fundy Health Center',
+	'Charlotte County Hospital',
+	'DECH',
+	'Loch Lomond Villa',
+	'Saint John Saint Stephen Nursing Home',
+	'Kennebec Manor',
+	'Centracare',
+	'Carleton Kirk Nursing Home',
+	'Rocmaura Nursing Home',
+	'Ruth Ross',
+	'Grand Bay Rehab',
+	'Turnbull Nursing Home',
+	'VA Snow Center',
+]
+const patientDispositions = [
+	'Treated and Transported By Ambulance Crew',
+	'Treated and Transported By Private Vehicle',
+	'Treated and Released',
+	'Patient Assessed and Transferred to Other Agency at Scene',
+	'Advanced Life Support Intercept',
+	'No Treatment Rendered',
+	'Patient Refused Treatment',
+	'DOA',
+	'Call Cancelled En Route',
+	'No Patient Found',
+	'Other',
+]
+const factorsAffectingEMS = [
+	'Adverse weather',
+	'Adverse road conditions',
+	'Vehicle problems',
+	'Unsafe scene',
+	'Prolonged extrication (>20 min)',
+	'Hazardous materials',
+	'Inaccurate or Incomplete directions',
+	'Other',
+]
 
 const Cards = () => {
-  return (
-    <CRow>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Example</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Cards are built with as little markup and styles as possible but still manage to
-              deliver a bunch of control and customization. Built with flexbox, they offer easy
-              alignment and mix well with other CoreUI components. Cards have no top, left, and
-              right margins by default, so use{' '}
-              <a href="https://coreui.io/docs/utilities/spacing">spacing utilities</a> as needed.
-              They have no fixed width to start, so they&#39;ll fill the full width of its parent.
-            </p>
-            <p className="text-medium-emphasis small">
-              Below is an example of a basic card with mixed content and a fixed width. Cards have
-              no fixed width to start, so they&#39;ll naturally fill the full width of its parent
-              element.
-            </p>
-            <DocsExample href="components/card">
-              <CCard style={{ width: '18rem' }}>
-                <CCardImage orientation="top" src={ReactImg} />
-                <CCardBody>
-                  <CCardTitle>Card title</CCardTitle>
-                  <CCardText>
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card&#39;s content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Body</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              The main block of a card is the <code>&lt;CCardBody&gt;</code>. Use it whenever you
-              need a padded section within a card.
-            </p>
-            <DocsExample href="components/card/#body">
-              <CCard>
-                <CCardBody>This is some text within a card body.</CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Titles, text, and links</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Card titles are managed by <code>&lt;CCardTitle&gt;</code> component. Identically,
-              links are attached and collected next to each other by <code>&lt;CCardLink&gt;</code>{' '}
-              component.
-            </p>
-            <p className="text-medium-emphasis small">
-              Subtitles are managed by <code>&lt;CCardSubtitle&gt;</code> component. If the{' '}
-              <code>&lt;CCardTitle&gt;</code> also, the <code>&lt;CCardSubtitle&gt;</code> items are
-              stored in a <code>&lt;CCardBody&gt;</code> item, the card title, and subtitle are
-              arranged rightly.
-            </p>
-            <DocsExample href="components/card/#titles-text-and-links">
-              <CCard style={{ width: '18rem' }}>
-                <CCardBody>
-                  <CCardTitle>Card title</CCardTitle>
-                  <CCardSubtitle className="mb-2 text-medium-emphasis">Card subtitle</CCardSubtitle>
-                  <CCardText>
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card&#39;s content.
-                  </CCardText>
-                  <CCardLink href="#">Card link</CCardLink>
-                  <CCardLink href="#">Another link</CCardLink>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Images</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              <code>.card-img-top</code> places a picture to the top of the card. With{' '}
-              <code>.card-text</code>, text can be added to the card. Text within{' '}
-              <code>.card-text</code> can additionally be styled with the regular HTML tags.
-            </p>
-            <DocsExample href="components/card/#images">
-              <CCard style={{ width: '18rem' }}>
-                <CCardImage orientation="top" src={ReactImg} />
-                <CCardBody>
-                  <CCardText>
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card&#39;s content.
-                  </CCardText>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>List groups</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Create lists of content in a card with a flush list group.
-            </p>
-            <DocsExample href="components/card/#list-groups">
-              <CRow>
-                <CCol lg={4}>
-                  <CCard>
-                    <CListGroup flush>
-                      <CListGroupItem>Cras justo odio</CListGroupItem>
-                      <CListGroupItem>Dapibus ac facilisis in</CListGroupItem>
-                      <CListGroupItem>Vestibulum at eros</CListGroupItem>
-                    </CListGroup>
-                  </CCard>
-                </CCol>
-                <CCol lg={4}>
-                  <CCard>
-                    <CCardHeader>Header</CCardHeader>
-                    <CListGroup flush>
-                      <CListGroupItem>Cras justo odio</CListGroupItem>
-                      <CListGroupItem>Dapibus ac facilisis in</CListGroupItem>
-                      <CListGroupItem>Vestibulum at eros</CListGroupItem>
-                    </CListGroup>
-                  </CCard>
-                </CCol>
-                <CCol lg={4}>
-                  <CCard>
-                    <CListGroup flush>
-                      <CListGroupItem>Cras justo odio</CListGroupItem>
-                      <CListGroupItem>Dapibus ac facilisis in</CListGroupItem>
-                      <CListGroupItem>Vestibulum at eros</CListGroupItem>
-                    </CListGroup>
-                    <CCardFooter>Footer</CCardFooter>
-                  </CCard>
-                </CCol>
-              </CRow>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Kitchen sink</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Combine and match many content types to build the card you need, or throw everything
-              in there. Shown below are image styles, blocks, text styles, and a list group—all
-              wrapped in a fixed-width card.
-            </p>
-            <DocsExample href="components/card/#kitchen-sink">
-              <CCard style={{ width: '18rem' }}>
-                <CCardImage orientation="top" src={ReactImg} />
-                <CCardBody>
-                  <CCardTitle>Card title</CCardTitle>
-                  <CCardText>
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card&#39;s content.
-                  </CCardText>
-                </CCardBody>
-                <CListGroup flush>
-                  <CListGroupItem>Cras justo odio</CListGroupItem>
-                  <CListGroupItem>Dapibus ac facilisis in</CListGroupItem>
-                  <CListGroupItem>Vestibulum at eros</CListGroupItem>
-                </CListGroup>
-                <CCardBody>
-                  <CCardLink href="#">Card link</CCardLink>
-                  <CCardLink href="#">Another link</CCardLink>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Header and footer</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add an optional header and/or footer within a card.
-            </p>
-            <DocsExample href="components/card/#header-and-footer">
-              <CCard>
-                <CCardHeader>Header</CCardHeader>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              Card headers can be styled by adding ex. <code>component=&#34;h5&#34;</code>.
-            </p>
-            <DocsExample href="components/card/#header-and-footer">
-              <CCard>
-                <CCardHeader component="h5">Header</CCardHeader>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-            <DocsExample href="components/card/#header-and-footer">
-              <CCard>
-                <CCardHeader>Quote</CCardHeader>
-                <CCardBody>
-                  <blockquote className="blockquote mb-0">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat
-                      a ante.
-                    </p>
-                    <footer className="blockquote-footer">
-                      Someone famous in <cite title="Source Title">Source Title</cite>
-                    </footer>
-                  </blockquote>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-            <DocsExample href="components/card/#header-and-footer">
-              <CCard className="text-center">
-                <CCardHeader>Header</CCardHeader>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-                <CCardFooter className="text-medium-emphasis">2 days ago</CCardFooter>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Body</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Cards assume no specific <code>width</code> to start, so they&#39;ll be 100% wide
-              unless otherwise stated. You can adjust this as required with custom CSS, grid
-              classes, grid Sass mixins, or services.
-            </p>
-            <h3>Using grid markup</h3>
-            <p className="text-medium-emphasis small">
-              Using the grid, wrap cards in columns and rows as needed.
-            </p>
-            <DocsExample href="components/card/#sizing">
-              <CRow>
-                <CCol sm={6}>
-                  <CCard>
-                    <CCardBody>
-                      <CCardTitle>Special title treatment</CCardTitle>
-                      <CCardText>
-                        With supporting text below as a natural lead-in to additional content.
-                      </CCardText>
-                      <CButton href="#">Go somewhere</CButton>
-                    </CCardBody>
-                  </CCard>
-                </CCol>
-                <CCol sm={6}>
-                  <CCard>
-                    <CCardBody>
-                      <CCardTitle>Special title treatment</CCardTitle>
-                      <CCardText>
-                        With supporting text below as a natural lead-in to additional content.
-                      </CCardText>
-                      <CButton href="#">Go somewhere</CButton>
-                    </CCardBody>
-                  </CCard>
-                </CCol>
-              </CRow>
-            </DocsExample>
-            <h3>Using utilities</h3>
-            <p className="text-medium-emphasis small">
-              Use some of{' '}
-              <a href="https://coreui.io/docs/utilities/sizing/">available sizing utilities</a> to
-              rapidly set a card&#39;s width.
-            </p>
-            <DocsExample href="components/card/#sizing">
-              <CCard className="w-75">
-                <CCardBody>
-                  <CCardTitle>Card title</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-              <CCard className="w-50">
-                <CCardBody>
-                  <CCardTitle>Card title</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-            <strong>Using custom CSS</strong>
-            <p className="text-medium-emphasis small">
-              Use custom CSS in your stylesheets or as inline styles to set a width.
-            </p>
-            <DocsExample href="components/card/#sizing">
-              <CCard style={{ width: '18rem' }}>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Text alignment</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              You can instantly change the text arrangement of any card—in its whole or specific
-              parts—with{' '}
-              <a href="https://coreui.io/docs/utilities/text/#text-alignment">text align classes</a>
-              .
-            </p>
-            <DocsExample href="components/card/#text-alignment">
-              <CCard style={{ width: '18rem' }}>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-              <CCard className="text-center" style={{ width: '18rem' }}>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-              <CCard className="text-end" style={{ width: '18rem' }}>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Navigation</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add some navigation to a <code>&lt;CCardHeader&gt;</code> with our{' '}
-              <code>&lt;CNav&gt;</code> component.
-            </p>
-            <DocsExample href="components/card/##navigation">
-              <CCard className="text-center">
-                <CCardHeader>
-                  <CNav variant="tabs" className="card-header-tabs">
-                    <CNavItem>
-                      <CNavLink href="#" active>
-                        Active
-                      </CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                      <CNavLink href="#">Link</CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                      <CNavLink href="#" disabled>
-                        Disabled
-                      </CNavLink>
-                    </CNavItem>
-                  </CNav>
-                </CCardHeader>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-            <DocsExample href="components/card/##navigation">
-              <CCard className="text-center">
-                <CCardHeader>
-                  <CNav variant="pills" className="card-header-pills">
-                    <CNavItem>
-                      <CNavLink href="#" active>
-                        Active
-                      </CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                      <CNavLink href="#">Link</CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                      <CNavLink href="#" disabled>
-                        Disabled
-                      </CNavLink>
-                    </CNavItem>
-                  </CNav>
-                </CCardHeader>
-                <CCardBody>
-                  <CCardTitle>Special title treatment</CCardTitle>
-                  <CCardText>
-                    With supporting text below as a natural lead-in to additional content.
-                  </CCardText>
-                  <CButton href="#">Go somewhere</CButton>
-                </CCardBody>
-              </CCard>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Image caps</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Similar to headers and footers, cards can include top and bottom &#34;image
-              caps&#34;—images at the top or bottom of a card.
-            </p>
-            <DocsExample href="components/card/#image-caps">
-              <CRow>
-                <CCol lg={6}>
-                  <CCard className="mb-3">
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                      <CCardText>
-                        <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                      </CCardText>
-                    </CCardBody>
-                  </CCard>
-                </CCol>
-                <CCol lg={6}>
-                  <CCard className="mb-3">
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                      <CCardText>
-                        <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                      </CCardText>
-                    </CCardBody>
-                    <CCardImage orientation="bottom" src={ReactImg} />
-                  </CCard>
-                </CCol>
-              </CRow>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Card styles</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Cards include various options for customizing their backgrounds, borders, and color.
-            </p>
-            <h3>Background and color</h3>
-            <p className="text-medium-emphasis small">
-              Use <code>color</code> property to change the appearance of a card.
-            </p>
-            <DocsExample href="components/card/#background-and-color">
-              <CRow>
-                {[
-                  { color: 'primary', textColor: 'white' },
-                  { color: 'secondary', textColor: 'white' },
-                  { color: 'success', textColor: 'white' },
-                  { color: 'danger', textColor: 'white' },
-                  { color: 'warning' },
-                  { color: 'info', textColor: 'white' },
-                  { color: 'light' },
-                  { color: 'dark', textColor: 'white' },
-                ].map((item, index) => (
-                  <CCol lg={4} key={index}>
-                    <CCard color={item.color} textColor={item.textColor} className="mb-3">
-                      <CCardHeader>Header</CCardHeader>
-                      <CCardBody>
-                        <CCardTitle>{item.color} card title</CCardTitle>
-                        <CCardText>
-                          Some quick example text to build on the card title and make up the bulk of
-                          the card&#39;s content.
-                        </CCardText>
-                      </CCardBody>
-                    </CCard>
-                  </CCol>
-                ))}
-              </CRow>
-            </DocsExample>
-            <h3>Border</h3>
-            <p className="text-medium-emphasis small">
-              Use <a href="https://coreui.io/docs/utilities/borders/">border utilities</a> to change
-              just the <code>border-color</code> of a card. Note that you can set{' '}
-              <code>textColor</code> property on the <code>&lt;CCard&gt;</code> or a subset of the
-              card&#39;s contents as shown below.
-            </p>
-            <DocsExample href="components/card/#border">
-              <CRow>
-                {[
-                  { color: 'primary', textColor: 'primary' },
-                  { color: 'secondary', textColor: 'secondary' },
-                  { color: 'success', textColor: 'success' },
-                  { color: 'danger', textColor: 'danger' },
-                  { color: 'warning', textColor: 'warning' },
-                  { color: 'info', textColor: 'info' },
-                  { color: 'light' },
-                  { color: 'dark' },
-                ].map((item, index) => (
-                  <CCol lg={4} key={index}>
-                    <CCard textColor={item.textColor} className={`mb-3 border-${item.color}`}>
-                      <CCardHeader>Header</CCardHeader>
-                      <CCardBody>
-                        <CCardTitle>{item.color} card title</CCardTitle>
-                        <CCardText>
-                          Some quick example text to build on the card title and make up the bulk of
-                          the card&#39;s content.
-                        </CCardText>
-                      </CCardBody>
-                    </CCard>
-                  </CCol>
-                ))}
-              </CRow>
-            </DocsExample>
-            <h3>Top border</h3>
-            <p className="text-medium-emphasis small">
-              Use <a href="https://coreui.io/docs/utilities/borders/">border utilities</a> to change
-              just the <code>border-color</code> of a card. Note that you can set{' '}
-              <code>textColor</code> property on the <code>&lt;CCard&gt;</code> or a subset of the
-              card&#39;s contents as shown below.
-            </p>
-            <DocsExample href="components/card/#top-border">
-              <CRow>
-                {[
-                  { color: 'primary', textColor: 'primary' },
-                  { color: 'secondary', textColor: 'secondary' },
-                  { color: 'success', textColor: 'success' },
-                  { color: 'danger', textColor: 'danger' },
-                  { color: 'warning', textColor: 'warning' },
-                  { color: 'info', textColor: 'info' },
-                  { color: 'light' },
-                  { color: 'dark' },
-                ].map((item, index) => (
-                  <CCol lg={4} key={index}>
-                    <CCard
-                      textColor={item.textColor}
-                      className={`mb-3 border-top-${item.color} border-top-3`}
-                    >
-                      <CCardHeader>Header</CCardHeader>
-                      <CCardBody>
-                        <CCardTitle>{item.color} card title</CCardTitle>
-                        <CCardText>
-                          Some quick example text to build on the card title and make up the bulk of
-                          the card&#39;s content.
-                        </CCardText>
-                      </CCardBody>
-                    </CCard>
-                  </CCol>
-                ))}
-              </CRow>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Card groups</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Use card groups to render cards as a single, attached element with equal width and
-              height columns. Card groups start off stacked and use <code>display: flex;</code> to
-              become attached with uniform dimensions starting at the <code>sm</code> breakpoint.
-            </p>
-            <DocsExample href="components/card/#card-groups">
-              <CCardGroup>
-                <CCard>
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>Card title</CCardTitle>
-                    <CCardText>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.
-                    </CCardText>
-                    <CCardText>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardText>
-                  </CCardBody>
-                </CCard>
-                <CCard>
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>Card title</CCardTitle>
-                    <CCardText>
-                      This card has supporting text below as a natural lead-in to additional
-                      content.
-                    </CCardText>
-                    <CCardText>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardText>
-                  </CCardBody>
-                </CCard>
-                <CCard>
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>Card title</CCardTitle>
-                    <CCardText>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This card has even longer content than the first to show
-                      that equal height action.
-                    </CCardText>
-                    <CCardText>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardText>
-                  </CCardBody>
-                </CCard>
-              </CCardGroup>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              When using card groups with footers, their content will automatically line up.
-            </p>
-            <DocsExample href="components/card/#card-groups">
-              <CCardGroup>
-                <CCard>
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>Card title</CCardTitle>
-                    <CCardText>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.
-                    </CCardText>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                  </CCardFooter>
-                </CCard>
-                <CCard>
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>Card title</CCardTitle>
-                    <CCardText>
-                      This card has supporting text below as a natural lead-in to additional
-                      content.
-                    </CCardText>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                  </CCardFooter>
-                </CCard>
-                <CCard>
-                  <CCardImage orientation="top" src={ReactImg} />
-                  <CCardBody>
-                    <CCardTitle>Card title</CCardTitle>
-                    <CCardText>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This card has even longer content than the first to show
-                      that equal height action.
-                    </CCardText>
-                  </CCardBody>
-                  <CCardFooter>
-                    <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                  </CCardFooter>
-                </CCard>
-              </CCardGroup>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Card</strong> <small>Grid cards</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Use the <code>CRow</code> component and set{' '}
-              <code>&#123;xs|sm|md|lg|xl|xxl&#125;=&#123;&#123; cols: * &#125;&#125;</code> property
-              to control how many grid columns (wrapped around your cards) you show per row. For
-              example, here&#39;s <code>xs=&#123;&#123;cols: 1&#125;&#125;</code> laying out the
-              cards on one column, and <code>md=&#123;&#123;cols: 1&#125;&#125;</code> splitting
-              four cards to equal width across multiple rows, from the medium breakpoint up.
-            </p>
-            <DocsExample href="components/card/#grid-cards">
-              <CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 2 }}>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-              </CRow>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              Change it to <code>md=&#123;&#123; cols: 3&#125;&#125;</code> and you&#39;ll see the
-              fourth card wrap.
-            </p>
-            <DocsExample href="components/card/#grid-cards">
-              <CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 3 }}>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-                <CCol xs>
-                  <CCard>
-                    <CCardImage orientation="top" src={ReactImg} />
-                    <CCardBody>
-                      <CCardTitle>Card title</CCardTitle>
-                      <CCardText>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </CCardText>
-                    </CCardBody>
-                    <CCardFooter>
-                      <small className="text-medium-emphasis">Last updated 3 mins ago</small>
-                    </CCardFooter>
-                  </CCard>
-                </CCol>
-              </CRow>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </CRow>
-  )
+	// let dispatch = useDispatch()
+	// let incidentDetails = useSelector((state) => state.incidentDetails)
+	// let patientDetails = useSelector((state) => state.patientDetails)
+
+	// const handleChange = (name, value) => dispatch(setIncidentDetails({ name, value }))
+
+	// const handleSameAddress = (e) => {
+	// 	e.preventDefault()
+
+	// 	const street = patientDetails.Street
+	// 	const city = patientDetails.Community
+	// 	const province = patientDetails.Province
+	// 	const postalCode = patientDetails.PostalCode
+
+	// 	dispatch(setIncidentLocation({ street, city, province, postalCode }))
+	// }
+	const [state, setState] = useState({
+		serviceCode: "",
+		serviceType: "",
+		dateOfIncident: "",
+		timeOfIncident: "",
+		incidentLocation_street: "",
+		incidentLocation_city:"",
+		incidentLocation_state:"",
+		incidentLocation_postalCode:"",
+		destinationDeterminant: "",
+		graphicLocator: "",
+		sceneLocationType: "",
+		destinationFacility: "",
+		sceneFacility: "",
+		destinationLocationAddress: "",
+		destinationLocation_street: "",
+		destinationLocation_city: "",
+		destinationLocation_state: "",
+		destinationLocation_postalCode: "",
+		servicePayment_responsibility: "",
+		servicePayment_number: "",
+		EMS: "",
+		patientDisposition: ""
+	})
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setState((prevProps) => ({
+		  ...prevProps,
+		  [name]: value
+		}));
+	  };
+	
+	  const submitHandler = (event) => {
+		event.preventDefault();
+		console.log(state);
+	  };
+
+	return (
+	<form
+			onSubmit={submitHandler}
+                method="post"
+                encType="multipart/form-data"
+                className="form-horizontal">
+
+		<Grid container spacing={3}>
+			
+		
+
+
+
+
+			<Grid item xs={12}>
+				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
+					<Typography color="textSecondary" gutterBottom>
+						Incident Info
+					</Typography>
+					<Grid container justifyContent="center" spacing={2}>
+						<Grid item xs={12} md>
+						<TextField 
+						 name='serviceCode'
+						 fullWidth
+						 value={state.serviceCode}
+						   onChange={handleInputChange}
+					 size="small" label="Service Code" />
+					 
+					 </Grid>
+
+						<Grid item xs={12} md>
+						<TextField 
+						 fullWidth
+						 name='serviceType'
+						 value={state.serviceType}
+						   onChange={handleInputChange}
+					 size="small" label="Service Type" />
+						</Grid>
+						<Grid item xs={12} md>
+						<LocalizationProvider dateAdapter={AdapterDateFns}>
+						<Stack spacing={3}>
+						<Grid item xs={12} >
+							<DatePicker
+								label="Date of Incident"
+								// value={incidentDetails.Date_of_Incident}
+								// onChange={(newValue) => handleChange('Date_of_Incident', newValue.to())}
+								// renderInput={(params) => <TextField fullWidth size="small" {...params} />}
+								name='dateOfIncident'
+								value={state.dateOfIncident}
+                      			onChange={handleInputChange}
+								fullWidth
+							/>
+							</Grid>
+							<Grid item xs={12} >
+							<TextField
+								
+								label="Time of Incident"
+								size="small"
+								fullWidth
+								type="time"
+								name='timeOfIncident'
+								value={state.timeOfIncident}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Time_of_Incident || ''}
+								// onChange={(e) => handleChange('Time_of_Incident', e.target.value)}
+								InputLabelProps={{
+									shrink: true,
+								}}
+							
+							/>
+							</Grid>
+						</Stack>
+					</LocalizationProvider>
+				
+						</Grid>
+						
+						
+					</Grid>
+				</Paper>
+			</Grid>
+
+
+
+
+			<Grid item xs={12}>
+				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
+					<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
+						Incident Location
+					</Typography>
+					<Grid container spacing={2}>
+						<Grid item xs={12} md={6} lg={9}>
+							<TextField
+								label="Street Address"
+								size="small"
+								fullWidth
+								name='incidentLocation_street'
+								value={state.incidentLocation_street}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Inc_Street}
+								// onChange={(e) => handleChange('Inc_Street', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={6} lg={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+							<Button fullWidth variant="outlined">
+								Same as Patient Address
+							</Button>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="City"
+								size="small"
+								fullWidth
+								name='incidentLocation_city'
+								value={state.incidentLocation_city}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Inc_Community}
+								// onChange={(e) => handleChange('Inc_Community', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="Province"
+								size="small"
+								fullWidth
+								name='incidentLocation_state'
+								value={state.incidentLocation_state}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Inc_Province}
+								// onChange={(e) => handleChange('Inc_Province', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="Postal Code"
+								size="small"
+								fullWidth
+								name='incidentLocation_postalCode'
+								value={state.incidentLocation_postalCode}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Inc_PostalCode}
+								// onChange={(e) => handleChange('Inc_PostalCode', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} sx={{ display: { xs: 'block', md: 'none' } }}>
+							<Button fullWidth variant="outlined">
+								Same as Patient Address
+							</Button>
+						</Grid>
+					</Grid>
+				</Paper>
+			</Grid>
+
+
+			<Grid item xs={12}>
+				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
+					<Typography color="textSecondary" gutterBottom>
+						Incident Info
+					</Typography>
+					<Grid container justifyContent="center" spacing={2}>
+						<Grid item xs={12} md>
+							
+							
+						<FormControl size="small" fullWidth>
+							<InputLabel id="dest-determinant-label">Destination Determination</InputLabel>
+							<Select
+								labelId="dest-determinant-label"
+								id="dest-determinant"
+								defaultValue=""
+								name='destinationDeterminant'
+								value={state.destinationDeterminant}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_Determinant}
+								// onChange={(e) => handleChange('Dest_Determinant', e.target.value)}
+								label="Destination Determination"
+							>
+								{destinationDeterminations.map((item, index) => (
+									<MenuItem key={index} value={item}>
+										{item}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+
+						 </Grid>
+
+						<Grid item xs={12} md>
+									
+						<FormControl size="small" fullWidth>
+							<InputLabel id="destination-location-type-label">
+								Destination Location Type
+							</InputLabel>
+							<Select
+								labelId="destination-location-type-label"
+								id="destination-location-type"
+								defaultValue=""
+								name='destinationLocationType'
+								value={state.destinationLocationType}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_Loc_Type}
+								// onChange={(e) => handleChange('Dest_Loc_Type', e.target.value)}
+								label="Destination Location Type"
+							>
+								{destinationLocationTypes.map((item, index) => (
+									<MenuItem key={index} value={item}>
+										{item}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+
+						</Grid>
+						
+						
+							<Grid item xs={12} >
+							<TextField
+							label="Geographic Locator"
+							size="small"
+							fullWidth
+							// value={incidentDetails.Geo_Locator}
+							// onChange={(e) => handleChange('Geo_Locator', e.target.value)}
+							name='grapicLocator'
+								value={state.graphicLocator}
+                      			onChange={handleInputChange}
+									/>
+							</Grid>
+							<Grid item xs={12} >
+							
+							
+							
+							<TextField size='small'
+							label="SceneFacility"
+							fullWidth
+							name='sceneFacility'
+								value={state.sceneFacility}
+                      			onChange={handleInputChange}>
+
+							</TextField>
+						
+						
+							</Grid>
+					
+				
+			
+						
+						
+					</Grid>
+				</Paper>
+			</Grid>
+		
+
+			
+			<Grid item xs={12}>
+				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
+					<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
+						Destination Location
+					</Typography>
+					<Grid container spacing={2}>
+						<Grid item xs={12} md={6}>
+							{/* <FormControl fullWidth size="small">
+								<InputLabel id="dest-facility-code-label">Facility Code</InputLabel>
+								<Select
+									labelId="dest-facility-code-label"
+									id="dest-facility-code"
+									name="Dest_Facility_Code"
+									defaultValue=""
+									// value={incidentDetails.Dest_Facility_Code}
+									// onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
+									label="Facility Code"
+								>
+									{facilityCodes.map((item, index) => (
+										<MenuItem key={index} value={item}>
+											{item}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl> */}
+							<TextField
+								label="Street Address"
+								size="small"
+								fullWidth
+								name='destinationLocationAddress'
+								value={state.destinationLocationAddress}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_Street}
+								// onChange={(e) => handleChange('Dest_Street', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<TextField
+								label="Street Address"
+								size="small"
+								fullWidth
+								name='destinationLocationType'
+								value={state.destinationLocationType}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_Street}
+								// onChange={(e) => handleChange('Dest_Street', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="City"
+								size="small"
+								fullWidth
+								name='destinationLocation_city'
+								value={state.destinationLocation_city}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_Community}
+								// onChange={(e) => handleChange('Dest_Community', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="Province"
+								size="small"
+								fullWidth
+								name='destinationLocation_state'
+								value={state.destinationLocation_state}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_Province}
+								// onChange={(e) => handleChange('Dest_Province', e.target.value)}
+							/>
+						</Grid>
+						<Grid item xs={12} md={4}>
+							<TextField
+								label="Postal Code"
+								size="small"
+								fullWidth
+								name='destination_postalCode'
+								value={state.destinationLocation_postalCode}
+                      			onChange={handleInputChange}
+								// value={incidentDetails.Dest_PostalCode}
+								// onChange={(e) => handleChange('Dest_PostalCode', e.target.value)}
+							/>
+						</Grid>
+					</Grid>
+				</Paper>
+			</Grid>
+			
+
+			
+
+
+
+			
+
+
+			<Grid item xs={12} md={8} container spacing={3}>
+				<Grid item xs={12} md={6}>
+					<FormControl size="small" fullWidth>
+						<InputLabel id="patient-disposition-label">Patient Disposition</InputLabel>
+						<Select
+							labelId="patient-disposition-label"
+							id="patient-disposition"
+							defaultValue=""
+							// value={incidentDetails.Patient_Disposition}
+							// onChange={(e) => handleChange('Patient_Disposition', e.target.value)}
+
+							label="Patient Disposition"
+								name='	patient_Disposition'
+								value={state.patientDisposition}
+                      			onChange={handleInputChange}
+						>
+							{patientDispositions.map((item, index) => (
+								<MenuItem key={index} value={item}>
+									{item}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+				</Grid>
+				
+			
+				 <Grid item xs={12}>
+					<FormControl size="small" fullWidth>
+						<InputLabel id="fact-affect-ems-label">Factors Affecting EMS</InputLabel>
+						<Select
+							labelId="fact-affect-ems-label"
+							id="fact-affect-ems"
+							
+							name='EMS'
+								value={state.EMS}
+                      			onChange={handleInputChange}
+							defaultValue=""
+							// onChange={(e) => handleChange('Fact_Affect_EMS', e.target.value)}
+							label="Factors Affecting EMS"
+						>
+							{factorsAffectingEMS.map((item, index) => (
+								<MenuItem key={index} value={item}>
+									{item}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+				</Grid> 
+				{/* {incidentDetails.Fact_Affect_EMS === 'Other' && ( */}
+				
+				{/* )} */}
+			</Grid>
+			<Grid item xs={12} md={6}>
+				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
+					<Typography color="textSecondary" gutterBottom>
+						Service Payment
+					</Typography>
+					<Stack direction="row" spacing={3}>
+						<TextField
+							size="small"
+							label="Response"
+							name='servicePayment_resposibility'
+								value={state.servicePayment_responsibility}
+                      			onChange={handleInputChange}
+							// value={incidentDetails.Service_Payment_Respons}
+							// onChange={(e) => handleChange('Service_Payment_Respons', e.target.value)}
+							fullWidth
+						/>
+						<TextField
+							size="small"
+							label="Number"
+							// name="Service_Payment_Number"
+							name='servicePayment_number'
+								value={state.servicePayment_number}
+                      			onChange={handleInputChange}
+							// value={incidentDetails.Service_Payment_Number}
+							// onChange={(e) => handleChange('Service_Payment_Number', e.target.value)}
+							fullWidth
+						/>
+					</Stack>
+				</Paper>
+			</Grid>
+			</Grid>
+				<button
+                    type="submit"
+                    size="sm"
+                    color="primary"
+                    className="ml-2"
+                  >
+                     Submit
+                </button>
+
+		</form>
+		
+		
+	)
 }
 
 export default Cards

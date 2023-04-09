@@ -1,18 +1,28 @@
 import React from 'react'
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import {
   CButton,
   CCard,
   CCardBody,
   CCol,
   CContainer,
+  CDropdown,
   CForm,
   CFormInput,
   CInputGroup,
-  CInputGroupText,
   CRow,
+  CInputGroupText,
+  CDropdownToggle,
+  // CDropdown,
+  CDropdownMenu,
+  CDropdownItem,
+  CDropdownDivider,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import { Link } from 'react-router-dom'
+
 
 const Register = () => {
   return (
@@ -50,13 +60,31 @@ const Register = () => {
                       <CIcon icon={cilLockLocked} />
                     </CInputGroupText>
                     <CFormInput
-                      type="password"
-                      placeholder="Repeat password"
-                      autoComplete="new-password"
+                      type="phone-number"
+                      placeholder="Mobile Number"
+                      autoComplete="mobile-number"
                     />
                   </CInputGroup>
+
+                  <CInputGroup className="mb-4">
+                  <Dropdown>
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+        User Type
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#Admin">Admin</Dropdown.Item>
+        <Dropdown.Item href="#client">Client</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+                  </CInputGroup>
+
                   <div className="d-grid">
+
+                  <Link to="/login">
+
                     <CButton color="success">Create Account</CButton>
+                    </Link>
                   </div>
                 </CForm>
               </CCardBody>

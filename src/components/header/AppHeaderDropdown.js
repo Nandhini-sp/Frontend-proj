@@ -63,11 +63,11 @@ const AppHeaderDropdown = () => {
         <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
         <CDropdownItem href="#">
           <CIcon icon={cilUser} className="me-2" />
-          Profile
+          Home
         </CDropdownItem>
         <CDropdownItem href="#">
           <CIcon icon={cilSettings} className="me-2" />
-          Settings
+          Profile
         </CDropdownItem>
         {/* <CDropdownItem href="#">
           <CIcon icon={cilCreditCard} className="me-2" />
