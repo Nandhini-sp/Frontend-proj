@@ -17,6 +17,8 @@ import {
 	TextField,
 	Typography,
 } from '@mui/material'
+import { CButton } from '@coreui/react'
+
 
 const Select = () => {
 
@@ -274,14 +276,12 @@ const Select = () => {
 				</Grid>
 			</Paper>
 		</Grid>
-		<button
-                    type="submit"
-                    size="sm"
-                    color="primary"
-                    className="ml-2"
-                  >
-                     Submit
-                </button>
+		<Grid item xs={12}>
+<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+  <CButton color="primary" type="submit" className="me-md-2">Submit</CButton>
+
+</div>
+</Grid>
 		</form>
 	)
 }

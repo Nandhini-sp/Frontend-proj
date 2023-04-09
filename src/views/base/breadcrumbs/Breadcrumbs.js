@@ -18,6 +18,8 @@ import {
 	FormControlLabel,
 	Radio,
 } from '@mui/material'
+import { CButton } from '@coreui/react'
+
 // import { SaveButton, useNotify } from 'react-admin'
 // import { useFormContext } from 'react-hook-form'
 // import { useSelector, useDispatch } from 'react-redux';
@@ -571,14 +573,12 @@ const [state, setState] = useState({
 				</Paper>
 			</Grid>
 			
-			<button
-                    type="submit"
-                    size="sm"
-                    color="primary"
-                    className="ml-2"
-                  >
-                     Submit
-                  </button>
+			<Grid item xs={12}>
+<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+  <CButton color="primary" type="submit" className="me-md-2">submit</CButton>
+
+</div>
+</Grid>
 		</Grid>
 		</form>
 	)

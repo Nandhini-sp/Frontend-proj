@@ -14,6 +14,7 @@ import  { useState } from "react"
 // 	TextField,
 // 	Typography,
 // } from '@mui/material'
+import { CButton } from '@coreui/react'
 
 import {
 	FormControl,
@@ -97,10 +98,9 @@ const accordion = () => {
 				onSubmit={submitHandler}
                 method="post"
                 encType="multipart/form-data"
-                className="form-horizontal"
               >
 		<Grid container spacing={3}>
-
+		
 			<Grid item xs={12} md={6}>
 				<TextField
 					name = "firstname"
@@ -258,6 +258,7 @@ const accordion = () => {
 						<FormControlLabel value="other" control={<Radio />} label="Other" />
 					</RadioGroup>
 				</FormControl>
+				
 			</Grid>
 			{/* <Grid item xs={12} md={4}>
 				<FormControl size="small" fullWidth>
@@ -448,15 +449,23 @@ const accordion = () => {
 				/>
 			</Grid>
 
-			<button
+			{/* <button
                     type="submit"
                     size="sm"
                     color="primary"
                     className="ml-2"
                   >
                      Submit
-                  </button>
-                  {/* <CButton type="reset" size="sm" color="danger">
+                  </button> */}
+
+<Grid item xs={12}>
+<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+  <CButton color="primary" type="submit" className="me-md-2">Submit</CButton>
+
+</div>
+</Grid>
+
+           {/* <CButton type="reset" size="sm" color="danger">
                     <cIcon name="cil-ban" /> Reset
                   </CButton> */}
 

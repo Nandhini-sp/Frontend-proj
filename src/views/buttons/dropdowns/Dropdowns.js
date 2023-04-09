@@ -16,7 +16,10 @@ import {
 	// ToggleButtonGroup,
 	TextField,
 	Typography,
+
 } from '@mui/material'
+import { CButton } from '@coreui/react'
+
 
 const ComplainBased = () => {
 
@@ -161,14 +164,12 @@ const ComplainBased = () => {
 				</Grid>
 			</Paper>
 		</Grid>
-		<button
-                    type="submit"
-                    size="sm"
-                    color="primary"
-                    className="ml-2"
-                  >
-                     Submit
-                </button>
+		<Grid item xs={12}>
+<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+  <CButton color="primary" className="me-md-2">Button</CButton>
+
+</div>
+</Grid>
 		</form>
 	)
 }

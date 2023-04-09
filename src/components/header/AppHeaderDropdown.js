@@ -19,6 +19,7 @@ import {
   cilSettings,
   // cilTask,
   cilUser,
+
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
@@ -61,14 +62,14 @@ const AppHeaderDropdown = () => {
           </CBadge>
         </CDropdownItem> */}
         <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
-        <CDropdownItem href="#">
+        {/* <CDropdownItem href="#">
           <CIcon icon={cilUser} className="me-2" />
           Home
         </CDropdownItem>
         <CDropdownItem href="#">
           <CIcon icon={cilSettings} className="me-2" />
           Profile
-        </CDropdownItem>
+        </CDropdownItem> */}
         {/* <CDropdownItem href="#">
           <CIcon icon={cilCreditCard} className="me-2" />
           Payments
