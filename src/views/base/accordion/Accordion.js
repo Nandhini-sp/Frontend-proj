@@ -48,7 +48,7 @@ const accordion = () => {
 	const [visible, setVisible] = useState(false)
 
 	const [toast, addToast] = useState(0)
-const toaster = useRef()
+// const toaster = useRef()
 
 
 
