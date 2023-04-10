@@ -466,14 +466,6 @@ const accordion = () => {
 				/>
 			</Grid>
 
-			{/* <button
-                    type="submit"
-                    size="sm"
-                    color="primary"
-                    className="ml-2"
-                  >
-                     Submit
-                  </button> */}
 
 <Grid item xs={12}>
 <div class="d-grid gap-2 col-6 mx-auto">
@@ -484,10 +476,6 @@ const accordion = () => {
       <CModalHeader onClose={() => setVisible(false)}>
         <CModalTitle>DOTTY CARE</CModalTitle>
       </CModalHeader>
-    
-
-
-	
   
       <div class="modal-body mx-3">
 	  <div class="md-form mb-4">
@@ -504,33 +492,8 @@ const accordion = () => {
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
+        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
       </div>
- 
-
-
-
-
-
-
-		      {/* <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="fas fa-user prefix grey-text"></i>
-          <InputLabel type="text" id="form3" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form3">Your name</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <InputLabel type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Your email</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-indigo">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-    		 */}
 		
       <CModalFooter>
         <CButton color="secondary" onClick={() => setVisible(false)}>
@@ -541,10 +504,6 @@ const accordion = () => {
     </CModal>
 </div>
 </Grid>
-
-           {/* <CButton type="reset" size="sm" color="danger">
-                    <cIcon name="cil-ban" /> Reset
-                  </CButton> */}
 
 				  </Grid>
 			</form>

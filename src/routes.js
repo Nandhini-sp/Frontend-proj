@@ -21,9 +21,9 @@ const Charts = React.lazy(() => import('./views/charts/Charts'))
 
 
 // Reports
-// const CallDetails = React.lazy(() => import('./views/reports/calldetails'))
-// const Assessment = React.lazy(() => import('./views/reports/assessment'))
-// const Treatment = React.lazy(() => import('./views/reports/treatment'))
+const CallDetails = React.lazy(() => import('./views/reports/calldetails'))
+const Assessment = React.lazy(() => import('./views/reports/assessment'))
+const Treatment = React.lazy(() => import('./views/reports/treatment'))
 
 
 
@@ -51,9 +51,9 @@ const routes = [
   { path: '/register', name: 'Register', element: Login },
 
   // { path: '/reports', name: 'Reports', element: ReportCallDetails , exact: true },
-  // { path: '/reports/calldetails', name: 'CallDetails', element: CallDetails },
-  // { path: '/reports/assessment', name: 'Assessment', element: Assessment},
-  // { path: '/reports/treatment', name: 'Treatment', element: Treatment },
+  { path: '/reports/calldetails', name: 'CallDetails', element: CallDetails },
+  { path: '/reports/assessment', name: 'Assessment', element: Assessment},
+  { path: '/reports/treatment', name: 'Treatment', element: Treatment },
 
 
   

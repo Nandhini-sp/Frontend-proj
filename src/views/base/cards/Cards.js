@@ -14,6 +14,17 @@ import {
 	Typography,
 } from '@mui/material'
 
+import{
+	// CButton,
+	CModal,
+	CModalHeader,
+	CModalTitle,
+	CModalBody,
+	CModalFooter,
+
+}from '@coreui/react'
+
+
 import { CButton } from '@coreui/react'
 
 // import { useSelector, useDispatch } from 'react-redux'
@@ -388,6 +399,11 @@ const Cards = () => {
 
 	// 	dispatch(setIncidentLocation({ street, city, province, postalCode }))
 	// }
+
+	const [visible, setVisible] = useState(false)
+
+	
+
 	const [state, setState] = useState({
 		serviceCode: "",
 		serviceType: "",
@@ -858,8 +874,40 @@ const Cards = () => {
 			<Grid item xs={12}>
 
 			<div class="d-grid gap-2 col-6 mx-auto">
-  				<button class="btn btn-success" type="submit">Submit</button>
-				</div>
+  <button class="btn btn-success" type="submit"
+  onClick={() => setVisible(!visible)}
+>Submit</button>
+<CModal visible={visible} onClose={() => setVisible(false)}>
+      <CModalHeader onClose={() => setVisible(false)}>
+        <CModalTitle>DOTTY CARE</CModalTitle>
+      </CModalHeader>
+  
+      <div class="modal-body mx-3">
+	  <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="form2" class="form-control validate"/>
+          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="form2" class="form-control validate"/>
+          <label data-error="wrong" data-success="right" for="form2">Ambulance EMail-Id</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
+      </div>
+		
+      <CModalFooter>
+        <CButton color="secondary" onClick={() => setVisible(false)}>
+          Close
+        </CButton>
+        <CButton color="primary">Save changes</CButton>
+      </CModalFooter>
+    </CModal>
+</div>
 
 			</Grid>
 
