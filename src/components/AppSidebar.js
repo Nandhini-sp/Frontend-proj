@@ -14,7 +14,8 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
-import { CImage } from '@coreui/react'
+// import { CImage } from '@coreui/react'
+import logo1 from '../assets/brand/logo1.png'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
@@ -35,6 +36,12 @@ const AppSidebar = () => {
         {/* <CImage rounded thumbnail src="/assets/brand/logo" width={200} height={200} /> */}
 
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
+        <div class="" >
+          <a href="/base">
+          <img src={logo1} class="" alt="..." width="100" height="100"/>
+        </a>
+      </div>
+
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
