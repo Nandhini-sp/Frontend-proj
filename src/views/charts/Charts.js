@@ -7,7 +7,6 @@ const Charts = () => {
   return (
     <>
 
-      
 
     </>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import Login from './views/pages/login/Login'
+// import Reports from './views/reports'
 
 
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -17,6 +18,12 @@ const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns')
 const FormControl = React.lazy(() => import('./views/forms/form-control/FormControl'))
 const Select = React.lazy(() => import('./views/forms/select/Select'))
 const Charts = React.lazy(() => import('./views/charts/Charts'))
+
+
+// Reports
+// const CallDetails = React.lazy(() => import('./views/reports/calldetails'))
+// const Assessment = React.lazy(() => import('./views/reports/assessment'))
+// const Treatment = React.lazy(() => import('./views/reports/treatment'))
 
 
 
@@ -42,6 +49,19 @@ const routes = [
   { path: '/forms/select', name: 'Select', element: Select },
   { path: '/login', name: 'Login', element: Login },
   { path: '/register', name: 'Register', element: Login },
+
+  // { path: '/reports', name: 'Reports', element: ReportCallDetails , exact: true },
+  // { path: '/reports/calldetails', name: 'CallDetails', element: CallDetails },
+  // { path: '/reports/assessment', name: 'Assessment', element: Assessment},
+  // { path: '/reports/treatment', name: 'Treatment', element: Treatment },
+
+
+  
+
+  
+
+
+
 
 
 ]

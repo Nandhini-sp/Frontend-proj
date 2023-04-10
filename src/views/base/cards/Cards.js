@@ -856,11 +856,12 @@ const Cards = () => {
 			</Grid>
 			</Grid>
 			<Grid item xs={12}>
-<div className="d-grid gap-2 d-md-flex justify-content-md-end">
-  <CButton color="primary" type="submit" className="me-md-2">Submit</CButton>
 
-</div>
-</Grid>
+			<div class="d-grid gap-2 col-6 mx-auto">
+  				<button class="btn btn-success" type="submit">Submit</button>
+				</div>
+
+			</Grid>
 
 		</form>
 		

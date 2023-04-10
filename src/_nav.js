@@ -44,7 +44,7 @@ const _nav = [
 	// },
 	{
 		component: CNavTitle,
-		name: 'HealthCare',
+		name: 'DOTTY CARE',
 	},
 	{
 		component: CNavGroup,
@@ -195,11 +195,34 @@ const _nav = [
 		],
 	},
 	{
-		component: CNavItem,
+		component: CNavGroup,
 		name: 'Report',
-		to: '/charts',
-		icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
+		to: '/reports',
+		icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+		items: [
+			{
+				component: CNavItem,
+				name: 'CallDetails',
+				to: '/reports/calldetails',
+			},
+			{
+				component: CNavItem,
+				name: 'Assessment',
+				to: '/reports/assessment',
+			},
+			{
+				component: CNavItem,
+				name: 'Treatment',
+				to: '/reports/treatment',
+			},
+		],
 	},
+	// {
+	// 	component: CNavItem,
+	// 	name: 'Report',
+	// 	to: '/charts',
+	// 	icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
+	// },
 	// {
 	//   component: CNavGroup,
 	//   name: 'Icons',
