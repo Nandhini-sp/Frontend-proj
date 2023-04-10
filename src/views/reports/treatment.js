@@ -1,4 +1,5 @@
-import Table from 'react-bootstrap/Table';
+import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function treatmentReport() {
   return (
@@ -31,7 +32,7 @@ function treatmentReport() {
         </tr>
       </tbody>
     </Table>
-  );
+  )
 }
 
-export default treatmentReport;
+export default treatmentReport

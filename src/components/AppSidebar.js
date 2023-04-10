@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler} from '@coreui/react'
+import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
 import { AppSidebarNav } from './AppSidebarNav'
@@ -31,17 +31,12 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
-      <CSidebarBrand className="d-none d-md-flex" to="/">
-
+      <CSidebarBrand className="d-flex justify-content-center pe-2 ps-2" to="/">
         {/* <CImage rounded thumbnail src="/assets/brand/logo" width={200} height={200} /> */}
 
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
-        <div class="" >
-          <a href="/base">
-          <img src={logo1} class="" alt="..." width="100" height="100"/>
-        </a>
-      </div>
-
+        <img src={logo1} class="pe-2" alt="..." style={{ width: 40 }} />
+        <div>DOTTY CARE</div>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

@@ -1,4 +1,5 @@
-import Table from 'react-bootstrap/Table';
+import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function BasicExample() {
   return (
@@ -31,7 +32,7 @@ function BasicExample() {
         </tr>
       </tbody>
     </Table>
-  );
+  )
 }
 
-export default BasicExample;
+export default BasicExample

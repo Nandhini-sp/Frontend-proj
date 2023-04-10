@@ -1,4 +1,5 @@
-import Table from 'react-bootstrap/Table';
+import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function callDetailsReport() {
   return (
@@ -16,7 +17,9 @@ function callDetailsReport() {
           <td>1</td>
           <td>Mark</td>
           <td>Otto</td>
-          <td><i className='i'></i></td>
+          <td>
+            <i className="i"></i>
+          </td>
         </tr>
         <tr>
           <td>2</td>
@@ -31,7 +34,7 @@ function callDetailsReport() {
         </tr>
       </tbody>
     </Table>
-  );
+  )
 }
 
-export default callDetailsReport;
+export default callDetailsReport
