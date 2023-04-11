@@ -3,33 +3,15 @@ import { useState } from 'react'
 import TimePicker from "rc-time-picker";
 import 'rc-time-picker/assets/index.css';
  
-import {
-	Button,
-	// ButtonGroup,
-	FormControl,
-	Grid,
-	InputLabel,
-	MenuItem,
-	Paper,
-	Select,
-	Stack,
-	TextField,
-	ToggleButton,
-	ToggleButtonGroup,
-	Typography,
-	RadioGroup,
-	FormControlLabel,
-	Radio,
-} from '@mui/material'
+
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
-// import { CButton } from '@coreui/react'
+
 import{
 	CButton,
 	CModal,
 	CModalHeader,
 	CModalTitle,
-	CModalBody,
 	CModalFooter,
 	CRow,
 	CCol,
@@ -40,13 +22,6 @@ import{
 	CFormSelect
 }from '@coreui/react'
 
-
-
-
-// import { SaveButton, useNotify } from 'react-admin'
-// import { useFormContext } from 'react-hook-form'
-// import { useSelector, useDispatch } from 'react-redux';
-// import { setVehicleDetails } from '../../features/vehicleDetails';
 
 const crewTypes = [
 	'EMT-1',
@@ -64,12 +39,7 @@ const crewTypes = [
 ]
 
 const BreadCrumbs = () => {
-	// let dispatch = useDispatch();
-	// let vehicleDetails = useSelector(state => state.vehicleDetails);
-
-	// const handleChange = (name, value) => dispatch(setVehicleDetails({ name, value }));
-	// const { reset } = useFormContext()
-	// const notify = useNotify()
+	
 	const [time, setTime] = useState('');	
 	const [visible, setVisible] = useState(false)
 
@@ -401,7 +371,7 @@ const [state, setState] = useState({
 		
 		
 			
-			<Grid item xs={12}>
+			<CRow item xs={12}>
 
 
 			<div class="d-grid gap-2 col-6 mx-auto">
@@ -440,7 +410,7 @@ const [state, setState] = useState({
     </CModal>
 </div>
 
-</Grid>
+</CRow>
 
 
 
