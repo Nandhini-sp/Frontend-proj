@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import TimePicker from "rc-time-picker";
+import 'rc-time-picker/assets/index.css';
+ 
 import {
 	Button,
 	// ButtonGroup,
@@ -18,6 +21,8 @@ import {
 	FormControlLabel,
 	Radio,
 } from '@mui/material'
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
 // import { CButton } from '@coreui/react'
 import{
 	CButton,
@@ -26,8 +31,17 @@ import{
 	CModalTitle,
 	CModalBody,
 	CModalFooter,
-
+	CRow,
+	CCol,
+	CFormLabel,
+	CContainer,
+	CFormFloating,
+	CFormInput,
+	CFormSelect
 }from '@coreui/react'
+
+
+
 
 // import { SaveButton, useNotify } from 'react-admin'
 // import { useFormContext } from 'react-hook-form'
@@ -56,7 +70,7 @@ const BreadCrumbs = () => {
 	// const handleChange = (name, value) => dispatch(setVehicleDetails({ name, value }));
 	// const { reset } = useFormContext()
 	// const notify = useNotify()
-
+	const [time, setTime] = useState('');	
 	const [visible, setVisible] = useState(false)
 
 const [state, setState] = useState({
@@ -102,487 +116,290 @@ const [state, setState] = useState({
 	  };
 	return (
 
-		<form
-		onSubmit={submitHandler}
-                method="post"
-                encType="multipart/form-data"
-                className="form-horizontal">
-		<Grid container spacing={3}>
-			{/* <Grid item xs={12}>
-				<Stack direction="row" spacing={2} alignItems="center">
-					<Typography variant="button">Number of Patient(s) Transported</Typography>
-					<ButtonGroup
-						sx={{ '& .Mui-disabled': { color: 'primary.main', borderColor: 'primary.light' } }}
-						size="small"
-						aria-label="number of patient(s) transported button group"
-					>
-						<Button>-</Button>
-						<Button disableRipple></Button>
-						<Button>+</Button>
-					</ButtonGroup>
-				</Stack>
-			</Grid> */}
+	<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
+		<CContainer className='m-4'>
+			<CRow>
+				<CCol xs={4}>
+				<CFormLabel htmlFor="floatingInput" className='h3'>Time Notified</CFormLabel>
+				<p >Selected Time: {time || '-'}</p>
+      			<TimePicker
+        		placeholder="Select Time"
+        		use12Hours
+        		showSecond={false}
+        		focusOnOpen={true}
+        		format="hh:mm A"
+        		onChange={e => setTime(e.format('LT'))}
+      		/>
+			</CCol>
+			<CCol xs={4}>
+				<CFormLabel htmlFor="floatingInput" className='h3'>Time En Route</CFormLabel>
+				<p className='' sty>Selected Time: {time || '-'}</p>
+      			<TimePicker
+        		placeholder="Select Time"
+        		use12Hours
+        		showSecond={false}
+        		focusOnOpen={true}
+        		format="hh:mm A"
+        		onChange={e => setTime(e.format('LT'))}
+      		/>
+			</CCol>
+			<CCol xs={4}>
+				<CFormLabel htmlFor="floatingInput" className='h3'>Time At Scene</CFormLabel>
+				<p className='' sty>Selected Time: {time || '-'}</p>
+      			<TimePicker
+        		placeholder="Select Time"
+        		use12Hours
+        		showSecond={false}
+        		focusOnOpen={true}
+        		format="hh:mm A"
+        		onChange={e => setTime(e.format('LT'))}
+      		/>
+			</CCol>
+			</CRow>
+			<CRow>
+				<CCol xs={4}>
+				<CFormLabel htmlFor="floatingInput"className='h3'>Time Out Of Scene</CFormLabel>
+				<p className='' sty>Selected Time: {time || '-'}</p>
+      			<TimePicker
+        		placeholder="Select Time"
+        		use12Hours
+        		showSecond={false}
+        		focusOnOpen={true}
+        		format="hh:mm A"
+        		onChange={e => setTime(e.format('LT'))}
+      		/>
+			</CCol>
+			<CCol xs={4}>
+				<CFormLabel htmlFor="floatingInput"className='h3'>Time out of Scene</CFormLabel>
+				<p className='' sty>Selected Time: {time || '-'}</p>
+      			<TimePicker
+        		placeholder="Select Time"
+        		use12Hours
+        		showSecond={false}
+        		focusOnOpen={true}
+        		format="hh:mm A"
+        		onChange={e => setTime(e.format('LT'))}
+      		/>
+			</CCol>
+			<CCol xs={4}>
+				<CFormLabel htmlFor="floatingInput"className='h3'>Time At Destination</CFormLabel>
+				<p className='' sty>Selected Time: {time || '-'}</p>
+      			<TimePicker
+        		placeholder="Select Time"
+        		use12Hours
+        		showSecond={false}
+        		focusOnOpen={true}
+        		format="hh:mm A"
+        		onChange={e => setTime(e.format('LT'))}
+      		/>
+			</CCol>
+			</CRow>
+		</CContainer>
 
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, width: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Time
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button>Notified</Button>
-								<TextField 
-								name='timeNotified'
-								value={state.timeNotified}
-                      			onChange={handleInputChange}/>
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									En Route
-								</Button>
-								<TextField 
-								name='timeEnroute'
-								value={state.timeEnroute}
-                      			onChange={handleInputChange}
-								fullWidth size="small" />
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									At Scene
-								</Button>
-								<TextField fullWidth size="small" 
-								name='timeAtScene'
-								value={state.timeAtScene}
-                      			onChange={handleInputChange}/>
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									Crew Patient
-								</Button>
-								<TextField fullWidth size="small"
-								name='crewPatient'
-								value={state.crewPatient}
-                      			onChange={handleInputChange} />
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									Out Scene
-								</Button>
-								<TextField fullWidth size="small"
-								name='timeOutScene'
-								value={state.timeOutScene}
-                      			onChange={handleInputChange} />
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									At Destination
-								</Button>
-								<TextField fullWidth size="small" 
-								name='timeAtDestination'
-								value={state.timeAtDestination}
-                      			onChange={handleInputChange}/>
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									Available
-								</Button>
-								<TextField fullWidth size="small"
-									name='available'
-									value={state.available}
-									  onChange={handleInputChange}  />
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3}>
-							<Stack direction="row" spacing={2} alignItems="center">
-								<Button fullWidth variant="outlined">
-									Back Area
-								</Button>
-								<TextField fullWidth size="small"
-								name='backArea'
-								value={state.backArea}
-                      			onChange={handleInputChange} />
-							</Stack>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Response to Scene
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item xs={12} lg={6}>
-							<Stack
-								direction="row"
-								sx={{ justifyContent: { xs: 'space-between', lg: 'space-evenly' } }}
-								spacing={2}
-								alignItems="center"
-							>
-								<Typography variant="button">Type</Typography>
-								<RadioGroup
-						row
-						// aria-labelledby="gender-radio-group-label"
-						// name="medical_ins"
-						// value={state.medical_ins}
-						// onChange={handleInputChange}
-						name='responseToScene_type'
-						value={state.responseToScene_type}
-						  onChange={handleInputChange} 
-					>
-						<FormControlLabel value="cold" control={<Radio />} label="Cold" />
-						<FormControlLabel value="hot" control={<Radio />} label="Hot" />
-						
-					</RadioGroup>
-							</Stack>
-						</Grid>
-						<Grid item xs={12} lg={6}>
-							<Stack
-								direction="row"
-								sx={{ justifyContent: { xs: 'space-between', lg: 'space-evenly' } }}
-								spacing={2}
-								alignItems="center"
-							>
-								<Typography variant="button">Change in Response</Typography>
-								<RadioGroup
-						row
-						// aria-labelledby="gender-radio-group-label"
-						// value={state.medical_ins}
-						// onChange={handleInputChange}
-						name='responseToScene_change'
-						value={state.responseToScene_change}
-						  onChange={handleInputChange} 
-					>
-						<FormControlLabel value="cold" control={<Radio />} label="Cold" />
-						<FormControlLabel value="hot" control={<Radio />} label="Hot" />
-						
-					</RadioGroup>
-							</Stack>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Response from Scene
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item xs={12} lg={6}>
-							<Stack
-								direction="row"
-								sx={{ justifyContent: { xs: 'space-between', lg: 'space-evenly' } }}
-								spacing={2}
-								alignItems="center"
-							>
-								<Typography variant="button">Type</Typography>
-								<RadioGroup
-						row
-						// aria-labelledby="gender-radio-group-label"
-						// value={state.medical_ins}
+		<CContainer>
 
-						// onChange={handleInputChange}
-						name='responseFromScene_type'
-						value={state.responseFromScene_type}
-						  onChange={handleInputChange} 
-					>
-						<FormControlLabel value="cold" control={<Radio />} label="Cold" />
-						<FormControlLabel value="hot" control={<Radio />} label="Hot" />
-						
-					</RadioGroup>
-							</Stack>
-						</Grid>
-						<Grid item xs={12} lg={6}>
-							<Stack
-								direction="row"
-								sx={{ justifyContent: { xs: 'space-between', lg: 'space-evenly' } }}
-								spacing={2}
-								alignItems="center"
-							>
-								<Typography variant="button">Change in Response</Typography>
-								<RadioGroup
-						row
-						// aria-labelledby="gender-radio-group-label"
-						// value={state.medical_ins}
-						// onChange={handleInputChange}
-						name='responseFromScene_change'
-						value={state.responseFromScene_change}
-						  onChange={handleInputChange} 
-					>
-						<FormControlLabel value="cold" control={<Radio />} label="Cold" />
-						<FormControlLabel value="hot" control={<Radio />} label="Hot" />
-						
-					</RadioGroup>
-								
-							</Stack>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Crew Type
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={4}>
-							<Stack spacing={2}>
-								<FormControl fullWidth size="small">
-									<InputLabel id="c-driver-label">Driver</InputLabel>
-									<Select
-										labelId="c-driver-label"
-										id="c-driver"
-										label="Driver"
-										defaultValue=""
-										// value={vehicleDetails.C_driver}
-										// onChange={(e) => handleChange(e.target.name, e.target.value)}
-										name='driver'
-										value={state.driver}
-										  onChange={handleInputChange} 
-									>
-										{crewTypes.map((item, index) => (
-											<MenuItem key={index} value={item}>
-												{item}
-											</MenuItem>
-										))}
-									</Select>
-								</FormControl>
-								{/* {vehicleDetails.C_driver === 'Other' && */}
-								{/* <TextField
-									size="small"
-									label="Other"
-									name="C_driv_oth"
-									// value={vehicleDetails.C_driv_oth}
-									// onChange={(e) => handleChange(e.target.name, e.target.value)}
-									fullWidth
-								/> */}
-								{/* } */}
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<Stack spacing={2}>
-								<FormControl size="small" fullWidth>
-									<InputLabel id="c-attendant-label">Attendant</InputLabel>
-									<Select
-										labelId="c-attendant-label"
-										id="c-attendant"
-										defaultValue=""
-										name='attendent'
-										value={state.attendent}
-										  onChange={handleInputChange} 
-										// value={vehicleDetails.C_attendant}
-										// onChange={(e) => handleChange(e.target.name, e.target.value)}
-										label="Attendant"
-									>
-										{crewTypes.map((item, index) => (
-											<MenuItem key={index} value={item}>
-												{item}
-											</MenuItem>
-										))}
-									</Select>
-								</FormControl>
-								{/* {vehicleDetails.C_attendant === 'Other' && */}
-								{/* <TextField
-									size="small"
-									label="Other"
-									name="C_attn_oth"
-									// value={vehicleDetails.C_attn_oth}
-									// onChange={(e) => handleChange(e.target.name, e.target.value)}
-									fullWidth
-								/> */}
-								{/* } */}
-							</Stack>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<Stack spacing={2}>
-								<FormControl fullWidth size="small">
-									<InputLabel id="c-assistant-label">Assistant</InputLabel>
-									<Select
-										labelId="c-assistant-label"
-										id="c-assistant"
-										defaultValue=""
-										name='assisting'
-										value={state.assisting}
-										  onChange={handleInputChange} 
-										// value={vehicleDetails.C_assistant}
-										// onChange={(e) => handleChange(e.target.name, e.target.value)}
-										label="Assistant"
-									>
-										{crewTypes.map((item, index) => (
-											<MenuItem key={index} value={item}>
-												{item}
-											</MenuItem>
-										))}
-									</Select>
-								</FormControl>
-								{/* {vehicleDetails.C_assistant === 'Other' && */}
-								{/* <TextField
-									size="small"
-									label="Other"
-									name="C_asst_oth"
-									// value={vehicleDetails.C_asst_oth}
-									// onChange={(e) => handleChange(e.target.name, e.target.value)}
-									fullWidth
-								/> */}
-								{/* } */}
-							</Stack>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Mileage
-					</Typography>
-					<Grid container justifyContent="center" spacing={2}>
-						<Grid item xs={12} md>
-							<TextField
-								label="Out"
-								size="small"
-								name='mileage_out'
-								value={state.mileage_out}
-                      			onChange={handleInputChange} 
-								// value={vehicleDetails.M_Out}
-								// onChange={(e) => handleChange('M_Out', e.target.value)}
-								fullWidth
-							/>
-						</Grid>
+			<CRow className=''>
+			<CCol xs={4} className=''>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="firstname"
+              value={state.firstname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Crew Patient</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={4}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Available</CFormLabel>
+          </CFormFloating>
+        </CCol>
+		<CCol xs={4}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">BackArea</CFormLabel>
+          </CFormFloating>
+        </CCol>
 
-						<Grid item xs={12} md>
-							<TextField
-								label="At Scene"
-								size="small"
-								name='mileage_scene'
-								value={state.mileage_scene}
-                      			onChange={handleInputChange} 
-								// value={vehicleDetails.M_atScene}
-								// onChange={(e) => handleChange('M_atScene', e.target.value)}
-								fullWidth
-							/>
-						</Grid>
-						<Grid item xs={12} md>
-							<TextField
-								label="At Destination"
-								size="small"
-								// value={vehicleDetails.M_atDest}
-								// onChange={(e) => handleChange('M_atDest', e.target.value)}
-								fullWidth
-								name='mileage_des'
-								value={state.mileage_des}
-                      			onChange={handleInputChange} 
-							/>
-						</Grid>
-						<Grid item xs={12} md>
-							<TextField
-								label="In"
-								size="small"
-								name='mileage_in'
-								value={state.mileage_in}
-                      			onChange={handleInputChange} 
-								// value={vehicleDetails.M_In}
-								// onChange={(e) => handleChange('M_In', e.target.value)}
-								fullWidth
-							/>
-						</Grid>
-						<Grid item xs={12} md>
-							<TextField
-								label="Total"
-								size="small"
-								// value={vehicleDetails.M_Total}
-								// onChange={(e) => handleChange('M_Total', e.target.value)}
-								fullWidth
-								name='mileage_total'
-								value={state.mileage_total}
-                      			onChange={handleInputChange} 
-							/>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Patient Info
-					</Typography>
-					<Grid container justifyContent="center" spacing={2}>
-						<Grid item xs={12} md>
-							<TextField
-								label="Patient Contact"
-								size="small"
-								name='patientContact'
-								value={state.patientContact}
-                      			onChange={handleInputChange} 
-								// value={vehicleDetails.M_Out}
-								// onChange={(e) => handleChange('M_Out', e.target.value)}
-								fullWidth
-							/>
-						</Grid>
+			</CRow>
 
-						<Grid item xs={12} md>
-							<TextField
-								label="Destination Determinant"
-								size="small"
-								// value={vehicleDetails.M_atScene}
-								// onChange={(e) => handleChange('M_atScene', e.target.value)}
-								fullWidth
-								name='destinationDeterminant'
-								value={state.destinationDeterminant}
-                      			onChange={handleInputChange} 
-							/>
-						</Grid>
-						<Grid item xs={12} md>
-							<TextField
-								label="Document Start Date"
-								size="small"
-								// value={vehicleDetails.M_atDest}
-								// onChange={(e) => handleChange('M_atDest', e.target.value)}
-								fullWidth
-								name='startDate'
-								value={state.startDate}
-                      			onChange={handleInputChange} 
-							/>
-						</Grid>
-						<Grid item xs={12} md>
-							<TextField
-								label="Document End Date"
-								size="small"
-								// value={vehicleDetails.M_In}
-								// onChange={(e) => handleChange('M_In', e.target.value)}
-								fullWidth
-								name='endDate'
-								value={state.endDate}
-                      			onChange={handleInputChange} 
-							/>
-						</Grid>
-						<Grid item xs={12} md>
-							<TextField
-								label="Date Modified"
-								size="small"
-								// value={vehicleDetails.M_Total}
-								// onChange={(e) => handleChange('M_Total', e.target.value)}
-								fullWidth
-								name='dateModified'
-								value={state.dateModified}
-                      			onChange={handleInputChange} 
-							/>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
+		</CContainer>
+
+		<CContainer>
+			<CRow>
+			<CCol xs={6}>
+
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+
+				name ="Types_ins"
+				value={state.Types_ins}
+				onChange={handleInputChange}>
+
+				<option>Response To Scene</option>
+				<option value="1">Type</option>
+  				<option value="2">Change in Response</option>
+
+  				</CFormSelect>
+  			</CCol>
+
+				
+
+				<CCol xs={6}>
+
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+
+					name ="Types_ins"
+					value={state.Types_ins}
+					onChange={handleInputChange}>
+
+				<option>Response From Scene</option>
+				<option value="1">Type</option>
+  				<option value="2">Change in Response</option>
+
+ 			 </CFormSelect>
+			</CCol>
+			</CRow>
+		</CContainer>
+
+		<CContainer>
+		<CRow>
+			<CCol xs={6}>
+
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+
+				name ="Types_ins"
+				value={state.Types_ins}
+				onChange={handleInputChange}>
+
+				<option>Crew Type</option>
+				<option value="1">Driver</option>
+  				<option value="2">Attendant</option>
+  				<option value="3">Assisting Personal</option>
+
+
+  				</CFormSelect>
+  			</CCol>
+
+				
+
+				<CCol xs={6}>
+
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+
+					name ="Types_ins"
+					value={state.Types_ins}
+					onChange={handleInputChange}>
+
+				<option>Mileage</option>
+				<option value="1">Out</option>
+  				<option value="2">In</option>
+  				<option value="3">At Scene</option>
+  				<option value="4">At Destination</option>
+  				<option value="5">Total</option>
+
+
+
+
+ 			 </CFormSelect>
+			</CCol>
+			</CRow>
+
+		</CContainer>
+
+		<CContainer>
+			<CRow className=''>
+			<CCol xs={6} className='mt-3'>
+          <CFormFloating className="">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="country"
+              value={state.country}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Patient Contact</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mt-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="postal_code"
+              value={state.postal_code}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Destination Determinant</CFormLabel>
+          </CFormFloating>
+        </CCol>
+			</CRow>
+			</CContainer>
+
+			<CContainer>
+			<CRow className='mt-3'>
+			<CCol xs={4}>
+          <CFormFloating className="">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="country"
+              value={state.country}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Document Start Date</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={4}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="postal_code"
+              value={state.postal_code}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Document End Date</CFormLabel>
+          </CFormFloating>
+        </CCol>
+		<CCol xs={4}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="postal_code"
+              value={state.postal_code}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Date Modified</CFormLabel>
+          </CFormFloating>
+        </CCol>
+			</CRow>
+			</CContainer>
+		
+		
 			
 			<Grid item xs={12}>
 
@@ -626,7 +443,7 @@ const [state, setState] = useState({
 </Grid>
 
 
-		</Grid>
+
 		</form>
 	)
 }

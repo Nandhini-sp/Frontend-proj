@@ -21,6 +21,13 @@ import{
 	CModalTitle,
 	CModalBody,
 	CModalFooter,
+	CContainer,
+	CRow,
+	CCol,
+	CFormFloating,
+	CFormInput,
+	CFormLabel,
+	CFormSelect,
 
 }from '@coreui/react'
 
@@ -34,6 +41,7 @@ import { CButton } from '@coreui/react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { Input } from 'reactstrap'
 
 const serviceCodes = [
 	'1A',
@@ -442,436 +450,314 @@ const Cards = () => {
 	  };
 
 	return (
-	<form
-			onSubmit={submitHandler}
-                method="post"
-                encType="multipart/form-data"
-                className="form-horizontal">
-
-		<Grid container spacing={3}>
-			
+	<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
 		
-
-
-
-
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Incident Info
-					</Typography>
-					<Grid container justifyContent="center" spacing={2}>
-						<Grid item xs={12} md>
-						<TextField 
-						 name='serviceCode'
-						 fullWidth
-						 value={state.serviceCode}
-						   onChange={handleInputChange}
-					 size="small" label="Service Code" />
-					 
-					 </Grid>
-
-						<Grid item xs={12} md>
-						<TextField 
-						 fullWidth
-						 name='serviceType'
-						 value={state.serviceType}
-						   onChange={handleInputChange}
-					 size="small" label="Service Type" />
-						</Grid>
-						<Grid item xs={12} md>
-						<LocalizationProvider dateAdapter={AdapterDateFns}>
-						<Stack spacing={3}>
-						<Grid item xs={12} >
-							<DatePicker
-								label="Date of Incident"
-								// value={incidentDetails.Date_of_Incident}
-								// onChange={(newValue) => handleChange('Date_of_Incident', newValue.to())}
-								// renderInput={(params) => <TextField fullWidth size="small" {...params} />}
-								name='dateOfIncident'
-								value={state.dateOfIncident}
-                      			onChange={handleInputChange}
-								fullWidth
-							/>
-							</Grid>
-							<Grid item xs={12} >
-							<TextField
-								
-								label="Time of Incident"
-								size="small"
-								fullWidth
-								type="time"
-								name='timeOfIncident'
-								value={state.timeOfIncident}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Time_of_Incident || ''}
-								// onChange={(e) => handleChange('Time_of_Incident', e.target.value)}
-								InputLabelProps={{
-									shrink: true,
-								}}
-							
-							/>
-							</Grid>
-						</Stack>
-					</LocalizationProvider>
-				
-						</Grid>
-						
-						
-					</Grid>
-				</Paper>
-			</Grid>
-
-
-
-
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-						Incident Location
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={6} lg={9}>
-							<TextField
-								label="Street Address"
-								size="small"
-								fullWidth
-								name='incidentLocation_street'
-								value={state.incidentLocation_street}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Inc_Street}
-								// onChange={(e) => handleChange('Inc_Street', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={6} lg={3} sx={{ display: { xs: 'none', md: 'block' } }}>
-							<Button fullWidth variant="outlined">
-								Same as Patient Address
-							</Button>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<TextField
-								label="City"
-								size="small"
-								fullWidth
-								name='incidentLocation_city'
-								value={state.incidentLocation_city}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Inc_Community}
-								// onChange={(e) => handleChange('Inc_Community', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<TextField
-								label="Province"
-								size="small"
-								fullWidth
-								name='incidentLocation_state'
-								value={state.incidentLocation_state}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Inc_Province}
-								// onChange={(e) => handleChange('Inc_Province', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<TextField
-								label="Postal Code"
-								size="small"
-								fullWidth
-								name='incidentLocation_postalCode'
-								value={state.incidentLocation_postalCode}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Inc_PostalCode}
-								// onChange={(e) => handleChange('Inc_PostalCode', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} sx={{ display: { xs: 'block', md: 'none' } }}>
-							<Button fullWidth variant="outlined">
-								Same as Patient Address
-							</Button>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-
-
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Incident Info
-					</Typography>
-					<Grid container justifyContent="center" spacing={2}>
-						<Grid item xs={12} md>
-							
-							
-						<FormControl size="small" fullWidth>
-							<InputLabel id="dest-determinant-label">Destination Determination</InputLabel>
-							<Select
-								labelId="dest-determinant-label"
-								id="dest-determinant"
-								defaultValue=""
-								name='destinationDeterminant'
-								value={state.destinationDeterminant}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_Determinant}
-								// onChange={(e) => handleChange('Dest_Determinant', e.target.value)}
-								label="Destination Determination"
-							>
-								{destinationDeterminations.map((item, index) => (
-									<MenuItem key={index} value={item}>
-										{item}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						 </Grid>
-
-						<Grid item xs={12} md>
-									
-						<FormControl size="small" fullWidth>
-							<InputLabel id="destination-location-type-label">
-								Destination Location Type
-							</InputLabel>
-							<Select
-								labelId="destination-location-type-label"
-								id="destination-location-type"
-								defaultValue=""
-								name='destinationLocationType'
-								value={state.destinationLocationType}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_Loc_Type}
-								// onChange={(e) => handleChange('Dest_Loc_Type', e.target.value)}
-								label="Destination Location Type"
-							>
-								{destinationLocationTypes.map((item, index) => (
-									<MenuItem key={index} value={item}>
-										{item}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						</Grid>
-						
-						
-							<Grid item xs={12} >
-							<TextField
-							label="Geographic Locator"
-							size="small"
-							fullWidth
-							// value={incidentDetails.Geo_Locator}
-							// onChange={(e) => handleChange('Geo_Locator', e.target.value)}
-							name='grapicLocator'
-								value={state.graphicLocator}
-                      			onChange={handleInputChange}
-									/>
-							</Grid>
-							<Grid item xs={12} >
-							
-							
-							
-							<TextField size='small'
-							label="SceneFacility"
-							fullWidth
-							name='sceneFacility'
-								value={state.sceneFacility}
-                      			onChange={handleInputChange}>
-
-							</TextField>
-						
-						
-							</Grid>
-					
-				
-			
-						
-						
-					</Grid>
-				</Paper>
-			</Grid>
+		<CContainer>
+		<CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="serviceCode"
+              value={state.serviceCode}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Service Code</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="serviceType"
+              value={state.serviceType}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Service Type</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+		</CContainer>
 		
+		<CContainer>
+			<CRow className='mb-3'>
+				<CCol xs={6}>
+					<InputLabel></InputLabel>
+					<Input type="Date"></Input>
+				</CCol>
+				<CCol xs={6}>
+					<InputLabel></InputLabel>
+					<Input type="Time"></Input>
+				</CCol>
+			</CRow>
+		</CContainer>
 
+		<CContainer className=''>
+			<CRow>
+				<p>Incident Location</p>
+				<CCol xs={6}>
+				<CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="firstname"
+              value={state.firstname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">city</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+				</CCol>
+				<CCol xs={6}>
+				<CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="firstname"
+              value={state.firstname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">State</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+				</CCol>
+			</CRow>
+		</CContainer>
+
+		<CContainer>
+			<CRow>
+				<CCol xs={6}>
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+        
+        name ="Types_ins"
+        value={state.Types_ins}
+        onChange={handleInputChange}>
+
+        <option>Destination Determinantion</option>
+        <option value="1">1</option>
+          <option value="2"></option>
+   
+          </CFormSelect>
+				</CCol>
+				<CCol xs={6}>
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+        
+        name ="Types_ins"
+        value={state.Types_ins}
+        onChange={handleInputChange}>
+
+        <option>Destination Location Type</option>
+        <option value="1">1</option>
+          <option value="2">2</option>
+   
+          </CFormSelect>
+
+				</CCol>
+			</CRow>
+		</CContainer>
+
+		<CContainer>
+			<CRow>
+			<CCol xs={6}>
+          <CFormFloating className="mt-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="serviceCode"
+              value={state.serviceCode}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Geographic Locator</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mt-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="serviceType"
+              value={state.serviceType}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Scene Facility</CFormLabel>
+          </CFormFloating>
+        </CCol>
+			</CRow>
+		</CContainer>
+		<CContainer className=''>
+			<CRow className='mt-3'>
+				<p>Destination Location</p>
+				<CCol xs={6}>
+				<CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="firstname"
+              value={state.firstname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">city</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+				</CCol>
+				<CCol xs={6}>
+				<CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="firstname"
+              value={state.firstname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">State</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+				</CCol>
+			</CRow>
+		</CContainer>
+		<CContainer>
+			<CRow>
+				<CCol xs={6}>
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+        
+        name ="Types_ins"
+        value={state.Types_ins}
+        onChange={handleInputChange}>
+
+        <option>Patient Disposition</option>
+        <option value="1">1</option>
+          <option value="2"></option>
+   
+          </CFormSelect>
+				</CCol>
+				<CCol xs={6}>
+				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+        
+        name ="Types_ins"
+        value={state.Types_ins}
+        onChange={handleInputChange}>
+
+        <option>Factors Affecting EMS</option>
+        <option value="1">1</option>
+          <option value="2">2</option>
+   
+          </CFormSelect>
+
+				</CCol>
+			</CRow>
+		</CContainer>
+		<CContainer className=''>
+			<CRow>
+				<p>Service Payment</p>
+				<CCol xs={6}>
+				<CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="firstname"
+              value={state.firstname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Response</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="surname"
+              value={state.surname}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Number</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+	</CCol>
+	</CRow>
+		</CContainer>
+
+		
 			
-			<Grid item xs={12}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-						Destination Location
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={6}>
-							{/* <FormControl fullWidth size="small">
-								<InputLabel id="dest-facility-code-label">Facility Code</InputLabel>
-								<Select
-									labelId="dest-facility-code-label"
-									id="dest-facility-code"
-									name="Dest_Facility_Code"
-									defaultValue=""
-									// value={incidentDetails.Dest_Facility_Code}
-									// onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
-									label="Facility Code"
-								>
-									{facilityCodes.map((item, index) => (
-										<MenuItem key={index} value={item}>
-											{item}
-										</MenuItem>
-									))}
-								</Select>
-							</FormControl> */}
-							<TextField
-								label="Street Address"
-								size="small"
-								fullWidth
-								name='destinationLocationAddress'
-								value={state.destinationLocationAddress}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_Street}
-								// onChange={(e) => handleChange('Dest_Street', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={6}>
-							<TextField
-								label="Street Address"
-								size="small"
-								fullWidth
-								name='destinationLocationType'
-								value={state.destinationLocationType}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_Street}
-								// onChange={(e) => handleChange('Dest_Street', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<TextField
-								label="City"
-								size="small"
-								fullWidth
-								name='destinationLocation_city'
-								value={state.destinationLocation_city}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_Community}
-								// onChange={(e) => handleChange('Dest_Community', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<TextField
-								label="Province"
-								size="small"
-								fullWidth
-								name='destinationLocation_state'
-								value={state.destinationLocation_state}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_Province}
-								// onChange={(e) => handleChange('Dest_Province', e.target.value)}
-							/>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<TextField
-								label="Postal Code"
-								size="small"
-								fullWidth
-								name='destination_postalCode'
-								value={state.destinationLocation_postalCode}
-                      			onChange={handleInputChange}
-								// value={incidentDetails.Dest_PostalCode}
-								// onChange={(e) => handleChange('Dest_PostalCode', e.target.value)}
-							/>
-						</Grid>
-					</Grid>
-				</Paper>
-			</Grid>
-			
-
-			
-
-
-
-			
-
-
-			<Grid item xs={12} md={8} container spacing={3}>
-				<Grid item xs={12} md={6}>
-					<FormControl size="small" fullWidth>
-						<InputLabel id="patient-disposition-label">Patient Disposition</InputLabel>
-						<Select
-							labelId="patient-disposition-label"
-							id="patient-disposition"
-							defaultValue=""
-							// value={incidentDetails.Patient_Disposition}
-							// onChange={(e) => handleChange('Patient_Disposition', e.target.value)}
-
-							label="Patient Disposition"
-								name='	patient_Disposition'
-								value={state.patientDisposition}
-                      			onChange={handleInputChange}
-						>
-							{patientDispositions.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-				
-			
-				 <Grid item xs={12}>
-					<FormControl size="small" fullWidth>
-						<InputLabel id="fact-affect-ems-label">Factors Affecting EMS</InputLabel>
-						<Select
-							labelId="fact-affect-ems-label"
-							id="fact-affect-ems"
-							
-							name='EMS'
-								value={state.EMS}
-                      			onChange={handleInputChange}
-							defaultValue=""
-							// onChange={(e) => handleChange('Fact_Affect_EMS', e.target.value)}
-							label="Factors Affecting EMS"
-						>
-							{factorsAffectingEMS.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid> 
-				{/* {incidentDetails.Fact_Affect_EMS === 'Other' && ( */}
-				
-				{/* )} */}
-			</Grid>
-			<Grid item xs={12} md={6}>
-				<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-					<Typography color="textSecondary" gutterBottom>
-						Service Payment
-					</Typography>
-					<Stack direction="row" spacing={3}>
-						<TextField
-							size="small"
-							label="Response"
-							name='servicePayment_resposibility'
-								value={state.servicePayment_responsibility}
-                      			onChange={handleInputChange}
-							// value={incidentDetails.Service_Payment_Respons}
-							// onChange={(e) => handleChange('Service_Payment_Respons', e.target.value)}
-							fullWidth
-						/>
-						<TextField
-							size="small"
-							label="Number"
-							// name="Service_Payment_Number"
-							name='servicePayment_number'
-								value={state.servicePayment_number}
-                      			onChange={handleInputChange}
-							// value={incidentDetails.Service_Payment_Number}
-							// onChange={(e) => handleChange('Service_Payment_Number', e.target.value)}
-							fullWidth
-						/>
-					</Stack>
-				</Paper>
-			</Grid>
-			</Grid>
-			<Grid item xs={12}>
 
 			<div class="d-grid gap-2 col-6 mx-auto">
   <button class="btn btn-success" type="submit"
@@ -909,7 +795,7 @@ const Cards = () => {
     </CModal>
 </div>
 
-			</Grid>
+			
 
 		</form>
 		

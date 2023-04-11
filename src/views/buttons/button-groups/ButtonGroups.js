@@ -17,7 +17,7 @@ import {
 	TextField,
 	Typography,
 } from '@mui/material'
-import { CButton } from '@coreui/react'
+import { CButton, CContainer } from '@coreui/react'
 
 import{
 	// CButton,
@@ -61,127 +61,33 @@ const ButtonGroups = () => {
 
 	return (
 
-		<form
-		onSubmit={submitHandler}
-                method="post"
-                encType="multipart/form-data"
-                className="form-horizontal"
+		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal"
 		>
-		<Grid item xs={12} md={6} lg={4}>
-			<Paper variant="outlined" sx={{ p: 2, width: '100%' }}>
-				{/* <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-					Nero Response
-				</Typography> */}
-				<Grid container spacing={3}>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Nero Restponse"
-							fullWidth
-							size="small"
-							// value={patientDetails.Given_Name}
-							// onChange={(e) => handleChange('Given_Name', e.target.value)}
-								name='neroResponse'
-								value={state.neroResponse}
-                      			onChange={handleInputChange}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Body System"
-							fullWidth
-							size="small"
-								name='bodySystem'
-								value={state.bodySystem}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Glasgow and pupil"
-							fullWidth
-							name='glasGlow'
-								value={state.glasGlow}
-                      			onChange={handleInputChange}
-							size="small"
-							// value={patientDetails.Given_Name}
-							// onChange={(e) => handleChange('Given_Name', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="General Assessment"
-							fullWidth
-							size="small"
-								name='generalAssessment'
-								value={state.generalAssessment}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Airway"
-							fullWidth
-							size="small"
-							name='airway'
-								value={state.airway}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Given_Name}
-							// onChange={(e) => handleChange('Given_Name', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Symptoms"
-							fullWidth
-							size="small"
+		<CContainer>
+			<CRow className='mb-3'>
+				<CCol xs={6}>
+					<InputLabel></InputLabel>
+					<Input type="Date"></Input>
+				</CCol>
+				<CCol xs={6}>
+					<InputLabel></InputLabel>
+					<Input type="Time"></Input>
+				</CCol>
+			</CRow>
+		</CContainer>
+			
+			<CContainer>
+				<CRow>
+					<CCol xs={6}>
+						
+					</CCol>
+					<CCol xs={6}>
 
-								name='symptoms'
-								value={state.symptoms}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-				</Grid>
-			</Paper>
-		</Grid>
-		<Grid item xs={12}>
+					</CCol>
+				</CRow>
+			</CContainer>
 
-		<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
-<CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
 		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
-
-		</Grid>
 		</form>
 	)
 }

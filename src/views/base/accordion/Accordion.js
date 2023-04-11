@@ -1,20 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Grid,
-  InputLabel,
-  Radio,
-  RadioGroup,
-  Select,
-  TextField,
-  Paper,
-  Typography,
-  MenuItem,
-} from '@mui/material'
 
 import {
   CButton,
@@ -22,9 +8,7 @@ import {
   CModalHeader,
   CModalTitle,
   CModalFooter,
-  CCard,
-  CCardBody,
-  CCardHeader,
+  
   CCol,
   CFormInput,
   CFormLabel,
@@ -32,13 +16,15 @@ import {
   CFormSelect,
   CFormTextarea,
   CRow,
+  
+  CFormCheck
 } from '@coreui/react'
+import { Input } from 'reactstrap'
 
 const accordion = () => {
   const [visible, setVisible] = useState(false)
 
-  const [toast, addToast] = useState(0)
-  // const toaster = useRef()
+  // const [toast, addToast] = useState(0)
 
   const [state, setState] = useState({
     firstname: '',
@@ -122,338 +108,308 @@ const accordion = () => {
         </CCol>
       </CRow>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            name="firstname"
-            label="FirstName"
-            fullWidth
-            size="small"
-            value={state.firstname}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            name="surname"
-            label="Surname"
-            fullWidth
-            size="small"
-            value={state.surname}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={6} md={12}>
-          <TextField
-            name="street"
-            label="Street Address"
-            fullWidth
-            size="small"
-            value={state.street}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <TextField
-            name="city"
-            label="City"
-            fullWidth
-            size="small"
-            value={state.city}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <TextField
-            name="state"
-            label="State"
-            fullWidth
-            size="small"
-            // value={patientDetails.Province}
-            // onChange={(e) => handleChange('Province', e.target.value)}
-            // value={name}
-            //   onChange={(e) => {
-            //     setName(e.target.value);
-            //     alert(e.target.value);
-            //   }}
-            value={state.state}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <TextField
-            name="postal_code"
-            label="Postal Code"
-            fullWidth
-            size="small"
-            // value={patientDetails.PostalCode}
-            // onChange={(e) => handleChange('PostalCode', e.target.value)}
-            // value={name}
-            //   onChange={(e) => {
-            //     setName(e.target.value);
-            //     alert(e.target.value);
-            //   }}
-            value={state.postal_code}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            name="country"
-            label="Country"
-            fullWidth
-            size="small"
-            // value={patientDetails.Country}
-            // onChange={(e) => handleChange('Country', e.target.value)}
-            // value={name}
-            //   onChange={(e) => {
-            //     setName(e.target.value);
-            //     alert(e.target.value);
-            //   }}
-            value={state.country}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            name="telephone_no"
-            label="Telephone No."
-            fullWidth
-            size="small"
-            // value={patientDetails.Tel_No}
-            // onChange={(e) => handleChange('Tel_No', e.target.value)}
-            // value={name}
-            //   onChange={(e) => {
-            //     setName(e.target.value);
-            //     alert(e.target.value);
-            //   }}
-            value={state.telephone_no}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            name="aadhar_no"
-            fullWidth
-            size="small"
-            label="Aadhar Number"
-            value={state.aadhar_no}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            name="DOB"
-            label="Date of Birth"
-            fullWidth
-            size="small"
-            value={state.DOB}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            name="age"
-            label="Age"
-            fullWidth
-            size="small"
-            pattern="[0-9]*"
-            value={state.age}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <FormControl size="small" fullWidth>
-            <FormLabel id="gender-radio-group-label">Gender</FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby="gender-radio-group-label"
-              name="gender"
-              value={state.gender}
+      <CRow>
+        <CCol xs={12}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="street"
+              value={state.street}
               onChange={handleInputChange}
-            >
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel value="other" control={<Radio />} label="Other" />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
-        {/* <Grid item xs={12} md={4}>
-				<FormControl size="small" fullWidth>
-					<FormLabel id="gender-radio-group-label">Medical Insurance</FormLabel>
-					<RadioGroup
-						row
-						// aria-labelledby="gender-radio-group-label"
-						name="medical_ins"
-						value={state.medical_ins}
-						onChange={handleInputChange}
-					>
-						<FormControlLabel value="yes" control={<Radio />} label="Yes" />
-						<FormControlLabel value="no" control={<Radio />} label="No" />
-						
-					</RadioGroup>
-				</FormControl>
-			</Grid> */}
-        <Grid item xs={12}>
-          <Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-            <FormControl size="small" fullWidth>
-              <FormLabel id="gender-radio-group-label">Medical Insurance</FormLabel>
-              <RadioGroup
-                row
-                // aria-labelledby="gender-radio-group-label"
-                name="medical_ins"
-                value={state.medical_ins}
+            />
+            <CFormLabel htmlFor="floatingInput">Street Address</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+      <CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="city"
+              value={state.city}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">City</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="state"
+              value={state.state}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">state</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+      <CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="country"
+              value={state.country}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Country</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Surname"
+              name="postal_code"
+              value={state.postal_code}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="telephone_no"
+              value={state.telephone_no}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Telephone</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+              <Input type='DOB'></Input>
+            <CFormLabel htmlFor="floatingInput">Date of Birth</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+
+       <CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="age"
+              value={state.age}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Age</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+          
+            <CFormLabel htmlFor="floatingInput"
+                        name="gender"
+                        value={state.gender}
+                        onChange={handleInputChange}
+            >Gender</CFormLabel>
+            
+            <div>
+              <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" value="option1" label="Male"/>
+              <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" value="option2" label="Female"/>
+                <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" value="option2" label="Other"/>
+            </div>  
+        </CCol>
+      </CRow>
+      
+      <CRow>
+        <CCol xs={12}>
+
+        <CFormLabel htmlFor="floatingInput"
+                        name="medical_ins"
+                        value={state.medical_ins}
+                        onChange={handleInputChange}
+            >Medical Insurance</CFormLabel>
+            
+            <div>
+              <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" value="option1" label="Yes"/>
+              <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" value="option2" label="No"/>
+            </div>  
+
+            <CFormLabel htmlFor="floatingInput">(fill the below details only if Medical Insurance exist)
+
+            </CFormLabel>
+         
+        </CCol>
+        
+      </CRow>
+
+      <CRow>
+        <CCol xs={12}>
+
+        <CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+        
+        name ="Types_ins"
+        value={state.Types_ins}
+        onChange={handleInputChange}>
+
+        <option>Types Of Insurance</option>
+        <option value="1">Aayushman Bharat Yojana</option>
+          <option value="2">Pradhan Mantri Jeevan Jyoti Beema Yojana</option>
+   
+          </CFormSelect>
+
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol>
+        <CFormLabel htmlFor="floatingInput">((For Goverment Insurance))</CFormLabel>
+
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol xs={12}>
+        <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder=""
+              name="govt_ins_id"
+              value={state.govt_ins_Id}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Goverment Insurance ID Number</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol xs={6}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="coverage_Amount"
+              value={state.coverage_Amount}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Maximum Coverage Amount</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        <CCol xs={6}>
+        <CFormSelect 
+          aria-label="Default select example"
+          options={[
+    
+          { label: 'Aayushman Bharat Yojana', value: '1' },
+          { label: 'Pradhan Mantri Jeevan Jyoti Beema Yojana', value: '2' },
+    
+                  ]}
+                  name="typesOfInsurance"
+                value={state.typesOfInsurance}
                 onChange={handleInputChange}
-              >
-                <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                <FormControlLabel value="no" control={<Radio />} label="No" />
-              </RadioGroup>
-            </FormControl>
-            <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-              (fill the below details only if Medical Insurance exist)
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <FormControl fullWidth size="small">
-                  <InputLabel>Type Of Insurance</InputLabel>
-                  <Select
-                    labelId="dest-facility-code-label"
-                    id="dest-facility-code"
-                    name="Dest_Facility_Code"
-                    defaultValue=""
-                    // value={incidentDetails.Dest_Facility_Code}
-                    // onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
-                    label="Facility Code"
-                    className="typesOfInsurance"
-                    value={state.type}
-                    onChange={handleInputChange}
-                  >
-                    {Types_ins.map((item, index) => (
-                      <MenuItem key={index} value={item}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-                  (For Goverment Insurance)
-                </Typography>
-                <TextField
-                  label="Insurance Id Number"
-                  size="small"
-                  fullWidth
-                  name="govt_ins_Id"
-                  value={state.govt_ins_Id}
-                  onChange={handleInputChange}
-                  // value={incidentDetails.Dest_Street}
-                  // onChange={(e) => handleChange('Dest_Street', e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <TextField
-                  label="Maximum Coverage Amount"
-                  size="small"
-                  fullWidth
-                  name="coverage_Amount"
-                  value={state.coverage_Amount}
-                  onChange={handleInputChange}
-                  // value={incidentDetails.Dest_Community}
-                  // onChange={(e) => handleChange('Dest_Community', e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <FormControl fullWidth size="small">
-                  <InputLabel>Types Of Benefides Scheme</InputLabel>
-                  <Select
-                    labelId="dest-facility-code-label"
-                    id="dest-facility-code"
-                    name="Benefides_scheme"
-                    defaultValue=""
-                    // value={incidentDetails.Dest_Facility_Code}
-                    // onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
-                    label="Types Benefides Scheme"
-                    className="govt_benefits"
-                    value={state.type}
-                    onChange={handleInputChange}
-                  >
-                    {Benefides_scheme.map((item, index) => (
-                      <MenuItem key={index} value={item}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-                  (For Private Insurance)
-                </Typography>
-                <TextField
-                  label="Insurance Id Number"
-                  size="small"
-                  fullWidth
-                  name="private_ins_id"
-                  value={state.private_ins_id}
-                  onChange={handleInputChange}
-                  // value={incidentDetails.Dest_Street}
-                  // onChange={(e) => handleChange('Dest_Street', e.target.value)}
-                />
-              </Grid>
+                  />
+        </CCol>
+      </CRow>
 
-              <Grid item xs={12}>
-                <FormControl fullWidth size="small">
-                  <InputLabel>Types Of Benefides Scheme</InputLabel>
-                  <Select
-                    labelId="dest-facility-code-label"
-                    id="dest-facility-code"
-                    name="Benefides_scheme"
-                    defaultValue=""
-                    // value={incidentDetails.Dest_Facility_Code}
-                    // onChange={(e) => handleChange('Dest_Facility_Code', e.target.value)}
-                    label="Types Benefides Scheme"
-                    className="private_benefits"
-                    value={state.type}
-                    onChange={handleInputChange}
-                  >
-                    {Private_Benefides_scheme.map((item, index) => (
-                      <MenuItem key={index} value={item}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
+      <CRow>
+        <CCol>
+        <CFormLabel htmlFor="floatingInput">((For Private Insurance))</CFormLabel>
 
-        <Grid item xs={12} md={4}>
-          <TextField
-            name="hospital_chart_no"
-            label="Hospital Chart No."
-            fullWidth
-            size="small"
-            value={state.hospital_chart_no}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            name="commends"
-            label="Commends"
-            fullWidth
-            size="small"
-            multiline
-            rows={6}
-            value={state.commends}
-            onChange={handleInputChange}
-          />
-        </Grid>
+        </CCol>
+      </CRow>
 
-        <Grid item xs={12}>
-          <div class="d-grid gap-2 col-6 mx-auto">
+      <CRow>
+        <CCol xs={12}>
+        <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder=""
+              name="private_ins_id"
+              value={state.private_ins_id}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Private Insurance ID Number</CFormLabel>
+          </CFormFloating>
+          
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol>
+
+
+        <CFormSelect 
+          size="sm" className="mb-3" aria-label="Large select example"
+          options={[
+          { label:'Types of Insurance', value:'0' },
+          { label: 'Individual', value: '1' },
+          { label: 'Family Floater', value: '2' },
+          { label: 'Group Health', value: '1' },
+          { label: 'Senior Citizen Health', value: '1' },
+          { label: 'Maternity Health', value: '1' },
+          { label: 'Criticial lllness', value: '1' },
+          { label: 'Top-up Health', value: '1' },
+    
+                  ]}
+                  name="typesOfInsurance"
+                value={state.typesOfInsurance}
+                onChange={handleInputChange}
+                  />
+
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol xs={12}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="hospital_chart_no"
+              value={state.hospital_chart_no}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Hospital Chart No</CFormLabel>
+          </CFormFloating>
+        </CCol>
+        </CRow>
+        <CRow>
+        <CCol xs={12}>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="commends"
+              id="floatingInput"
+              placeholder=""
+              name="Commends"
+              value={state.commends}
+              onChange={handleInputChange}
+            />
+                        <CFormLabel htmlFor="floatingInput">Commends</CFormLabel>
+
+          </CFormFloating>
+        </CCol>
+      </CRow>
+
+      <CRow>
+
+        <CCol xs={12}>
+        <div class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-success" type="submit" onClick={() => setVisible(!visible)}>
               Submit
             </button>
@@ -489,12 +445,16 @@ const accordion = () => {
                 <CButton color="secondary" onClick={() => setVisible(false)}>
                   Close
                 </CButton>
-                <CButton color="primary">Save changes</CButton>
+                <CButton color="primary">Submit</CButton>
               </CModalFooter>
             </CModal>
           </div>
-        </Grid>
-      </Grid>
+        </CCol>
+
+      </CRow>
+      
+
+   
     </form>
   )
 }
