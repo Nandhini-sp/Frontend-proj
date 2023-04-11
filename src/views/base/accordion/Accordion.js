@@ -312,12 +312,14 @@ const accordion = () => {
         <CCol xs={6}>
         <CFormSelect 
           aria-label="Default select example"
+          size='lg'
           options={[
     
           { label: 'Aayushman Bharat Yojana', value: '1' },
           { label: 'Pradhan Mantri Jeevan Jyoti Beema Yojana', value: '2' },
     
                   ]}
+                  
                   name="typesOfInsurance"
                 value={state.typesOfInsurance}
                 onChange={handleInputChange}
