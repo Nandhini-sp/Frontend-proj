@@ -196,7 +196,7 @@ const accordion = () => {
         </CCol>
         <CCol xs={6}>
           <CFormFloating className="mb-3">
-              <Input type='DOB'></Input>
+              <Input type='date'></Input>
             <CFormLabel htmlFor="floatingInput">Date of Birth</CFormLabel>
           </CFormFloating>
         </CCol>
