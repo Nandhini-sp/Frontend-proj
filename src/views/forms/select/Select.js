@@ -73,6 +73,8 @@ const Select = () => {
         		showSecond={false}
         		focusOnOpen={true}
         		format="hh:mm A"
+            style={{height:"50px"}}
+
         		onChange={e => setTime(e.format('LT'))}
 				name='assessmentTime'
 				value={state.assessmentTime}
@@ -95,6 +97,8 @@ const Select = () => {
               name="consciousnessLevel"
               value={state.consciousnessLevel}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Level Of Consciousness</CFormLabel>
           </CFormFloating>
@@ -108,6 +112,8 @@ const Select = () => {
               name="pulseRate"
               value={state.pulseRate}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Pulse Rate</CFormLabel>
           </CFormFloating>
@@ -123,6 +129,8 @@ const Select = () => {
               name="siteOfPulseCheck"
               value={state.siteOfPulseCheck}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Site Of Pulse Check</CFormLabel>
           </CFormFloating>
@@ -136,6 +144,8 @@ const Select = () => {
               name="temperature"
               value={state.temperature}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Temperature</CFormLabel>
           </CFormFloating>
@@ -151,6 +161,8 @@ const Select = () => {
               name="skinColor"
               value={state.skinColor}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">skinColor</CFormLabel>
           </CFormFloating>
@@ -164,6 +176,8 @@ const Select = () => {
               name="siteOfPulseCheck"
               value={state.siteOfPulseCheck}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Site Of Temperature Check</CFormLabel>
           </CFormFloating>
@@ -179,6 +193,8 @@ const Select = () => {
               name="skinColor"
               value={state.skinColor}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">SkinColor</CFormLabel>
           </CFormFloating>
@@ -192,6 +208,8 @@ const Select = () => {
               name="moisture"
               value={state.moisture}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Moisture</CFormLabel>
           </CFormFloating>
@@ -207,6 +225,8 @@ const Select = () => {
               name="bloodPressure"
               value={state.bloodPressure}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Blood Pressure</CFormLabel>
           </CFormFloating>
@@ -220,6 +240,8 @@ const Select = () => {
               name="systolic"
               value={state.systolic}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Systolic</CFormLabel>
           </CFormFloating>
@@ -234,6 +256,7 @@ const Select = () => {
               placeholder="FirstName"
               name="diastolic"
               value={state.diastolic}
+              style={{height:"50px"}}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Diastolic</CFormLabel>
@@ -248,6 +271,8 @@ const Select = () => {
               name="respiration"
               value={state.respiration}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
           </CFormFloating>
@@ -263,6 +288,8 @@ const Select = () => {
               name="bloodGlucose"
               value={state.bloodGlucose}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Blood Glucose</CFormLabel>
           </CFormFloating>
@@ -276,6 +303,8 @@ const Select = () => {
               name="oxygenSaturation"
               value={state.oxygenSaturation}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Oxygen Saturtion</CFormLabel>
           </CFormFloating>
@@ -291,6 +320,8 @@ const Select = () => {
               name="preOxygen"
               value={state.preOxygen}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Pre Oxygen</CFormLabel>
           </CFormFloating>
@@ -304,6 +335,9 @@ const Select = () => {
               name="postOxygen"
               value={state.postOxygen}
               onChange={handleInputChange}
+              
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Post Oxygen</CFormLabel>
           </CFormFloating>

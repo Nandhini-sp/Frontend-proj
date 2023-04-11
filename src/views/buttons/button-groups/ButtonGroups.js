@@ -4,19 +4,15 @@ import { useState } from 'react'
 import { CButton, CContainer } from '@coreui/react'
 
 import{
-	// CButton,
 	CModal,
 	CModalHeader,
 	CModalTitle,
-	CModalBody,
 	CModalFooter,
 	CRow,
 	CCol,
 	CFormFloating,
 	CFormInput,
 	CFormLabel,
-
-
 }from '@coreui/react'
 
 
@@ -67,6 +63,8 @@ const ButtonGroups = () => {
               name="neroResponse"
               value={state.neroResponse}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Nero Response</CFormLabel>
           </CFormFloating>
@@ -83,6 +81,8 @@ const ButtonGroups = () => {
               		name="bodySystem"
               		value={state.bodySystem}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">Body System</CFormLabel>
           </CFormFloating>
@@ -101,6 +101,8 @@ const ButtonGroups = () => {
               name="glasGlow"
               value={state.glasGlow}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Glasgow and pupil</CFormLabel>
           </CFormFloating>
@@ -117,6 +119,8 @@ const ButtonGroups = () => {
               		name="generalAssessment"
               		value={state.generalAssessment}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">General Assessment</CFormLabel>
           </CFormFloating>
@@ -135,6 +139,8 @@ const ButtonGroups = () => {
               name="airway"
               value={state.airway}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Airway</CFormLabel>
           </CFormFloating>
@@ -151,6 +157,8 @@ const ButtonGroups = () => {
               		name="symptoms"
               		value={state.symptoms}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">Symbtoms</CFormLabel>
           </CFormFloating>

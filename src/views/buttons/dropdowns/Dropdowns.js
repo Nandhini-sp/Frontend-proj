@@ -85,6 +85,8 @@ const ComplainBased = () => {
               name="respiration"
               value={state.respiration}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
           </CFormFloating>
@@ -101,6 +103,8 @@ const ComplainBased = () => {
               		name="seizure"
               		value={state.seizure}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">Seizure</CFormLabel>
           </CFormFloating>
@@ -119,6 +123,8 @@ const ComplainBased = () => {
               name="toxicExposure"
               value={state.toxicExposure}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Toxic Exposure</CFormLabel>
           </CFormFloating>
@@ -135,6 +141,8 @@ const ComplainBased = () => {
               		name="cardiacArrest"
               		value={state.cardiacArrest}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">CardiacArrest</CFormLabel>
           </CFormFloating>
@@ -153,6 +161,8 @@ const ComplainBased = () => {
               name="chestPain"
               value={state.chestPain}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Chest Pain</CFormLabel>
           </CFormFloating>
@@ -169,6 +179,8 @@ const ComplainBased = () => {
               		name="neonatal"
               		value={state.neonatal}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">Neonatal</CFormLabel>
           </CFormFloating>
@@ -187,6 +199,8 @@ const ComplainBased = () => {
               name="obstetricc"
               value={state.obstetric}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Obstetric</CFormLabel>
           </CFormFloating>
@@ -203,6 +217,8 @@ const ComplainBased = () => {
               		name="trauma"
               		value={state.trauma}
               		onChange={handleInputChange}
+					  style={{height:"50px"}}
+
             		/>
             <CFormLabel htmlFor="floatingInput">Trauma</CFormLabel>
           </CFormFloating>

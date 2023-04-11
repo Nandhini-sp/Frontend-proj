@@ -57,23 +57,29 @@ const Buttons = () => {
 		<CContainer>
 			<CRow className='mb-3'>
 				<CCol xs={6}>
-					<InputLabel >Date Of Injury</InputLabel>
+					<p>Date Of Injury</p>
 					<CFormInput type="Date"
 
                      name ="dateOfInjury"
                      value={state.dateOfInjury}
-                     onChange={handleInputChange}>
+                     onChange={handleInputChange}
+					 style={{height:"50px"}}
+
+					 >
+						
 
 					 </CFormInput>
 							
 					     
 				</CCol>
 				<CCol xs={6}>
-					<InputLabel>Time Of Injurt</InputLabel>
+					<p>Time Of Injury</p>
 					<CFormInput type="Time"
 					name ="timeOfInjury"
                      value={state.timeOfInjury}
-                     onChange={handleInputChange}>
+                     onChange={handleInputChange}
+					 style={{height:"50px"}}
+>
 
 					</CFormInput>
 				</CCol>
@@ -85,7 +91,9 @@ const Buttons = () => {
 
 				name ="coResponders"
 				value={state.coResponders}
-				onChange={handleInputChange}>
+				onChange={handleInputChange}
+				style={{height:"50px"}}
+>
 
 				<option>Co-Respondars</option>
 				<option value="1">Law Enforcement</option>
@@ -100,7 +108,9 @@ const Buttons = () => {
 
 					name ="treatmentsProvided"
 					value={state.treatmentsProvided}
-					onChange={handleInputChange}>
+					onChange={handleInputChange}
+					style={{height:"50px"}}
+>
 				<option>Treatment Provided by Co-Respondars</option>
 				<option value="1">Yes</option>
   				<option value="2">NO</option>
@@ -118,7 +128,9 @@ const Buttons = () => {
 
 				name ="patientCondition"
 				value={state.patientCondition}
-				onChange={handleInputChange}>
+				onChange={handleInputChange}
+				style={{height:"50px"}}
+>
 
 			<option>Patient Condition at Destination</option>
 			<option value="1">Stable</option>
@@ -133,6 +145,8 @@ const Buttons = () => {
                         name="patientDisplacement"
                         value={state.patientDisplacement}
                         onChange={handleInputChange}
+						// style={{height:"10px"}}
+
             >Patient Displacement</CFormLabel>
             
             <div>
@@ -152,7 +166,9 @@ const Buttons = () => {
 
 			name ="suspectedIntoxication"
 			value={state.suspectedIntoxication}
-			onChange={handleInputChange}>
+			onChange={handleInputChange}
+			style={{height:"50px"}}
+>
 			<option>Suspected Intoxication</option>
 				<option value="1">Yes As Reported by Patient</option>
 				<option value="2">Yes As Reported bystander </option>
@@ -170,7 +186,9 @@ const Buttons = () => {
 
 			name ="chiefComplaint"
 			value={state.chiefComplaint}
-			onChange={handleInputChange}>
+			onChange={handleInputChange}
+			style={{height:"50px"}}
+>
 			<option>Chief Complaint</option>
 				<option value="1">Chest Pain</option>
 				<option value="2">Yes As Reported bystander </option>

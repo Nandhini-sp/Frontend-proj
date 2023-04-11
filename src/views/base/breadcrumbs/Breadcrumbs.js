@@ -144,6 +144,7 @@ const [state, setState] = useState({
 				name="timeOutScene"
 				value={state.timeOutScene}
 				onClick={handleInputChange}
+
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -159,6 +160,7 @@ const [state, setState] = useState({
 				name="timeOutScene"
 				value={state.timeOutScene}
 				onClick={handleInputChange}
+			
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -191,6 +193,7 @@ const [state, setState] = useState({
               name="crewPatient"
               value={state.crewPatient}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Crew Patient</CFormLabel>
           </CFormFloating>
@@ -204,6 +207,8 @@ const [state, setState] = useState({
               name="available"
               value={state.available}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Available</CFormLabel>
           </CFormFloating>
@@ -217,6 +222,8 @@ const [state, setState] = useState({
               name="backArea"
               value={state.backArea}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">BackArea</CFormLabel>
           </CFormFloating>
@@ -230,13 +237,15 @@ const [state, setState] = useState({
 			<CRow>
 			<CCol xs={6}>
 
-				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+				<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
 				name ="Types_ins"
 				value={state.Types_ins}
-				onChange={handleInputChange}>
+				onChange={handleInputChange}
+				style={{height:"50px"}}
+				>
 
-				<option>Response To Scene</option>
+				<option >Response To Scene</option>
 				<option value="1">Type</option>
   				<option value="2">Change in Response</option>
 
@@ -247,11 +256,13 @@ const [state, setState] = useState({
 
 				<CCol xs={6}>
 
-				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+				<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
 					name ="responseFromScene"
 					value={state.responseFromScene}
-					onChange={handleInputChange}>
+					onChange={handleInputChange}
+					style={{height:"50px"}}
+					>
 
 				<option>Response From Scene</option>
 				<option value="1">Type</option>
@@ -266,11 +277,12 @@ const [state, setState] = useState({
 		<CRow>
 			<CCol xs={6}>
 
-				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+				<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
 				name ="crewTypes"
 				value={state.crewTypes}
-				onChange={handleInputChange}>
+				onChange={handleInputChange}
+				style={{height:"50px"}}>
 
 				<option>Crew Type</option>
 				<option value="1">Driver</option>
@@ -285,11 +297,14 @@ const [state, setState] = useState({
 
 				<CCol xs={6}>
 
-				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+				<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
 					name ="mileage"
 					value={state.mileage}
-					onChange={handleInputChange}>
+					onChange={handleInputChange}
+					style={{height:"50px"}}
+
+					>
 
 				<option>Mileage</option>
 				<option value="1">Out</option>
@@ -318,6 +333,8 @@ const [state, setState] = useState({
               name="patientContact"
               value={state.patientContact}
               onChange={handleInputChange}
+				style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Patient Contact</CFormLabel>
           </CFormFloating>
@@ -331,6 +348,8 @@ const [state, setState] = useState({
               name="destinationDeterminant"
               value={state.destinationDeterminant}
               onChange={handleInputChange}
+				style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Destination Determinant</CFormLabel>
           </CFormFloating>
@@ -349,6 +368,8 @@ const [state, setState] = useState({
               name="startDate"
               value={state.startDate}
               onChange={handleInputChange}
+				style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Document Start Date</CFormLabel>
           </CFormFloating>
@@ -362,6 +383,8 @@ const [state, setState] = useState({
               name="endDate"
               value={state.endDate}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Document End Date</CFormLabel>
           </CFormFloating>
@@ -375,6 +398,8 @@ const [state, setState] = useState({
               name="dateModified"
               value={state.dateModified}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Date Modified</CFormLabel>
           </CFormFloating>

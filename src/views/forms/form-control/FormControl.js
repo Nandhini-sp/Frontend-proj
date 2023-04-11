@@ -2,22 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import TimePicker from "rc-time-picker";
 import 'rc-time-picker/assets/index.css';
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Radio,
-  RadioGroup,
-  Select,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+
 import { CButton, CCol, CContainer, CRow } from '@coreui/react'
 import{
 	// CButton,
@@ -119,6 +104,8 @@ administrativeRoute:""
               name="procedureType"
               value={state.procedureType}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
 
             />
             <CFormLabel htmlFor="floatingInput">Types Of Procedure</CFormLabel>
@@ -133,6 +120,8 @@ administrativeRoute:""
               name="state"
               value={state.deviceMethod}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Device Method</CFormLabel>
           </CFormFloating>
@@ -146,6 +135,8 @@ administrativeRoute:""
               name="technicianID"
               value={state.technicianID}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">TechnicianID</CFormLabel>
           </CFormFloating>
@@ -161,6 +152,8 @@ administrativeRoute:""
               name="deviceSize"
               value={state.deviceSize}
               onChange={handleInputChange}
+			  style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Device Size</CFormLabel>
           </CFormFloating>
@@ -172,7 +165,9 @@ administrativeRoute:""
 
 				name ="outcome"
 				value={state.outcome}
-				onChange={handleInputChange}>
+				onChange={handleInputChange}
+        style={{height:"50px",position:"relative", bottom:"7px"}}
+        >
 
 				<option>Outcome</option>
 				<option value="1">Stable</option>
@@ -187,6 +182,7 @@ administrativeRoute:""
                         name="sucessful"
                         value={state.successfull}
                         onChange={handleInputChange}
+
             >Successful</CFormLabel>
             
             <div>
@@ -208,6 +204,7 @@ administrativeRoute:""
               name="treatment"
               value={state.treatment}
               onChange={handleInputChange}
+              style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Treatment</CFormLabel>
             </CFormFloating>
@@ -215,11 +212,13 @@ administrativeRoute:""
 
             <CCol xs={6} className=''>
 
-			      <CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+			      <CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
 				      name ="treatmentType"
 				      value={state.treatmentType}
-				      onChange={handleInputChange}>
+				      onChange={handleInputChange}
+              style={{height:"50px"}}
+              >
 
 				        <option>Outcome</option>
 				        <option value="1">Medication</option>
@@ -238,6 +237,8 @@ administrativeRoute:""
               name="todalTime"
               value={state.totalTime}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Total Time</CFormLabel>
           </CFormFloating>
@@ -251,6 +252,8 @@ administrativeRoute:""
               name="adminstrativeRoute"
               value={state.administrativeRoute}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Administrative Route</CFormLabel>
           </CFormFloating>

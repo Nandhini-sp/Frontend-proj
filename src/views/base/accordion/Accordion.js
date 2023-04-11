@@ -257,11 +257,13 @@ const accordion = () => {
       <CRow>
         <CCol xs={12}>
 
-        <CFormSelect size="lg" className="mt-3" aria-label="Large select example"
+        <CFormSelect size="sm" className="mt-3" aria-label="Large select example"
         
         name ="Types_ins"
         value={state.Types_ins}
-        onChange={handleInputChange}>
+        onChange={handleInputChange}
+        style={{height:"150px"}}
+        >
 
         <option>Types Of Insurance</option>
         <option value="1">Aayushman Bharat Yojana</option>
@@ -289,6 +291,8 @@ const accordion = () => {
               name="govt_ins_id"
               value={state.govt_ins_Id}
               onChange={handleInputChange}
+              style={{height:"20px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Goverment Insurance ID Number</CFormLabel>
           </CFormFloating>
@@ -305,6 +309,8 @@ const accordion = () => {
               name="coverage_Amount"
               value={state.coverage_Amount}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Maximum Coverage Amount</CFormLabel>
           </CFormFloating>
@@ -312,7 +318,7 @@ const accordion = () => {
         <CCol xs={6}>
         <CFormSelect 
           aria-label="Default select example"
-          size='lg'
+          size='sm'
           options={[
     
           { label: 'Aayushman Bharat Yojana', value: '1' },
@@ -323,6 +329,8 @@ const accordion = () => {
                   name="typesOfInsurance"
                 value={state.typesOfInsurance}
                 onChange={handleInputChange}
+                style={{height:"50px"}}
+
                   />
         </CCol>
       </CRow>
