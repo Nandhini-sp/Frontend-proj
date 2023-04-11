@@ -150,11 +150,11 @@ const ComplainBased = () => {
               type="text"
               id="floatingInput"
               placeholder="FirstName"
-              name="airway"
-              value={state.airway}
+              name="chestPain"
+              value={state.chestPain}
               onChange={handleInputChange}
             />
-            <CFormLabel htmlFor="floatingInput">Airway</CFormLabel>
+            <CFormLabel htmlFor="floatingInput">Chest Pain</CFormLabel>
           </CFormFloating>
         </CCol>
 					
@@ -166,11 +166,11 @@ const ComplainBased = () => {
               		type="text"
              		 id="floatingInput"
              		 placeholder="FirstName"
-              		name="symptoms"
-              		value={state.symptoms}
+              		name="neonatal"
+              		value={state.neonatal}
               		onChange={handleInputChange}
             		/>
-            <CFormLabel htmlFor="floatingInput">Symbtoms</CFormLabel>
+            <CFormLabel htmlFor="floatingInput">Neonatal</CFormLabel>
           </CFormFloating>
         
 
@@ -184,11 +184,11 @@ const ComplainBased = () => {
               type="text"
               id="floatingInput"
               placeholder="FirstName"
-              name="airway"
-              value={state.airway}
+              name="obstetricc"
+              value={state.obstetric}
               onChange={handleInputChange}
             />
-            <CFormLabel htmlFor="floatingInput">Airway</CFormLabel>
+            <CFormLabel htmlFor="floatingInput">Obstetric</CFormLabel>
           </CFormFloating>
         </CCol>
 					
@@ -200,11 +200,11 @@ const ComplainBased = () => {
               		type="text"
              		 id="floatingInput"
              		 placeholder="FirstName"
-              		name="symptoms"
-              		value={state.symptoms}
+              		name="trauma"
+              		value={state.trauma}
               		onChange={handleInputChange}
             		/>
-            <CFormLabel htmlFor="floatingInput">Symbtoms</CFormLabel>
+            <CFormLabel htmlFor="floatingInput">Trauma</CFormLabel>
           </CFormFloating>
         
 
@@ -213,115 +213,8 @@ const ComplainBased = () => {
 			</CContainer>
 
 
-		<Grid item xs={12} md={6} lg={4}>
-			<Paper variant="outlined" sx={{ p: 2, width: '100%' }}>
-				{/* <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
-					Nero Response
-				</Typography> */}
-				<Grid container spacing={3}>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Respiration"
-							fullWidth
-							size="small"
-							// value={patientDetails.Given_Name}
-							// onChange={(e) => handleChange('Given_Name', e.target.value)}
-								name='respiration'
-								value={state.respiration}
-                      			onChange={handleInputChange}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Seizure"
-							fullWidth
-							size="small"
-								name='seizure'
-								value={state.seizure}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Toxic exposure"
-							fullWidth
-							name='toxicExposure'
-								value={state.toxicExposure}
-                      			onChange={handleInputChange}
-							size="small"
-							// value={patientDetails.Given_Name}
-							// onChange={(e) => handleChange('Given_Name', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Cardiac Arrest"
-							fullWidth
-							size="small"
-								name='cardiacArrest'
-								value={state.cardiacArrest}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Chest Pain"
-							fullWidth
-							size="small"
-							name='chestPain'
-								value={state.chestPain}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Given_Name}
-							// onChange={(e) => handleChange('Given_Name', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Neonatal"
-							fullWidth
-							size="small"
-
-								name='neonatal'
-								value={state.neonatal}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Obstetric"
-							fullWidth
-							size="small"
-
-								name='obstetric'
-								value={state.obstetric}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField
-							label="Trauma"
-							fullWidth
-							size="small"
-
-								name='trauma'
-								value={state.trauma}
-                      			onChange={handleInputChange}
-							// value={patientDetails.Surname}
-							// onChange={(e) => handleChange('Surname', e.target.value)}
-						/>
-					</Grid>
-				</Grid>
-			</Paper>
-		</Grid>
-		<Grid item xs={12}>
+		
+		<CRow item xs={12}>
 
 
 		<div class="d-grid gap-2 col-6 mx-auto">
@@ -354,7 +247,7 @@ const ComplainBased = () => {
     </CModal>
 </div>
 				
-			</Grid>
+			</CRow>
 		</form>
 	)
 }
