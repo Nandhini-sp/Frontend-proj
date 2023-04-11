@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState ,useRef} from 'react'
 
 
 import {
@@ -16,8 +16,11 @@ import {
   CFormSelect,
   CFormTextarea,
   CRow,
-  
-  CFormCheck
+  CFormCheck,
+  CToast,
+  CToastHeader,
+  CToastBody,
+  CToaster
 } from '@coreui/react'
 import { Input } from 'reactstrap'
 
@@ -25,6 +28,8 @@ const accordion = () => {
   const [visible, setVisible] = useState(false)
 
   // const [toast, addToast] = useState(0)
+  const [toast, addToast] = useState(0)
+const toaster = useRef()
 
   const [state, setState] = useState({
     firstname: '',
@@ -49,7 +54,26 @@ const accordion = () => {
     hospital_chart_no: '',
     commends: '',
   })
-
+  const exampleToast = (
+    <CToast>
+      <CToastHeader closeButton>
+        <svg
+          className="rounded me-2"
+          width="20"
+          height="20"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false"
+          role="img"
+        >
+          <rect width="100%" height="100%" fill="#007aff"></rect>
+        </svg>
+        <div className="fw-bold me-auto">CoreUI for React.js</div>
+        <small>7 min ago</small>
+      </CToastHeader>
+      <CToastBody>Hello, world! This is a toast message.</CToastBody>
+    </CToast>
+  )
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setState((prevProps) => ({
@@ -89,6 +113,8 @@ const accordion = () => {
               name="firstname"
               value={state.firstname}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">FirstName</CFormLabel>
           </CFormFloating>
@@ -102,6 +128,8 @@ const accordion = () => {
               name="surname"
               value={state.surname}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Surname</CFormLabel>
           </CFormFloating>
@@ -118,6 +146,8 @@ const accordion = () => {
               name="street"
               value={state.street}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Street Address</CFormLabel>
           </CFormFloating>
@@ -133,6 +163,8 @@ const accordion = () => {
               name="city"
               value={state.city}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">City</CFormLabel>
           </CFormFloating>
@@ -146,6 +178,8 @@ const accordion = () => {
               name="state"
               value={state.state}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">state</CFormLabel>
           </CFormFloating>
@@ -161,6 +195,8 @@ const accordion = () => {
               name="country"
               value={state.country}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Country</CFormLabel>
           </CFormFloating>
@@ -174,6 +210,8 @@ const accordion = () => {
               name="postal_code"
               value={state.postal_code}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
           </CFormFloating>
@@ -190,13 +228,15 @@ const accordion = () => {
               name="telephone_no"
               value={state.telephone_no}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Telephone</CFormLabel>
           </CFormFloating>
         </CCol>
         <CCol xs={6}>
           <CFormFloating className="mb-3">
-              <Input type='date'></Input>
+              <Input type='date'               style={{height:"50px"}}></Input>
             <CFormLabel htmlFor="floatingInput">Date of Birth</CFormLabel>
           </CFormFloating>
         </CCol>
@@ -212,6 +252,8 @@ const accordion = () => {
               name="age"
               value={state.age}
               onChange={handleInputChange}
+              style={{height:"50px"}}
+
             />
             <CFormLabel htmlFor="floatingInput">Age</CFormLabel>
           </CFormFloating>
@@ -222,6 +264,7 @@ const accordion = () => {
                         name="gender"
                         value={state.gender}
                         onChange={handleInputChange}
+                        
             >Gender</CFormLabel>
             
             <div>
@@ -239,6 +282,8 @@ const accordion = () => {
                         name="medical_ins"
                         value={state.medical_ins}
                         onChange={handleInputChange}
+                        style={{height:"50px"}}
+
             >Medical Insurance</CFormLabel>
             
             <div>
@@ -262,7 +307,7 @@ const accordion = () => {
         name ="Types_ins"
         value={state.Types_ins}
         onChange={handleInputChange}
-        style={{height:"150px"}}
+        
         >
 
         <option>Types Of Insurance</option>
@@ -446,9 +491,11 @@ const accordion = () => {
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-success" onSubmit={submitHandler}>
+                <button class="btn btn-success" onSubmit={submitHandler}onClick={() => addToast(exampleToast)}>
                   Send <i class="fas fa-paper-plane-o ml-1"></i>
                 </button>
+                <CToaster ref={toaster} push={toast} placement="top-end" />
+                
               </div>
 
               <CModalFooter>
