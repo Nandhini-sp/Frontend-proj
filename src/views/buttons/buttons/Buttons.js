@@ -1,33 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { setPatientHistory, toggleBodySystemItem } from '../../../features/patientHistory'
-import {
-	Checkbox,
-	FormControl,
-	FormControlLabel,
-	// FormGroup,
-	// FormLabel,
-	// submitHandler,
-	Grid,
-	InputLabel,
-	MenuItem,
-	Paper,
-	Radio,
-	RadioGroup,
-	Select,
-	Stack,
-	TextField,
-	Typography,
-} from '@mui/material'
+
 import { CButton } from '@coreui/react'
 
 import{
-	// CButton,
 	CModal,
 	CModalHeader,
 	CModalTitle,
-	CModalBody,
 	CModalFooter,
 	CContainer,
 	CRow,
@@ -41,75 +20,7 @@ import{
 }from '@coreui/react'
 
 
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-// import AdapterDateFns from '@mui/lab/AdapterDateFns'
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-// import LocalizationProvider from '@mui/lab/LocalizationProvider'
-// import DatePicker from '@mui/lab/DatePicker'
 
-// import { LocalizationProvider } from '@mui/x-date-pickers'
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-// import { DatePicker } from '@mui/x-date-pickers'
-
-// const bodySystems = [
-// 	'Cardiovascular',
-// 	'Central Nervous System',
-// 	'Endocrine',
-// 	'GI',
-// 	'Integumentary',
-// 	'Musculoskeletal',
-// 	'Renal',
-// 	'Reproductive',
-// 	'Respiratory',
-// ]
-const coResponders = ['Law Enforcement', 'Fire', 'Other First Responders', 'None']
-const destinationConditions = ['Stable', 'Improved', 'Deteriorated']
-const treatmentsProvided = ['Yes', 'No', 'Unknown', 'Not applicable']
-const suspectedIntoxication = [
-	'Yes as reported by patient',
-	'Yes as reported by bystander',
-	'Yes as suspected by provider',
-	'Not suspected',
-]
-const chiefComplaints = [
-	'Abdominal Pain/Problems',
-	'Allergies/Envenomations',
-	'Animal Bites/Attacks',
-	'Assault/Sexual Assault',
-	'Back Pain (Non Traumatic)',
-	'Breathing Problems',
-	'Burns(Scalds)/Explosions',
-	'Carbon Monoxide/Inhal/HAZMAT',
-	'Cardiac or Resp Arrest/Death',
-	'Chest Pain',
-	'Choking',
-	'Convulsions/Seizures',
-	'Diabetic Problems',
-	'Drowning/Diving/Scuba Accident',
-	'Electrocution/Lightning',
-	'Eye Problems/Injuries',
-	'Falls',
-	'Headache',
-	'Heart Problems/A.I.C.D.',
-	'Heat/Cold Exposure',
-	'Hemorrhage/Lacerations',
-	'Industrial/Machinery Accidents',
-	'Overdose/Poisoning(Ingestion)',
-	'Pregnancy/Childbirth/Miscarria',
-	'Psych/Abnorml Behavior/Suicide',
-	'Sick Person (Spec diagnosis)',
-	'Stab/Gunshot/Penetrating Traum',
-	'Stroke (CVA)',
-	'Traffic/Transportation Acc',
-	'Traumatic Injuries (Specific)',
-	'Unconscious/Fainting (Near)',
-	'Unknown Problem (Man Down)',
-	'Interfacility',
-	'Weakness',
-]
 
 const Buttons = () => {
 	

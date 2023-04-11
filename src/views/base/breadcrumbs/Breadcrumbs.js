@@ -53,19 +53,14 @@ const [state, setState] = useState({
   timeAtDestination: "",
   available: "",
   backArea: "",
-	responseToScene_type: "",
-	responseToScene_change:"",
-  responseFromScene_type: "",
-  responseFromScene_change:"",
+	responseToScene: "",
+  responseFromScene: "",
   
     driver: "",
     attendent: "",
     assisting: "",
-  mileage_out:"",
-  mileage_in: "",
-  mileage_scene:"",
-  mileage_des:"",
-  mileage_total:"",
+  mileage:"",
+ 
   patientContact: "",
   destinationDeterminant: "",
   startDate: "",
@@ -99,6 +94,9 @@ const [state, setState] = useState({
         		focusOnOpen={true}
         		format="hh:mm A"
         		onChange={e => setTime(e.format('LT'))}
+				name="timeNotified"
+				value={state.timeNotified}
+				onClick={handleInputChange}
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -111,6 +109,9 @@ const [state, setState] = useState({
         		focusOnOpen={true}
         		format="hh:mm A"
         		onChange={e => setTime(e.format('LT'))}
+				name="timeEnroute"
+				value={state.timeEnroute}
+				onClick={handleInputChange}
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -123,6 +124,9 @@ const [state, setState] = useState({
         		focusOnOpen={true}
         		format="hh:mm A"
         		onChange={e => setTime(e.format('LT'))}
+				name="timeAtDestination"
+				value={state.timeAtDestination}
+				onClick={handleInputChange}
       		/>
 			</CCol>
 			</CRow>
@@ -137,6 +141,9 @@ const [state, setState] = useState({
         		focusOnOpen={true}
         		format="hh:mm A"
         		onChange={e => setTime(e.format('LT'))}
+				name="timeOutScene"
+				value={state.timeOutScene}
+				onClick={handleInputChange}
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -149,6 +156,9 @@ const [state, setState] = useState({
         		focusOnOpen={true}
         		format="hh:mm A"
         		onChange={e => setTime(e.format('LT'))}
+				name="timeOutScene"
+				value={state.timeOutScene}
+				onClick={handleInputChange}
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -161,6 +171,9 @@ const [state, setState] = useState({
         		focusOnOpen={true}
         		format="hh:mm A"
         		onChange={e => setTime(e.format('LT'))}
+				name="timeAtDestination"
+				value={state.timeAtDestination}
+				onClick={handleInputChange}
       		/>
 			</CCol>
 			</CRow>
@@ -175,8 +188,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="FirstName"
-              name="firstname"
-              value={state.firstname}
+              name="crewPatient"
+              value={state.crewPatient}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Crew Patient</CFormLabel>
@@ -188,8 +201,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="Surname"
-              name="surname"
-              value={state.surname}
+              name="available"
+              value={state.available}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Available</CFormLabel>
@@ -201,8 +214,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="Surname"
-              name="surname"
-              value={state.surname}
+              name="backArea"
+              value={state.backArea}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">BackArea</CFormLabel>
@@ -236,8 +249,8 @@ const [state, setState] = useState({
 
 				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
 
-					name ="Types_ins"
-					value={state.Types_ins}
+					name ="responseFromScene"
+					value={state.responseFromScene}
 					onChange={handleInputChange}>
 
 				<option>Response From Scene</option>
@@ -255,8 +268,8 @@ const [state, setState] = useState({
 
 				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
 
-				name ="Types_ins"
-				value={state.Types_ins}
+				name ="crewTypes"
+				value={state.crewTypes}
 				onChange={handleInputChange}>
 
 				<option>Crew Type</option>
@@ -274,8 +287,8 @@ const [state, setState] = useState({
 
 				<CFormSelect size="lg" className="mt-3" aria-label="Large select example"
 
-					name ="Types_ins"
-					value={state.Types_ins}
+					name ="mileage"
+					value={state.mileage}
 					onChange={handleInputChange}>
 
 				<option>Mileage</option>
@@ -302,8 +315,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="FirstName"
-              name="country"
-              value={state.country}
+              name="patientContact"
+              value={state.patientContact}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Patient Contact</CFormLabel>
@@ -315,8 +328,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="Surname"
-              name="postal_code"
-              value={state.postal_code}
+              name="destinationDeterminant"
+              value={state.destinationDeterminant}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Destination Determinant</CFormLabel>
@@ -333,8 +346,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="FirstName"
-              name="country"
-              value={state.country}
+              name="startDate"
+              value={state.startDate}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Document Start Date</CFormLabel>
@@ -346,8 +359,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="Surname"
-              name="postal_code"
-              value={state.postal_code}
+              name="endDate"
+              value={state.endDate}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Document End Date</CFormLabel>
@@ -359,8 +372,8 @@ const [state, setState] = useState({
               type="text"
               id="floatingInput"
               placeholder="Surname"
-              name="postal_code"
-              value={state.postal_code}
+              name="dateModified"
+              value={state.dateModified}
               onChange={handleInputChange}
             />
             <CFormLabel htmlFor="floatingInput">Date Modified</CFormLabel>

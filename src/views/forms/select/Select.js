@@ -1,17 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import {
-	Grid,
-	Paper,
-	TextField,
-} from '@mui/material'
-// import { CButton } from '@coreui/react'
+
 import{
 	CButton,
 	CModal,
 	CModalHeader,
 	CModalTitle,
-	CModalBody,
+	
 	CModalFooter,
 	CRow,
 	CCol,
