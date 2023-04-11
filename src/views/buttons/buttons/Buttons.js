@@ -29,6 +29,14 @@ import{
 	CModalTitle,
 	CModalBody,
 	CModalFooter,
+	CContainer,
+	CRow,
+	CCol,
+	CFormInput,
+	CFormSelect,
+	CFormLabel,
+	CFormCheck,
+	
 
 }from '@coreui/react'
 
@@ -133,214 +141,141 @@ const Buttons = () => {
 
 	return (
 
-		<form
-			onSubmit={submitHandler}
-                method="post"
-                encType="multipart/form-data"
-                className="form-horizontal"
-			>
+		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
 
-<Grid container spacing={3}>
+		<CContainer>
+			<CRow className='mb-3'>
+				<CCol xs={6}>
+					<InputLabel >Date Of Injury</InputLabel>
+					<CFormInput type="Date"
 
-<Grid item xs={12}>	
-	<Paper variant="outlined" sx={{ p: 2, w: '100%' }}>
-		{/* <Typography color="textSecondary" gutterBottom>
-			Patient History
-		</Typography> */}
+                     name ="dateOfInjury"
+                     value={state.dateOfInjury}
+                     onChange={handleInputChange}>
 
-			<LocalizationProvider dateAdapter={AdapterDateFns}>
-					<Grid container spacing={3}>
-				
-				<Grid item xs={12} md={6}>
+					 </CFormInput>
+							
+					     
+				</CCol>
+				<CCol xs={6}>
+					<InputLabel>Time Of Injurt</InputLabel>
+					<CFormInput type="Time"
+					name ="timeOfInjury"
+                     value={state.timeOfInjury}
+                     onChange={handleInputChange}>
+
+					</CFormInput>
+				</CCol>
+			</CRow>
+			<CRow>
+			<CCol xs={6}>
+
+			<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
+
+				name ="coResponders"
+				value={state.coResponders}
+				onChange={handleInputChange}>
+
+				<option>Co-Respondars</option>
+				<option value="1">Law Enforcement</option>
+  				<option value="2">Fire</option>
+  				<option value="3">Other Fire Respondars</option>
+  				<option value="4">None</option>
+			</CFormSelect>
+		</CCol>
+				<CCol xs={6}>
+
+					<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
+
+					name ="treatmentsProvided"
+					value={state.treatmentsProvided}
+					onChange={handleInputChange}>
+				<option>Treatment Provided by Co-Respondars</option>
+				<option value="1">Yes</option>
+  				<option value="2">NO</option>
+  				<option value="3">Unknown</option>
+  				<option value="4">Not applicable</option>
+ 			 </CFormSelect>
+			</CCol>
+			</CRow>
+		</CContainer>
+		<CContainer>
+			<CRow className='mt-3'>
+			<CCol xs={6}>
+
+			<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
+
+				name ="patientCondition"
+				value={state.patientCondition}
+				onChange={handleInputChange}>
+
+			<option>Patient Condition at Destination</option>
+			<option value="1">Stable</option>
+	  		<option value="2">Improved</option>
+	  		<option value="3">Deteriorated</option>
+	  		<option value="4">None</option>
+				</CFormSelect>
+				</CCol>
+				<CCol xs={6} className=''>
 					
-					<TextField
-						label="Date of Injury"
-						size="small"
-						fullWidth
-						type="date"
+				<CFormLabel htmlFor="floatingInput"
+                        name="patientDisplacement"
+                        value={state.patientDisplacement}
+                        onChange={handleInputChange}
+            >Patient Displacement</CFormLabel>
+            
+            <div>
+              <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" value="option1" label="Yes"/>
+              <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" value="option2" label="No"/>
+                <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" value="option2" label="Other"/>
+            </div>  
+			
+				</CCol>
+			</CRow>
+		</CContainer>
+		<CContainer>
+			<CRow>
+			<CCol xs={12}>
 
-								name='dateOfInjury'
-								value={state.dateOfInjury}
-                      			onChange={handleInputChange}
-						
-						InputLabelProps={{
-							shrink: true,
-						}}
-						
-					/>
+		<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<TextField
-						label="Time of Injury"
-						size="small"
-						fullWidth
-						type="time"
+			name ="suspectedIntoxication"
+			value={state.suspectedIntoxication}
+			onChange={handleInputChange}>
+			<option>Suspected Intoxication</option>
+				<option value="1">Yes As Reported by Patient</option>
+				<option value="2">Yes As Reported bystander </option>
+				<option value="3">Yes As Reported byProvider</option>
+				<option value="4">Not suspected</option>
+		</CFormSelect>
+		</CCol>
+			</CRow>
+		</CContainer>
+		<CContainer>
+			<CRow>
+			<CCol xs={12}>
 
-								name='timeOfInjury'
-								value={state.timeOfInjury}
-                      			onChange={handleInputChange}
-						
-						InputLabelProps={{
-							shrink: true,
-						}}
-						
-					/>
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="g-co-responders-label">Co-Responders</InputLabel>
-						<Select
-							labelId="g-co-responders-label"
-							id="g-co-responders"
-								name='coResponders'
-								value={state.coResponders}
-                      			onChange={handleInputChange}
-							label="Co-Responders"
-							defaultValue=""
-							
-						>
-							{coResponders.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="g-treatment-rendered-label">
-							Treatment Provided by Co-Responders
-						</InputLabel>
-						<Select
-							labelId="g-treatment-rendered-label"
-							id="g-treatment-rendered"
-								name='treatmentRendered'
-								value={state.treatmentRendered}
-                      			onChange={handleInputChange}
-							label="Treatment Provided by Co-Responders"
-							defaultValue=""
-						
-						>
-							{treatmentsProvided.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="g-pt-condi-dest-label">Patient Condition at Destination</InputLabel>
-						<Select
-							labelId="g-pt-condi-dest-label"
-							id="g-pt-condi-dest"
-							
-							label="Patient Condition at Destination"
-							defaultValue=""
+		<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
-								name='patientCondition'
-								value={state.patientCondition}
-                      			onChange={handleInputChange}
-						
-						>
-							{destinationConditions.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<Stack spacing={3} direction="row" alignItems="center">
-						<Typography color="textSecondary" sx={{ width: '50%' }}>
-							Patient Displacement
-						</Typography>
-						<FormControl fullWidth size="small">
-							
-							<RadioGroup
-								row
-								aria-labelledby="dpatient-displacement-label"
-								name='patientDisplacement'
-								value={state.patientDisplacement}
-                      			onChange={handleInputChange}
-								
-							>
-								<FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-								<FormControlLabel value="No" control={<Radio />} label="No" />
-							</RadioGroup>
-						</FormControl>
-					</Stack>
-				</Grid>
-				<Grid item xs={12} md={10}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="g-susp-intoxi-label">Suspected Intoxication</InputLabel>
-						<Select
-							labelId="g-susp-intoxi-label"
-							id="g-susp-intoxi"
-							label="Suspected Intoxication"
-							defaultValue=""
-								name='suspectedIntoxication'
-								value={state.suspectedIntoxication}
-                      			onChange={handleInputChange}
-							
-						>
-							{suspectedIntoxication.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-				<Grid item xs={12} md={2}>
-					<FormControlLabel
-						control={
-							<Checkbox
-								
-								name="G_DNR_Order"
-								
-							/>
-						}
-						label="DNR Order"
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="chief-complaint-label">Chief Complaint</InputLabel>
-						<Select
-							labelId="chief-complaint-label"
-							id="chief-complaint"
-						
-							label="Chief Complaint"
-							defaultValue=""
-								name='chiefComplaint'
-								value={state.chiefComplaint}
-                      			onChange={handleInputChange}
-						>
+			name ="chiefComplaint"
+			value={state.chiefComplaint}
+			onChange={handleInputChange}>
+			<option>Chief Complaint</option>
+				<option value="1">Chest Pain</option>
+				<option value="2">Yes As Reported bystander </option>
+				<option value="3">Yes As Reported byProvider</option>
+				<option value="4">Not suspected</option>
+		</CFormSelect>
+		</CCol>
+			</CRow>
+		</CContainer>
 
-							{chiefComplaints.map((item, index) => (
-								<MenuItem key={index} value={item}>
-									{item}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-			</Grid>
-		</LocalizationProvider>
 
-		</Paper>
-		</Grid>
-		</Grid>
 
-		<Grid item xs={12}>
+		<CRow xs={12} className='mt-3'>
 			
 		<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
+  		<button class="btn btn-success" type="submit"
   onClick={() => setVisible(!visible)}
 >Submit</button>
 <CModal visible={visible} onClose={() => setVisible(false)}>
@@ -372,7 +307,7 @@ const Buttons = () => {
 </div>
 
 		
-		</Grid>
+		</CRow>
 
 		
 		</form>

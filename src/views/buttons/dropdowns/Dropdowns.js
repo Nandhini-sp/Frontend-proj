@@ -26,6 +26,13 @@ import{
 	CModalTitle,
 	CModalBody,
 	CModalFooter,
+	CContainer,
+	CRow,
+	CCol,
+	CFormFloating,
+	CFormInput,
+	CFormLabel,
+
 
 }from '@coreui/react'
 
@@ -64,12 +71,148 @@ const ComplainBased = () => {
 
 	return (
 
-		<form
-		onSubmit={submitHandler}
-                method="post"
-                encType="multipart/form-data"
-                className="form-horizontal"
-		>
+		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
+
+<CContainer>
+				<CRow>
+					<CCol xs={6}>
+					
+         	 <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="respiration"
+              value={state.respiration}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
+          </CFormFloating>
+        </CCol>
+					
+					<CCol xs={6}>
+
+					
+          		<CFormFloating className="mb-3">
+            		<CFormInput
+              		type="text"
+             		 id="floatingInput"
+             		 placeholder="FirstName"
+              		name="seizure"
+              		value={state.seizure}
+              		onChange={handleInputChange}
+            		/>
+            <CFormLabel htmlFor="floatingInput">Seizure</CFormLabel>
+          </CFormFloating>
+        
+
+					</CCol>
+				</CRow>
+				<CRow>
+					<CCol xs={6}>
+					
+         	 <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="toxicExposure"
+              value={state.toxicExposure}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Toxic Exposure</CFormLabel>
+          </CFormFloating>
+        </CCol>
+					
+					<CCol xs={6}>
+
+					
+          		<CFormFloating className="mb-3">
+            		<CFormInput
+              		type="text"
+             		 id="floatingInput"
+             		 placeholder="FirstName"
+              		name="cardiacArrest"
+              		value={state.cardiacArrest}
+              		onChange={handleInputChange}
+            		/>
+            <CFormLabel htmlFor="floatingInput">CardiacArrest</CFormLabel>
+          </CFormFloating>
+        
+
+					</CCol>
+				</CRow>
+				<CRow>
+					<CCol xs={6}>
+					
+         	 <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="airway"
+              value={state.airway}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Airway</CFormLabel>
+          </CFormFloating>
+        </CCol>
+					
+					<CCol xs={6}>
+
+					
+          		<CFormFloating className="mb-3">
+            		<CFormInput
+              		type="text"
+             		 id="floatingInput"
+             		 placeholder="FirstName"
+              		name="symptoms"
+              		value={state.symptoms}
+              		onChange={handleInputChange}
+            		/>
+            <CFormLabel htmlFor="floatingInput">Symbtoms</CFormLabel>
+          </CFormFloating>
+        
+
+					</CCol>
+				</CRow>
+				<CRow>
+					<CCol xs={6}>
+					
+         	 <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="FirstName"
+              name="airway"
+              value={state.airway}
+              onChange={handleInputChange}
+            />
+            <CFormLabel htmlFor="floatingInput">Airway</CFormLabel>
+          </CFormFloating>
+        </CCol>
+					
+					<CCol xs={6}>
+
+					
+          		<CFormFloating className="mb-3">
+            		<CFormInput
+              		type="text"
+             		 id="floatingInput"
+             		 placeholder="FirstName"
+              		name="symptoms"
+              		value={state.symptoms}
+              		onChange={handleInputChange}
+            		/>
+            <CFormLabel htmlFor="floatingInput">Symbtoms</CFormLabel>
+          </CFormFloating>
+        
+
+					</CCol>
+				</CRow>
+			</CContainer>
+
+
 		<Grid item xs={12} md={6} lg={4}>
 			<Paper variant="outlined" sx={{ p: 2, width: '100%' }}>
 				{/* <Typography color="textSecondary" gutterBottom sx={{ mb: 2 }}>
