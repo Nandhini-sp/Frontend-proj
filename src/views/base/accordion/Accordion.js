@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState ,useRef} from 'react'
-
-
 import {
   CButton,
   CModal,
@@ -23,6 +21,7 @@ import {
   CToaster
 } from '@coreui/react'
 import { Input } from 'reactstrap'
+import AuthAxios from 'src/Interceptors/AuthAxios'
 
 const accordion = () => {
   const [visible, setVisible] = useState(false)
@@ -74,8 +73,8 @@ const toaster = useRef()
       <CToastBody>Hello, world! This is a toast message.</CToastBody>
     </CToast>
   )
-  const handleInputChange = (event) => {
-    const { name, value } = event.target
+  const handleInputChange = (event, name) => {
+    const { value } = event.target
     setState((prevProps) => ({
       ...prevProps,
       [name]: value,
@@ -85,6 +84,15 @@ const toaster = useRef()
   const submitHandler = (event) => {
     event.preventDefault()
     console.log(state)
+
+     AuthAxios.post('Users', state)
+      .then((res) => {
+        console.log(res.data)
+        location.href = '/#/callDetails'
+      })
+      .catch((err) => console.error(err.message))
+    // console.log(state)
+    // location.href = '/#/login'
   }
 
   const Types_ins = ['Private', 'Goverment']
@@ -100,9 +108,10 @@ const toaster = useRef()
     'Critical Illness ',
     'Top-up health plan',
   ]
+  
 
   return (
-    <form onSubmit={submitHandler} method="post" encType="multipart/form-data">
+    <form  method="post" encType="multipart/form-data">
       <CRow>
         <CCol xs={6}>
           <CFormFloating className="mb-3">
@@ -112,7 +121,8 @@ const toaster = useRef()
               placeholder="FirstName"
               name="firstname"
               value={state.firstname}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'firstname')}
+              
               style={{height:"50px"}}
 
             />
@@ -127,7 +137,7 @@ const toaster = useRef()
               placeholder="Surname"
               name="surname"
               value={state.surname}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'surname')}
               style={{height:"50px"}}
 
             />
@@ -145,7 +155,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="street"
               value={state.street}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'street')}
               style={{height:"50px"}}
 
             />
@@ -162,7 +172,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="city"
               value={state.city}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'city')}
               style={{height:"50px"}}
 
             />
@@ -177,7 +187,7 @@ const toaster = useRef()
               placeholder="Surname"
               name="state"
               value={state.state}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'state')}
               style={{height:"50px"}}
 
             />
@@ -194,7 +204,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="country"
               value={state.country}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'country')}
               style={{height:"50px"}}
 
             />
@@ -209,7 +219,7 @@ const toaster = useRef()
               placeholder="Surname"
               name="postal_code"
               value={state.postal_code}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'postal_code')}
               style={{height:"50px"}}
 
             />
@@ -227,7 +237,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="telephone_no"
               value={state.telephone_no}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'telephone_no')}
               style={{height:"50px"}}
 
             />
@@ -236,7 +246,7 @@ const toaster = useRef()
         </CCol>
         <CCol xs={6}>
           <CFormFloating className="mb-3">
-              <Input type='date'               style={{height:"50px"}}></Input>
+              <Input type='date' style={{height:"50px"}} name='DOB' value={state.DOB} onChange={(event) => handleInputChange(event, 'DOB')}></Input>
             <CFormLabel htmlFor="floatingInput">Date of Birth</CFormLabel>
           </CFormFloating>
         </CCol>
@@ -251,7 +261,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="age"
               value={state.age}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'age')}
               style={{height:"50px"}}
 
             />
@@ -263,7 +273,7 @@ const toaster = useRef()
             <CFormLabel htmlFor="floatingInput"
                         name="gender"
                         value={state.gender}
-                        onChange={handleInputChange}
+                        onChange={(event) => handleInputChange(event, 'gender')}
                         
             >Gender</CFormLabel>
             
@@ -281,7 +291,7 @@ const toaster = useRef()
         <CFormLabel htmlFor="floatingInput"
                         name="medical_ins"
                         value={state.medical_ins}
-                        onChange={handleInputChange}
+                        onChange={(event) => handleInputChange(event, 'medical_ins')}
                         style={{height:"50px"}}
 
             >Medical Insurance</CFormLabel>
@@ -306,7 +316,7 @@ const toaster = useRef()
         
         name ="Types_ins"
         value={state.Types_ins}
-        onChange={handleInputChange}
+        onChange={(event) => handleInputChange(event, 'Types_ins')}
         
         >
 
@@ -335,7 +345,7 @@ const toaster = useRef()
               placeholder=""
               name="govt_ins_id"
               value={state.govt_ins_Id}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'govt_ins_Id')}
               style={{height:"20px"}}
 
             />
@@ -353,7 +363,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="coverage_Amount"
               value={state.coverage_Amount}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'coverage_Amount')}
               style={{height:"50px"}}
 
             />
@@ -373,7 +383,7 @@ const toaster = useRef()
                   
                   name="typesOfInsurance"
                 value={state.typesOfInsurance}
-                onChange={handleInputChange}
+                onChange={(event) => handleInputChange(event, 'typesOfInsurance')}
                 style={{height:"50px"}}
 
                   />
@@ -396,7 +406,7 @@ const toaster = useRef()
               placeholder=""
               name="private_ins_id"
               value={state.private_ins_id}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'private_ins_id')}
             />
             <CFormLabel htmlFor="floatingInput">Private Insurance ID Number</CFormLabel>
           </CFormFloating>
@@ -423,7 +433,7 @@ const toaster = useRef()
                   ]}
                   name="typesOfInsurance"
                 value={state.typesOfInsurance}
-                onChange={handleInputChange}
+                onChange={(event) => handleInputChange(event, 'typesOfInsurance')}
                   />
 
         </CCol>
@@ -438,7 +448,7 @@ const toaster = useRef()
               placeholder="FirstName"
               name="hospital_chart_no"
               value={state.hospital_chart_no}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'hospital_chart_no')}
             />
             <CFormLabel htmlFor="floatingInput">Hospital Chart No</CFormLabel>
           </CFormFloating>
@@ -451,9 +461,9 @@ const toaster = useRef()
               type="commends"
               id="floatingInput"
               placeholder=""
-              name="Commends"
+              name="commends"
               value={state.commends}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'commends')}
             />
                         <CFormLabel htmlFor="floatingInput">Commends</CFormLabel>
 
@@ -465,7 +475,9 @@ const toaster = useRef()
 
         <CCol xs={12}>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-success" type="submit" onClick={() => setVisible(!visible)}>
+            <button class="btn btn-success" type="submit" onClick={() => submitHandler()}
+            // onClick={() => setVisible(!visible)}
+            >
               Submit
             </button>
             <CModal visible={visible} onClose={() => setVisible(false)}>
@@ -491,7 +503,7 @@ const toaster = useRef()
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-success" onSubmit={submitHandler}onClick={() => addToast(exampleToast)}>
+                <button class="btn btn-success" onSubmit={submitHandler} onClick={() => addToast(exampleToast)}>
                   Send <i class="fas fa-paper-plane-o ml-1"></i>
                 </button>
                 <CToaster ref={toaster} push={toast} placement="top-end" />
