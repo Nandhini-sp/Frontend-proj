@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-
+import './style.css'
 import {
   CButton,
   CModal,
@@ -30,14 +30,13 @@ const Select = () => {
     siteOfTemperatureCheck: '',
     skinColor: '',
     moisture: '',
-    bloodPressure: '',
     systolic: '',
     diastolic: '',
     respiration: '',
     bloodGlucose: '',
-    oxygenSaturation: '',
     preOxygen: '',
     postOxygen: '',
+    diatolic: '',
     email: '',
   })
 
@@ -50,35 +49,60 @@ const Select = () => {
   }
 
   const submitHandler = () => {
-    //  AuthAxios.post('Users', state)
+    const item = {
+      userId: '1',
+      assessmentTime: state.assessmentTime,
+      consciousnessLevel: state.consciousnessLevel,
+      pulseRate: state.pulseRate,
+      siteOfPulseCheck: state.siteOfPulseCheck,
+      temperature: state.temperature,
+      siteOfTemperatureCheck: state.siteOfTemperatureCheck,
+      skinColor: state.skinColor,
+      moisture: state.moisture,
+      bloodPressure: {
+        systolic: state.systolic,
+        diastolic: state.diastolic,
+      },
+      respiration: state.respiration,
+      bloodGlucose: state.bloodGlucose,
+      oxygenSaturation: {
+        preOxygen: state.preOxygen,
+        postOxygen: state.postOxygen,
+      },
+      email: state.email,
+    }
+    // AuthAxios.post('VitalSignTreatment', item)
     //   .then((res) => {
     //     console.log(res.data)
-    //     location.href = '/#/callDetails'
+    //     setTimeout(() => {
+    //       location.href = '/'
+    //     }, 2000)
     //   })
     //   .catch((err) => console.error(err.message))
-    console.log(state)
-    // location.href = '/#/login'
+    console.log(item)
   }
 
   return (
     <div>
-      <CRow>
-        <CCol xs={12} className="h5" style={{ position: 'relative', left: '400px' }}>
-          <CFormLabel htmlFor="floatingInput" className="h4">
+      <CRow className="mb-3 vehicle">
+        <CCol xs={4}>
+          <CFormLabel htmlFor="floatingInput" className="h3">
             Time Of Assessment
           </CFormLabel>
-          <p>Selected Time: {time || '-'}</p>
           <TimePicker
             placeholder="Select Time"
             use12Hours
             showSecond={false}
             focusOnOpen={true}
             format="hh:mm A"
-            style={{ height: '50px' }}
-            onChange={(e) => setTime(e.format('LT'))}
-            name="assessmentTime"
-            value={state.assessmentTime}
-            onClick={(event) => handleInputChange(event, 'assessmentTime')}
+            onChange={(e) => {
+              setState((prevProps) => ({
+                ...prevProps,
+                assessmentTime: e.format('LT'),
+              }))
+              setTime(e.format('LT'))
+            }}
+            className="times"
           />
         </CCol>
       </CRow>
@@ -165,9 +189,8 @@ const Select = () => {
                 type="text"
                 id="floatingInput"
                 placeholder="Surname"
-                name="siteOfPulseCheck"
-                value={state.siteOfPulseCheck}
-                onChange={(event) => handleInputChange(event, 'siteOfPulseCheck')}
+                value={state.siteOfTemperatureCheck}
+                onChange={(event) => handleInputChange(event, 'siteOfTemperatureCheck')}
                 style={{ height: '50px' }}
               />
               <CFormLabel htmlFor="floatingInput">Site Of Temperature Check</CFormLabel>
@@ -175,21 +198,7 @@ const Select = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="FirstName"
-                name="skinColor"
-                value={state.skinColor}
-                onChange={(event) => handleInputChange(event, 'skinColor')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">SkinColor</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol xs={6}>
+          <CCol xs={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -205,20 +214,9 @@ const Select = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="FirstName"
-                name="bloodPressure"
-                value={state.bloodPressure}
-                onChange={(event) => handleInputChange(event, 'bloodPressure')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Blood Pressure</CFormLabel>
-            </CFormFloating>
-          </CCol>
+          <CFormLabel htmlFor="floatingInput" className="h5">
+            Blood Pressure
+          </CFormLabel>
           <CCol xs={6}>
             <CFormFloating className="mb-3">
               <CFormInput
@@ -233,8 +231,6 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Systolic</CFormLabel>
             </CFormFloating>
           </CCol>
-        </CRow>
-        <CRow>
           <CCol xs={6}>
             <CFormFloating className="mb-3">
               <CFormInput
@@ -244,11 +240,13 @@ const Select = () => {
                 name="diastolic"
                 value={state.diastolic}
                 style={{ height: '50px' }}
-                onChange={(event) => handleInputChange(event, 'diatolic')}
+                onChange={(event) => handleInputChange(event, 'diastolic')}
               />
               <CFormLabel htmlFor="floatingInput">Diastolic</CFormLabel>
             </CFormFloating>
           </CCol>
+        </CRow>
+        <CRow>
           <CCol xs={6}>
             <CFormFloating className="mb-3">
               <CFormInput
@@ -263,8 +261,6 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
             </CFormFloating>
           </CCol>
-        </CRow>
-        <CRow>
           <CCol xs={6}>
             <CFormFloating className="mb-3">
               <CFormInput
@@ -279,22 +275,11 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Blood Glucose</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Surname"
-                name="oxygenSaturation"
-                value={state.oxygenSaturation}
-                onChange={(event) => handleInputChange(event, 'oxygenSaturation')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Oxygen Saturtion</CFormLabel>
-            </CFormFloating>
-          </CCol>
         </CRow>
         <CRow>
+          <CFormLabel htmlFor="floatingInput" className="h5">
+            Oxygen Saturation
+          </CFormLabel>
           <CCol xs={6}>
             <CFormFloating className="mb-3">
               <CFormInput

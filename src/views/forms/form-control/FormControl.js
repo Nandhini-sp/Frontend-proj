@@ -17,13 +17,14 @@ import {
   CFormSelect,
   CFormCheck,
 } from '@coreui/react'
-import { email } from 'react-admin'
+import './style.css'
 
 const formControl = () => {
   const [visible, setVisible] = useState(false)
   const [time, setTime] = useState('')
 
   const [state, setState] = useState({
+    userId: '',
     procedureStartTime: '',
     procedureType: '',
     procedureEndTime: '',
@@ -47,52 +48,59 @@ const formControl = () => {
   }
 
   const submitHandler = () => {
-    //  AuthAxios.post('Users', state)
+    // AuthAxios.post('VehicleCallDetails', state)
     //   .then((res) => {
     //     console.log(res.data)
-    //     location.href = '/#/callDetails'
+    //     setTimeout(() => {
+    //       location.href = '/'
+    //     }, 2000)
     //   })
     //   .catch((err) => console.error(err.message))
     console.log(state)
-    // location.href = '/#/login'
   }
 
   return (
     <div>
-      <CContainer className="m-4">
+      <CContainer className="m-4 vehicle">
         <CRow>
           <CCol xs={6}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Procedure Start Time
             </CFormLabel>
-            <p>Selected Time: {time || '-'}</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="procedureStartTime"
-              value={state.procedureStartTime}
-              onClick={(event) => handleInputChange(event, 'procedureStartTime')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  procedureStartTime: e.format('LT'),
+                }))
+                setTime(e.format('LT'))
+              }}
+              className="times"
             />
           </CCol>
           <CCol xs={6}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Treatment End Time
             </CFormLabel>
-            <p>Selected Time: {time || '-'}</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="procedureEndTime"
-              value={state.procedureEndTime}
-              onClick={(event) => handleInputChange(event, 'procedureEndTime')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  procedureEndTime: e.format('LT'),
+                }))
+                setTime(e.format('LT'))
+              }}
+              className="times"
             />
           </CCol>
         </CRow>
@@ -158,50 +166,31 @@ const formControl = () => {
           </CCol>
 
           <CCol xs={4}>
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="outcome"
-              value={state.outcome}
-              onChange={(event) => handleInputChange(event, 'outcome')}
-              style={{ height: '50px', position: 'relative', bottom: '7px' }}
-            >
-              <option>Outcome</option>
-              <option value="1">Stable</option>
-              <option value="2">Improved</option>
-              <option value="3">Deteriorated</option>
-            </CFormSelect>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Outcome"
+                value={state.outcome}
+                onChange={(event) => handleInputChange(event, 'outcome')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Outcome</CFormLabel>
+            </CFormFloating>
           </CCol>
 
           <CCol xs={4}>
-            <CFormLabel
-              htmlFor="floatingInput"
-              name="sucessful"
-              value={state.successfull}
-              onChange={(event) => handleInputChange(event, 'sucessfull')}
-            >
-              Successful
-            </CFormLabel>
-
-            <div>
-              <CFormCheck
-                inline
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineCheckbox1"
-                value="option1"
-                label="Yes"
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Successful"
+                value={state.successfull}
+                onChange={(event) => handleInputChange(event, 'successfull')}
+                style={{ height: '50px' }}
               />
-              <CFormCheck
-                inline
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineCheckbox2"
-                value="option2"
-                label="No"
-              />
-            </div>
+              <CFormLabel htmlFor="floatingInput">Successful</CFormLabel>
+            </CFormFloating>
           </CCol>
         </CRow>
 
@@ -221,25 +210,7 @@ const formControl = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6} className="">
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="treatmentType"
-              value={state.treatmentType}
-              onChange={(event) => handleInputChange(event, 'treatmentType')}
-              style={{ height: '50px' }}
-            >
-              <option>Outcome</option>
-              <option value="1">Medication</option>
-              <option value="2">IVF</option>
-              <option value="3">Oxygen</option>
-              <option value="4">No Treatment</option>
-            </CFormSelect>
-          </CCol>
-
-          <CCol xs={6}>
+          <CCol xs={6} className="mt-3">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -253,6 +224,21 @@ const formControl = () => {
               <CFormLabel htmlFor="floatingInput">Total Time</CFormLabel>
             </CFormFloating>
           </CCol>
+
+          <CCol xs={6}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Treatment Type"
+                value={state.treatmentType}
+                onChange={(event) => handleInputChange(event, 'treatmentType')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Treatment Type</CFormLabel>
+            </CFormFloating>
+          </CCol>
+
           <CCol xs={6}>
             <CFormFloating className="mb-3">
               <CFormInput

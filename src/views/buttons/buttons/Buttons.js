@@ -15,6 +15,7 @@ import {
   CFormSelect,
   CFormLabel,
   CFormCheck,
+  CFormFloating,
 } from '@coreui/react'
 import { email } from 'react-admin'
 
@@ -22,6 +23,7 @@ const Buttons = () => {
   const [visible, setVisible] = useState(false)
 
   const [state, setState] = useState({
+    userId: '',
     dateOfInjury: '',
     timeOfInjury: '',
     coResponders: '',
@@ -41,10 +43,12 @@ const Buttons = () => {
   }
 
   const submitHandler = () => {
-    //  AuthAxios.post('Users', state)
+    // AuthAxios.post('PatientHistoryAssessment', state)
     //   .then((res) => {
     //     console.log(res.data)
-    //     location.href = '/#/callDetails'
+    //     setTimeout(() => {
+    //       location.href = '/'
+    //     }, 2000)
     //   })
     //   .catch((err) => console.error(err.message))
     console.log(state)
@@ -78,139 +82,91 @@ const Buttons = () => {
         </CRow>
         <CRow>
           <CCol xs={6}>
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="coResponders"
-              value={state.coResponders}
-              onChange={(event) => handleInputChange(event, 'coResponders')}
-              style={{ height: '50px' }}
-            >
-              <option>Co-Respondars</option>
-              <option value="1">Law Enforcement</option>
-              <option value="2">Fire</option>
-              <option value="3">Other Fire Respondars</option>
-              <option value="4">None</option>
-            </CFormSelect>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Co-Respondars"
+                value={state.coResponders}
+                onChange={(event) => handleInputChange(event, 'coResponders')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Co-Respondars</CFormLabel>
+            </CFormFloating>
           </CCol>
           <CCol xs={6}>
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="treatmentsProvided"
-              value={state.treatmentsProvided}
-              onChange={(event) => handleInputChange(event, 'treatmentsProvided')}
-              style={{ height: '50px' }}
-            >
-              <option>Treatment Provided by Co-Respondars</option>
-              <option value="1">Yes</option>
-              <option value="2">NO</option>
-              <option value="3">Unknown</option>
-              <option value="4">Not applicable</option>
-            </CFormSelect>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Treatment Rendered"
+                value={state.treatmentRendered}
+                onChange={(event) => handleInputChange(event, 'treatmentRendered')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Treatment Rendered</CFormLabel>
+            </CFormFloating>
           </CCol>
         </CRow>
       </CContainer>
       <CContainer>
         <CRow className="mt-3">
           <CCol xs={6}>
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="patientCondition"
-              value={state.patientCondition}
-              onChange={(event) => handleInputChange(event, 'patientCondition')}
-              style={{ height: '50px' }}
-            >
-              <option>Patient Condition at Destination</option>
-              <option value="1">Stable</option>
-              <option value="2">Improved</option>
-              <option value="3">Deteriorated</option>
-              <option value="4">None</option>
-            </CFormSelect>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Patient Condition at Destination"
+                value={state.patientCondition}
+                onChange={(event) => handleInputChange(event, 'patientCondition')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Patient Condition at Destination</CFormLabel>
+            </CFormFloating>
           </CCol>
           <CCol xs={6} className="">
-            <CFormLabel
-              htmlFor="floatingInput"
-              name="patientDisplacement"
-              value={state.patientDisplacement}
-              onChange={(event) => handleInputChange(event, 'patientDisplacement')}
-              // style={{height:"10px"}}
-            >
-              Patient Displacement
-            </CFormLabel>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Patient Displacement"
+                value={state.patientDisplacement}
+                onChange={(event) => handleInputChange(event, 'patientDisplacement')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Patient Displacement</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+      </CContainer>
+      <CContainer>
+        <CRow className="mt-3 mb-4">
+          <CCol xs={6}>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Suspected Intoxication"
+                value={state.suspectedIntoxication}
+                onChange={(event) => handleInputChange(event, 'suspectedIntoxication')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Suspected Intoxication</CFormLabel>
+            </CFormFloating>
+          </CCol>
 
-            <div>
-              <CFormCheck
-                inline
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineCheckbox1"
-                value="option1"
-                label="Yes"
+          <CCol xs={6}>
+            <CFormFloating className="">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Chief Complaint"
+                value={state.chiefComplaint}
+                onChange={(event) => handleInputChange(event, 'chiefComplaint')}
+                style={{ height: '50px' }}
               />
-              <CFormCheck
-                inline
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineCheckbox2"
-                value="option2"
-                label="No"
-              />
-              <CFormCheck
-                inline
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineCheckbox2"
-                value="option2"
-                label="Other"
-              />
-            </div>
-          </CCol>
-        </CRow>
-      </CContainer>
-      <CContainer>
-        <CRow>
-          <CCol xs={12}>
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="suspectedIntoxication"
-              value={state.suspectedIntoxication}
-              onChange={(event) => handleInputChange(event, 'suspectedIntoxication')}
-              style={{ height: '50px' }}
-            >
-              <option>Suspected Intoxication</option>
-              <option value="1">Yes As Reported by Patient</option>
-              <option value="2">Yes As Reported bystander </option>
-              <option value="3">Yes As Reported byProvider</option>
-              <option value="4">Not suspected</option>
-            </CFormSelect>
-          </CCol>
-        </CRow>
-      </CContainer>
-      <CContainer>
-        <CRow>
-          <CCol xs={12}>
-            <CFormSelect
-              size="sm"
-              className="mt-3"
-              aria-label="Large select example"
-              name="chiefComplaint"
-              value={state.chiefComplaint}
-              onChange={(event) => handleInputChange(event, 'chiefComplaint')}
-              style={{ height: '50px' }}
-            >
-              <option>Chief Complaint</option>
-              <option value="1">Chest Pain</option>
-              <option value="2">Yes As Reported bystander </option>
-              <option value="3">Yes As Reported byProvider</option>
-              <option value="4">Not suspected</option>
-            </CFormSelect>
+              <CFormLabel htmlFor="floatingInput">Chief Complaint</CFormLabel>
+            </CFormFloating>
           </CCol>
         </CRow>
       </CContainer>

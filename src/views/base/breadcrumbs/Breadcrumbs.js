@@ -38,10 +38,15 @@ const crewTypes = [
 ]
 
 const BreadCrumbs = () => {
-  const [time, setTime] = useState('')
+  const [time, setTime] = useState(null)
+  const [time2, setTime2] = useState(null)
+  const [time3, setTime3] = useState(null)
+  const [time4, setTime4] = useState(null)
+  const [time5, setTime5] = useState(null)
   const [visible, setVisible] = useState(false)
 
   const [state, setState] = useState({
+    userId: '',
     timeNotified: '',
     timeEnroute: '',
     timeAtScene: '',
@@ -52,12 +57,8 @@ const BreadCrumbs = () => {
     backArea: '',
     responseToScene: '',
     responseFromScene: '',
-
-    // driver: "",
-    // attendent: "",
-    // assisting: "",
+    crewType: '',
     mileage: '',
-
     patientContact: '',
     destinationDeterminant: '',
     startDate: '',
@@ -75,14 +76,15 @@ const BreadCrumbs = () => {
   }
 
   const submitHandler = () => {
-    //  AuthAxios.post('Users', state)
+    // AuthAxios.post('VehicleCallDetails', state)
     //   .then((res) => {
     //     console.log(res.data)
-    //     location.href = '/#/callDetails'
+    //     setTimeout(() => {
+    //       location.href = '/'
+    //     }, 2000)
     //   })
     //   .catch((err) => console.error(err.message))
     console.log(state)
-    // location.href = '/#/login'
   }
   return (
     <div className="vehicle">
@@ -92,20 +94,19 @@ const BreadCrumbs = () => {
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time Notified
             </CFormLabel>
-            <p>
-              Selected Time:
-              {time || '-'}
-            </p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="timeNotified"
-              value={state.timeNotified}
-              onClick={(event) => handleInputChange(event, 'timeNotified')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  timeNotified: e.format('LT'),
+                }))
+                setTime(e.format('LT'))
+              }}
               className="times"
             />
           </CCol>
@@ -113,19 +114,19 @@ const BreadCrumbs = () => {
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time En Route
             </CFormLabel>
-            <p className="" sty>
-              Selected Time: {time || '-'}
-            </p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="timeEnroute"
-              value={state.timeEnroute}
-              onClick={(event) => handleInputChange(event, 'timeEnroute')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  timeEnroute: e.format('LT'),
+                }))
+                setTime2(e.format('LT'))
+              }}
               className="times"
             />
           </CCol>
@@ -133,81 +134,61 @@ const BreadCrumbs = () => {
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time At Scene
             </CFormLabel>
-            <p className="" sty>
-              Selected Time: {time || '-'}
-            </p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="timeAtDestination"
-              value={state.timeAtDestination}
-              onClick={(event) => handleInputChange(event, 'timeAtDestination')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  timeAtScene: e.format('LT'),
+                }))
+                setTime3(e.format('LT'))
+              }}
               className="times"
             />
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={4}>
+          <CCol xs={6}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time Out Of Scene
             </CFormLabel>
-            <p className="" sty>
-              Selected Time: {time || '-'}
-            </p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="timeOutScene"
-              value={state.timeOutScene}
-              onClick={(event) => handleInputChange(event, 'timeOutScene')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  timeOutScene: e.format('LT'),
+                }))
+                setTime4(e.format('LT'))
+              }}
               className="times"
             />
           </CCol>
-          <CCol xs={4}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time out of Scene
-            </CFormLabel>
-            <p className="" sty>
-              Selected Time: {time || '-'}
-            </p>
-            <TimePicker
-              placeholder="Select Time"
-              use12Hours
-              showSecond={false}
-              focusOnOpen={true}
-              format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="timeOutScene"
-              value={state.timeOutScene}
-              onClick={(event) => handleInputChange(event, 'timeOutScene')}
-              className="times"
-            />
-          </CCol>
-          <CCol xs={4}>
+          <CCol xs={6}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time At Destination
             </CFormLabel>
-            <p className="" sty>
-              Selected Time: {time || '-'}
-            </p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
               showSecond={false}
               focusOnOpen={true}
               format="hh:mm A"
-              onChange={(e) => setTime(e.format('LT'))}
-              name="timeAtDestination"
-              value={state.timeAtDestination}
-              onClick={(event) => handleInputChange(event, 'timeAtDestination')}
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  timeAtDestination: e.format('LT'),
+                }))
+                setTime5(e.format('LT'))
+              }}
               className="times"
             />
           </CCol>
@@ -221,8 +202,7 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="crewPatient"
+                placeholder="Crew Patien"
                 value={state.crewPatient}
                 onChange={(event) => handleInputChange(event, 'crewPatient')}
                 style={{ height: '50px' }}
@@ -235,8 +215,7 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="Surname"
-                name="available"
+                placeholder="Available"
                 value={state.available}
                 onChange={(event) => handleInputChange(event, 'available')}
                 style={{ height: '50px' }}
@@ -249,8 +228,7 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="Surname"
-                name="backArea"
+                placeholder="BackArea"
                 value={state.backArea}
                 onChange={(event) => handleInputChange(event, 'backArea')}
                 style={{ height: '50px' }}
@@ -268,14 +246,13 @@ const BreadCrumbs = () => {
               size="sm"
               className="mt-3"
               aria-label="Large select example"
-              name="responseToScene"
               value={state.responseToScene}
               onChange={(event) => handleInputChange(event, 'responseToScene')}
               style={{ height: '50px' }}
             >
               <option>Response To Scene</option>
-              <option value="1">Type</option>
-              <option value="2">Change in Response</option>
+              <option value="Type">Type</option>
+              <option value="Change in Response">Change in Response</option>
             </CFormSelect>
           </CCol>
 
@@ -284,14 +261,13 @@ const BreadCrumbs = () => {
               size="sm"
               className="mt-3"
               aria-label="Large select example"
-              name="responseFromScene"
               value={state.responseFromScene}
               onChange={(event) => handleInputChange(event, 'responseFromScene')}
               style={{ height: '50px' }}
             >
               <option>Response From Scene</option>
-              <option value="1">Type</option>
-              <option value="2">Change in Response</option>
+              <option value="Type">Type</option>
+              <option value="Change in Response">Change in Response</option>
             </CFormSelect>
           </CCol>
         </CRow>
@@ -304,15 +280,14 @@ const BreadCrumbs = () => {
               size="sm"
               className="mt-3"
               aria-label="Large select example"
-              name="crewTypes"
-              value={state.crewTypes}
-              onChange={(event) => handleInputChange(event, 'crewTypes')}
+              value={state.crewType}
+              onChange={(event) => handleInputChange(event, 'crewType')}
               style={{ height: '50px' }}
             >
               <option>Crew Type</option>
-              <option value="1">Driver</option>
-              <option value="2">Attendant</option>
-              <option value="3">Assisting Personal</option>
+              <option value="Driver">Driver</option>
+              <option value="Attendant">Attendant</option>
+              <option value="Assisting Personal">Assisting Personal</option>
             </CFormSelect>
           </CCol>
 
@@ -321,17 +296,16 @@ const BreadCrumbs = () => {
               size="sm"
               className="mt-3"
               aria-label="Large select example"
-              name="mileage"
               value={state.mileage}
               onChange={(event) => handleInputChange(event, 'mileage')}
               style={{ height: '50px' }}
             >
-              <option>Mileage</option>
-              <option value="1">Out</option>
-              <option value="2">In</option>
-              <option value="3">At Scene</option>
-              <option value="4">At Destination</option>
-              <option value="5">Total</option>
+              <option>Select Mileage</option>
+              <option value="Out">Out</option>
+              <option value="In">In</option>
+              <option value="At Scene">At Scene</option>
+              <option value="At Destination">At Destination</option>
+              <option value="Total">Total</option>
             </CFormSelect>
           </CCol>
         </CRow>
@@ -344,8 +318,7 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="patientContact"
+                placeholder="Patient Contact"
                 value={state.patientContact}
                 onChange={(event) => handleInputChange(event, 'patientContact')}
                 style={{ height: '50px' }}
@@ -358,8 +331,7 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="Surname"
-                name="destinationDeterminant"
+                placeholder="Destination Determinant"
                 value={state.destinationDeterminant}
                 onChange={(event) => handleInputChange(event, 'destinationDeterminant')}
                 style={{ height: '50px' }}
@@ -377,7 +349,6 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="date"
                 style={{ height: '50px' }}
-                name="startDate"
                 value={state.startDate}
                 onChange={(event) => handleInputChange(event, 'startDate')}
               ></CFormInput>
@@ -389,14 +360,23 @@ const BreadCrumbs = () => {
               <CFormInput
                 type="date"
                 style={{ height: '50px' }}
-                name="startDate"
                 value={state.endDate}
                 onChange={(event) => handleInputChange(event, 'endDate')}
               ></CFormInput>
               <CFormLabel htmlFor="floatingInput">Document End Date</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4}></CCol>
+          <CCol xs={4}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="date"
+                style={{ height: '50px' }}
+                value={state.dateModified}
+                onChange={(event) => handleInputChange(event, 'dateModified')}
+              ></CFormInput>
+              <CFormLabel htmlFor="floatingInput">Date Modified</CFormLabel>
+            </CFormFloating>
+          </CCol>
         </CRow>
       </CContainer>
 

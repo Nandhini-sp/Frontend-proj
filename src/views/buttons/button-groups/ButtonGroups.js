@@ -19,6 +19,7 @@ const ButtonGroups = () => {
   const [visible, setVisible] = useState(false)
 
   const [state, setState] = useState({
+    userId: '',
     neroResponse: '',
     bodySystem: '',
     glasGlow: '',
@@ -36,14 +37,15 @@ const ButtonGroups = () => {
   }
 
   const submitHandler = () => {
-    //  AuthAxios.post('Users', state)
+    // AuthAxios.post('PrimaryAssessment', state)
     //   .then((res) => {
     //     console.log(res.data)
-    //     location.href = '/#/callDetails'
+    //     setTimeout(() => {
+    //       location.href = '/'
+    //     }, 2000)
     //   })
     //   .catch((err) => console.error(err.message))
     console.log(state)
-    // location.href = '/#/login'
   }
 
   return (

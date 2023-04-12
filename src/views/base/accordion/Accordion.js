@@ -31,20 +31,20 @@ const accordion = () => {
   const toaster = useRef()
 
   const [state, setState] = useState({
-    firstname: '',
-    surname: '',
+    firstName: '',
+    sureName: '',
     street: '',
     city: '',
     state: '',
-    postal_code: '',
+    postalCode: '',
     country: '',
-    telephone_no: '',
-    aadhar_no: '',
+    telePhone: '',
+    aadhar: '',
     DOB: '',
     age: '',
     gender: '',
-    medical_ins: '',
-    typesOfInsurance: '',
+    medicalInsurance: '',
+    typeOfInsurance: '',
     govt_ins_Id: '',
     coverage_Amount: '',
     govt_benefits: '',
@@ -54,6 +54,7 @@ const accordion = () => {
     commends: '',
     email1: '',
     email2: '',
+    benifits: '',
   })
   const exampleToast = (
     <CToast>
@@ -76,37 +77,55 @@ const accordion = () => {
     </CToast>
   )
   const handleInputChange = (event, name) => {
-    const { value } = event.target
     setState((prevProps) => ({
       ...prevProps,
-      [name]: value,
+      [name]: event,
     }))
   }
 
   const submitHandler = () => {
-    //  AuthAxios.post('Users', state)
+    const item = {
+      userId: '1',
+      firstName: state.firstName,
+      sureName: state.sureName,
+      address: {
+        street: state.street,
+        city: state.city,
+        state: state.state,
+        country: state.country,
+        postalCode: state.postalCode,
+      },
+      telePhone: state.telePhone,
+      DOB: state.DOB,
+      age: state.age,
+      gender: state.gender,
+      aadhar: state.aadhar,
+      medicalInsurance: state.medicalInsurance,
+      typeOfInsurance: state.typeOfInsurance,
+      governmentInsurance: {
+        insuranceId: state.typeOfInsurance === 'Government' ? state.govt_ins_Id : '',
+        coverageAmount: state.typeOfInsurance === 'Government' ? state.coverage_Amount : '',
+        benefits: state.typeOfInsurance === 'Government' ? state.benifits : '',
+      },
+      privateInsurance: {
+        insuranceId: state.typeOfInsurance === 'Private' ? state.govt_ins_Id : '',
+        benefits: state.typeOfInsurance === 'Private' ? state.benifits : '',
+      },
+      hospitalChart: state.hospital_chart_no,
+      comments: state.commends,
+      email1: state.email1,
+      email2: state.email2,
+    }
+    // AuthAxios.post('PatientCallDetails', item)
     //   .then((res) => {
     //     console.log(res.data)
-    //     location.href = '/#/callDetails'
+    //     setTimeout(() => {
+    //       location.href = '/'
+    //     }, 2000)
     //   })
     //   .catch((err) => console.error(err.message))
-    console.log(state)
-    // location.href = '/#/login'
+    console.log(item)
   }
-
-  const Types_ins = ['Private', 'Goverment']
-
-  const Benefides_scheme = ['Aayushman Bharat Yojana', 'Pradhan Mantri Jeeven Jyoti Beema Yojana']
-
-  const Private_Benefides_scheme = [
-    'Individual',
-    'Family Floater',
-    'Group Health',
-    'Senior Citizen health',
-    'Maternity Health ',
-    'Critical Illness ',
-    'Top-up health plan',
-  ]
 
   return (
     <div>
@@ -117,9 +136,8 @@ const accordion = () => {
               type="text"
               id="floatingInput"
               placeholder="FirstName"
-              name="firstname"
-              value={state.firstname}
-              onChange={(event) => handleInputChange(event, 'firstname')}
+              value={state.firstName}
+              onChange={(event) => handleInputChange(event.target.value, 'firstName')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">FirstName</CFormLabel>
@@ -131,9 +149,8 @@ const accordion = () => {
               type="text"
               id="floatingInput"
               placeholder="Surname"
-              name="surname"
-              value={state.surname}
-              onChange={(event) => handleInputChange(event, 'surname')}
+              value={state.sureName}
+              onChange={(event) => handleInputChange(event.target.value, 'sureName')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">Surname</CFormLabel>
@@ -147,10 +164,9 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="FirstName"
-              name="street"
+              placeholder="Street Address"
               value={state.street}
-              onChange={(event) => handleInputChange(event, 'street')}
+              onChange={(event) => handleInputChange(event.target.value, 'street')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">Street Address</CFormLabel>
@@ -163,10 +179,9 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="FirstName"
-              name="city"
+              placeholder="City"
               value={state.city}
-              onChange={(event) => handleInputChange(event, 'city')}
+              onChange={(event) => handleInputChange(event.target.value, 'city')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">City</CFormLabel>
@@ -177,13 +192,12 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="Surname"
-              name="state"
+              placeholder="State"
               value={state.state}
-              onChange={(event) => handleInputChange(event, 'state')}
+              onChange={(event) => handleInputChange(event.target.value, 'state')}
               style={{ height: '50px' }}
             />
-            <CFormLabel htmlFor="floatingInput">state</CFormLabel>
+            <CFormLabel htmlFor="floatingInput">State</CFormLabel>
           </CFormFloating>
         </CCol>
       </CRow>
@@ -193,10 +207,9 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="FirstName"
-              name="country"
+              placeholder="Country"
               value={state.country}
-              onChange={(event) => handleInputChange(event, 'country')}
+              onChange={(event) => handleInputChange(event.target.value, 'country')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">Country</CFormLabel>
@@ -207,10 +220,9 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="Surname"
-              name="postal_code"
-              value={state.postal_code}
-              onChange={(event) => handleInputChange(event, 'postal_code')}
+              placeholder="Postal Code"
+              value={state.postalCode}
+              onChange={(event) => handleInputChange(event.target.value, 'postalCode')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
@@ -224,10 +236,9 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="FirstName"
-              name="telephone_no"
-              value={state.telephone_no}
-              onChange={(event) => handleInputChange(event, 'telephone_no')}
+              placeholder="Telephone"
+              value={state.telePhone}
+              onChange={(event) => handleInputChange(event.target.value, 'telePhone')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">Telephone</CFormLabel>
@@ -240,7 +251,7 @@ const accordion = () => {
               style={{ height: '50px' }}
               name="DOB"
               value={state.DOB}
-              onChange={(event) => handleInputChange(event, 'DOB')}
+              onChange={(event) => handleInputChange(event.target.value, 'DOB')}
             ></Input>
             <CFormLabel htmlFor="floatingInput">Date of Birth</CFormLabel>
           </CFormFloating>
@@ -253,49 +264,77 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder="FirstName"
-              name="age"
+              placeholder="Age"
               value={state.age}
-              onChange={(event) => handleInputChange(event, 'age')}
+              onChange={(event) => handleInputChange(event.target.value, 'age')}
               style={{ height: '50px' }}
             />
             <CFormLabel htmlFor="floatingInput">Age</CFormLabel>
           </CFormFloating>
         </CCol>
         <CCol xs={6}>
-          <CFormLabel
-            htmlFor="floatingInput"
-            name="gender"
-            value={state.gender}
-            onChange={(event) => handleInputChange(event, 'gender')}
-          >
-            Gender
-          </CFormLabel>
+          <CFormFloating className="mb-3">
+            <CFormInput
+              type="text"
+              id="floatingInput"
+              placeholder="Aadhar"
+              value={state.aadhar}
+              onChange={(event) => handleInputChange(event.target.value, 'aadhar')}
+              style={{ height: '50px' }}
+            />
+            <CFormLabel htmlFor="floatingInput">Aadhar</CFormLabel>
+          </CFormFloating>
+        </CCol>
+      </CRow>
 
+      <CRow>
+        <CCol xs={6}>
+          <CFormLabel name="gender">Gender</CFormLabel>
           <div>
             <CFormCheck
               inline
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineCheckbox1"
-              value="option1"
+              value="Male"
               label="Male"
+              checked={state.gender === 'Male' ? true : false}
+              onClick={() => handleInputChange('Male', 'gender')}
             />
             <CFormCheck
               inline
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineCheckbox2"
-              value="option2"
+              value="Female"
               label="Female"
+              checked={state.gender === 'Female' ? true : false}
+              onClick={() => handleInputChange('Female', 'gender')}
             />
             <CFormCheck
               inline
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineCheckbox2"
-              value="option2"
+              value="Other"
               label="Other"
+              checked={state.gender === 'Other' ? true : false}
+              onClick={() => handleInputChange('Other', 'gender')}
+            />
+          </div>
+        </CCol>
+        <CCol xs={6}>
+          <CFormLabel>Medical Insurance</CFormLabel>
+          <div>
+            <CFormCheck
+              inline
+              type="radio"
+              value="Yes"
+              label="Yes"
+              checked={state.medicalInsurance === 'Yes' ? true : false}
+              onClick={() => handleInputChange('Yes', 'medicalInsurance')}
+            />
+            <CFormCheck
+              inline
+              type="radio"
+              value="No"
+              label="No"
+              checked={state.medicalInsurance === 'No' ? true : false}
+              onClick={() => handleInputChange('No', 'medicalInsurance')}
             />
           </div>
         </CCol>
@@ -303,54 +342,19 @@ const accordion = () => {
 
       <CRow>
         <CCol xs={12}>
-          <CFormLabel
-            htmlFor="floatingInput"
-            name="medical_ins"
-            value={state.medical_ins}
-            onChange={(event) => handleInputChange(event, 'medical_ins')}
-            style={{ height: '50px' }}
-          >
-            Medical Insurance
-          </CFormLabel>
-
-          <div>
-            <CFormCheck
-              inline
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineCheckbox1"
-              value="option1"
-              label="Yes"
-            />
-            <CFormCheck
-              inline
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineCheckbox2"
-              value="option2"
-              label="No"
-            />
-          </div>
-
-          <CFormLabel htmlFor="floatingInput">
+          <CFormLabel htmlFor="floatingInput" className="mt-3">
             (fill the below details only if Medical Insurance exist)
           </CFormLabel>
-        </CCol>
-      </CRow>
-
-      <CRow>
-        <CCol xs={12}>
           <CFormSelect
-            size="sm"
-            className="mt-3"
+            size="lg"
+            className="mb-3"
             aria-label="Large select example"
-            name="Types_ins"
-            value={state.Types_ins}
-            onChange={(event) => handleInputChange(event, 'Types_ins')}
+            value={state.typeOfInsurance}
+            onChange={(event) => handleInputChange(event.target.value, 'typeOfInsurance')}
           >
             <option>Types Of Insurance</option>
-            <option value="1">Aayushman Bharat Yojana</option>
-            <option value="2">Pradhan Mantri Jeevan Jyoti Beema Yojana</option>
+            <option value="Government">Government</option>
+            <option value="Private">Private</option>
           </CFormSelect>
         </CCol>
       </CRow>
@@ -367,90 +371,64 @@ const accordion = () => {
             <CFormInput
               type="text"
               id="floatingInput"
-              placeholder=""
-              name="govt_ins_id"
+              placeholder="Insurance ID Number"
               value={state.govt_ins_Id}
-              onChange={(event) => handleInputChange(event, 'govt_ins_Id')}
-              style={{ height: '20px' }}
-            />
-            <CFormLabel htmlFor="floatingInput">Goverment Insurance ID Number</CFormLabel>
-          </CFormFloating>
-        </CCol>
-      </CRow>
-
-      <CRow>
-        <CCol xs={6}>
-          <CFormFloating className="mb-3">
-            <CFormInput
-              type="text"
-              id="floatingInput"
-              placeholder="FirstName"
-              name="coverage_Amount"
-              value={state.coverage_Amount}
-              onChange={(event) => handleInputChange(event, 'coverage_Amount')}
+              onChange={(event) => handleInputChange(event.target.value, 'govt_ins_Id')}
               style={{ height: '50px' }}
             />
-            <CFormLabel htmlFor="floatingInput">Maximum Coverage Amount</CFormLabel>
+            <CFormLabel htmlFor="floatingInput">Insurance ID Number</CFormLabel>
           </CFormFloating>
         </CCol>
+      </CRow>
+
+      <CRow>
+        {state.typeOfInsurance === 'Government' && (
+          <CCol xs={6}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                value={state.coverage_Amount}
+                onChange={(event) => handleInputChange(event.target.value, 'coverage_Amount')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Maximum Coverage Amount</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        )}
         <CCol xs={6}>
-          <CFormSelect
-            aria-label="Default select example"
-            size="sm"
-            options={[
-              { label: 'Aayushman Bharat Yojana', value: '1' },
-              { label: 'Pradhan Mantri Jeevan Jyoti Beema Yojana', value: '2' },
-            ]}
-            name="typesOfInsurance"
-            value={state.typesOfInsurance}
-            onChange={(event) => handleInputChange(event, 'typesOfInsurance')}
-            style={{ height: '50px' }}
-          />
-        </CCol>
-      </CRow>
-
-      <CRow>
-        <CCol>
-          <CFormLabel htmlFor="floatingInput">((For Private Insurance))</CFormLabel>
-        </CCol>
-      </CRow>
-
-      <CRow>
-        <CCol xs={12}>
-          <CFormFloating className="mb-3">
-            <CFormInput
-              type="text"
-              id="floatingInput"
-              placeholder=""
-              name="private_ins_id"
-              value={state.private_ins_id}
-              onChange={(event) => handleInputChange(event, 'private_ins_id')}
-            />
-            <CFormLabel htmlFor="floatingInput">Private Insurance ID Number</CFormLabel>
-          </CFormFloating>
-        </CCol>
-      </CRow>
-
-      <CRow>
-        <CCol>
-          <CFormSelect
-            size="sm"
-            className="mb-3"
-            aria-label="Large select example"
-            options={[
-              { label: 'Types of Insurance', value: '0' },
-              { label: 'Individual', value: '1' },
-              { label: 'Family Floater', value: '2' },
-              { label: 'Group Health', value: '1' },
-              { label: 'Senior Citizen Health', value: '1' },
-              { label: 'Maternity Health', value: '1' },
-              { label: 'Criticial lllness', value: '1' },
-              { label: 'Top-up Health', value: '1' },
-            ]}
-            name="typesOfInsurance"
-            value={state.typesOfInsurance}
-            onChange={(event) => handleInputChange(event, 'typesOfInsurance')}
-          />
+          {state.typeOfInsurance === 'Government' ? (
+            <CFormSelect
+              size="lg"
+              className="mb-3"
+              aria-label="Large select example"
+              value={state.benifits}
+              onChange={(event) => handleInputChange(event.target.value, 'benifits')}
+            >
+              <option>Types Of Benefits</option>
+              <option value="Aayushman Bharat Yojana">Aayushman Bharat Yojana</option>
+              <option value="Pradhan Mantri Jeevan Jyoti Beema Yojana">
+                Pradhan Mantri Jeevan Jyoti Beema Yojana
+              </option>
+            </CFormSelect>
+          ) : (
+            <CFormSelect
+              size="lg"
+              className="mb-3"
+              aria-label="Large select example"
+              value={state.benifits}
+              onChange={(event) => handleInputChange(event.target.value, 'benifits')}
+            >
+              <option>Types Of Benefits</option>
+              <option value="Family Floater">Family Floater</option>
+              <option value="Group Health">Group Health</option>
+              <option value="Senior Citizen Health">Senior Citizen Health</option>
+              <option value="Maternity Health">Maternity Health</option>
+              <option value="Criticial lllness">Criticial lllness</option>
+              <option value="Top-up Health">Top-up Health</option>
+            </CFormSelect>
+          )}
         </CCol>
       </CRow>
 
@@ -463,7 +441,7 @@ const accordion = () => {
               placeholder="FirstName"
               name="hospital_chart_no"
               value={state.hospital_chart_no}
-              onChange={(event) => handleInputChange(event, 'hospital_chart_no')}
+              onChange={(event) => handleInputChange(event.target.value, 'hospital_chart_no')}
             />
             <CFormLabel htmlFor="floatingInput">Hospital Chart No</CFormLabel>
           </CFormFloating>
@@ -478,7 +456,7 @@ const accordion = () => {
               placeholder=""
               name="commends"
               value={state.commends}
-              onChange={(event) => handleInputChange(event, 'commends')}
+              onChange={(event) => handleInputChange(event.target.value, 'commends')}
             />
             <CFormLabel htmlFor="floatingInput">Commends</CFormLabel>
           </CFormFloating>
@@ -507,7 +485,7 @@ const accordion = () => {
               type="email"
               id="form2"
               value={state.email1}
-              onChange={(event) => handleInputChange(event, 'email1')}
+              onChange={(event) => handleInputChange(event.target.value, 'email1')}
               class="form-control validate"
             />
             <label data-error="wrong" data-success="right" for="form2">
@@ -521,7 +499,7 @@ const accordion = () => {
               type="email"
               id="form2"
               value={state.email2}
-              onChange={(event) => handleInputChange(event, 'email2')}
+              onChange={(event) => handleInputChange(event.target.value, 'email2')}
               class="form-control validate"
             />
             <label data-error="wrong" data-success="right" for="form2">
