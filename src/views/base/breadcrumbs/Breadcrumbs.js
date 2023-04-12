@@ -19,7 +19,7 @@ import{
 	CContainer,
 	CFormFloating,
 	CFormInput,
-	CFormSelect
+	CFormSelect,
 }from '@coreui/react'
 
 
@@ -56,37 +56,46 @@ const [state, setState] = useState({
 	responseToScene: "",
   responseFromScene: "",
   
-    driver: "",
-    attendent: "",
-    assisting: "",
+    // driver: "",
+    // attendent: "",
+    // assisting: "",
   mileage:"",
  
   patientContact: "",
   destinationDeterminant: "",
   startDate: "",
   endDate: "",
-  dateModified: ""
+  dateModified: "",
+  email1: '',
+    email2: '',
 	});
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = (event,name) => {
+		const { value } = event.target;
 		setState((prevProps) => ({
 		  ...prevProps,
 		  [name]: value
 		}));
 	  };
 	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
+	  const submitHandler = () => {
+		//  AuthAxios.post('Users', state)
+		//   .then((res) => {
+		//     console.log(res.data)
+		//     location.href = '/#/callDetails'
+		//   })
+		//   .catch((err) => console.error(err.message))
+		console.log(state)
+		// location.href = '/#/login'
+	  }
 	return (
-
-	<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
+	<div>
 		<CContainer className='m-4'>
 			<CRow>
 				<CCol xs={4}>
 				<CFormLabel htmlFor="floatingInput" className='h3'>Time Notified</CFormLabel>
-				<p >Selected Time: {time || '-'}</p>
+				<p >Selected Time:
+					
+					 {time || '-'}</p>
       			<TimePicker
         		placeholder="Select Time"
         		use12Hours
@@ -96,7 +105,7 @@ const [state, setState] = useState({
         		onChange={e => setTime(e.format('LT'))}
 				name="timeNotified"
 				value={state.timeNotified}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'timeNotified')}
 				style={{height:"61px",width:"174px" }}
 
       		/>
@@ -113,7 +122,7 @@ const [state, setState] = useState({
         		onChange={e => setTime(e.format('LT'))}
 				name="timeEnroute"
 				value={state.timeEnroute}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'timeEnroute')}
 
 				style={{height:"61px",width:"174px"}}
 
@@ -131,7 +140,7 @@ const [state, setState] = useState({
         		onChange={e => setTime(e.format('LT'))}
 				name="timeAtDestination"
 				value={state.timeAtDestination}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'timeAtDestination')}
 				style={{height:"61px",width:"174px"}}
 
       		/>
@@ -150,7 +159,7 @@ const [state, setState] = useState({
         		onChange={e => setTime(e.format('LT'))}
 				name="timeOutScene"
 				value={state.timeOutScene}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'timeOutScene')}
 				style={{height:"61px",width:"174px"}}
 
 
@@ -168,7 +177,7 @@ const [state, setState] = useState({
         		onChange={e => setTime(e.format('LT'))}
 				name="timeOutScene"
 				value={state.timeOutScene}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'timeOutScene')}
 				style={{height:"61px",width:"174px"}}
 
 			
@@ -186,7 +195,7 @@ const [state, setState] = useState({
         		onChange={e => setTime(e.format('LT'))}
 				name="timeAtDestination"
 				value={state.timeAtDestination}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'timeAtDestination')}
 				style={{height:"61px",width:"174px"}}
 
       		/>
@@ -205,7 +214,7 @@ const [state, setState] = useState({
               placeholder="FirstName"
               name="crewPatient"
               value={state.crewPatient}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'crewPatient')}
 			  style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Crew Patient</CFormLabel>
@@ -219,7 +228,7 @@ const [state, setState] = useState({
               placeholder="Surname"
               name="available"
               value={state.available}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'available')}
 			  style={{height:"50px"}}
 
             />
@@ -234,7 +243,7 @@ const [state, setState] = useState({
               placeholder="Surname"
               name="backArea"
               value={state.backArea}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'backArea')}
 			  style={{height:"50px"}}
 
             />
@@ -252,9 +261,9 @@ const [state, setState] = useState({
 
 				<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
 
-				name ="Types_ins"
-				value={state.Types_ins}
-				onChange={handleInputChange}
+				name ="responseToScene"
+				value={state.responseToScene}
+				onChange={(event) => handleInputChange(event, 'responseToScene')}
 				style={{height:"50px"}}
 				>
 
@@ -273,7 +282,7 @@ const [state, setState] = useState({
 
 					name ="responseFromScene"
 					value={state.responseFromScene}
-					onChange={handleInputChange}
+					onChange={(event) => handleInputChange(event, 'responseFromScene')}
 					style={{height:"50px"}}
 					>
 
@@ -294,7 +303,7 @@ const [state, setState] = useState({
 
 				name ="crewTypes"
 				value={state.crewTypes}
-				onChange={handleInputChange}
+				onChange={(event) => handleInputChange(event, 'crewTypes')}
 				style={{height:"50px"}}>
 
 				<option>Crew Type</option>
@@ -314,7 +323,7 @@ const [state, setState] = useState({
 
 					name ="mileage"
 					value={state.mileage}
-					onChange={handleInputChange}
+					onChange={(event) => handleInputChange(event, 'mileage')}
 					style={{height:"50px"}}
 
 					>
@@ -345,7 +354,7 @@ const [state, setState] = useState({
               placeholder="FirstName"
               name="patientContact"
               value={state.patientContact}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'patientContact')}
 				style={{height:"50px"}}
 
             />
@@ -360,7 +369,7 @@ const [state, setState] = useState({
               placeholder="Surname"
               name="destinationDeterminant"
               value={state.destinationDeterminant}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'destinationDeterminant')}
 				style={{height:"50px"}}
 
             />
@@ -373,49 +382,31 @@ const [state, setState] = useState({
 			<CContainer>
 			<CRow className='mt-3'>
 			<CCol xs={4}>
-          <CFormFloating className="">
+          <CFormFloating className="mb-3">
             <CFormInput
-              type="text"
-              id="floatingInput"
-              placeholder="FirstName"
+              type="date"
+              style={{ height: '50px' }}
               name="startDate"
               value={state.startDate}
-              onChange={handleInputChange}
-				style={{height:"50px"}}
-
-            />
+              onChange={(event) => handleInputChange(event, 'startDate')}
+            ></CFormInput>
             <CFormLabel htmlFor="floatingInput">Document Start Date</CFormLabel>
           </CFormFloating>
         </CCol>
         <CCol xs={4}>
-          <CFormFloating className="mb-3">
+		<CFormFloating className="mb-3">
             <CFormInput
-              type="text"
-              id="floatingInput"
-              placeholder="Surname"
-              name="endDate"
+              type="date"
+              style={{ height: '50px' }}
+              name="startDate"
               value={state.endDate}
-              onChange={handleInputChange}
-			  style={{height:"50px"}}
-
-            />
+              onChange={(event) => handleInputChange(event, 'endDate')}
+            ></CFormInput>
             <CFormLabel htmlFor="floatingInput">Document End Date</CFormLabel>
           </CFormFloating>
         </CCol>
 		<CCol xs={4}>
-          <CFormFloating className="mb-3">
-            <CFormInput
-              type="text"
-              id="floatingInput"
-              placeholder="Surname"
-              name="dateModified"
-              value={state.dateModified}
-              onChange={handleInputChange}
-			  style={{height:"50px"}}
-
-            />
-            <CFormLabel htmlFor="floatingInput">Date Modified</CFormLabel>
-          </CFormFloating>
+          
         </CCol>
 			</CRow>
 			</CContainer>
@@ -424,48 +415,66 @@ const [state, setState] = useState({
 			
 			<CRow item xs={12}>
 
+			<CRow>
+        <CCol xs={12}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              Submit
+            </button>
+          </div>
+        </CCol>
+      </CRow>
 
-			<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
-<CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>DOTTY CARE</CModalTitle>
+        </CModalHeader>
+
+        <div class="modal-body mx-3">
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <CFormInput
+              type="email"
+              id="form2"
+              value={state.email1}
+              onChange={(event) => handleInputChange(event, 'email1')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Hospital EMail-Id
+            </label>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <CFormInput
+              type="email"
+              id="form2"
+              value={state.email2}
+              onChange={(event) => handleInputChange(event, 'email2')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Ambulance EMail-Id
+            </label>
+          </div>
         </div>
 
-        <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Ambulance EMail-Id</label>
-        </div>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary" onClick={() => submitHandler()}>
+            Submit
+          </CButton>
+        </CModalFooter>
+      </CModal>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
-
-</CRow>
+			</CRow>
 
 
 
-		</form>
+		</div>
 	)
 }
 

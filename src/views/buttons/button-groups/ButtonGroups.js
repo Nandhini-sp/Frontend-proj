@@ -30,25 +30,30 @@ const ButtonGroups = () => {
 		airway:"",
 		symptoms:"",
 	})
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = (event, name) => {
+		const { value } = event.target
 		setState((prevProps) => ({
 		  ...prevProps,
-		  [name]: value
-		}));
-	  };
+		  [name]: value,
+		}))
+	  }
 	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
+	  const submitHandler = () => {
+		//  AuthAxios.post('Users', state)
+		//   .then((res) => {
+		//     console.log(res.data)
+		//     location.href = '/#/callDetails'
+		//   })
+		//   .catch((err) => console.error(err.message))
+		console.log(state)
+		// location.href = '/#/login'
+	  }
 
 	
 
 	return (
 
-		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal"
-		>
+		<div>
 			
 			
 			<CContainer>
@@ -62,7 +67,7 @@ const ButtonGroups = () => {
               placeholder="FirstName"
               name="neroResponse"
               value={state.neroResponse}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'neroResponse')}
 			  style={{height:"50px"}}
 
             />
@@ -80,7 +85,7 @@ const ButtonGroups = () => {
              		 placeholder="FirstName"
               		name="bodySystem"
               		value={state.bodySystem}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'bodySystem')}
 					  style={{height:"50px"}}
 
             		/>
@@ -100,7 +105,7 @@ const ButtonGroups = () => {
               placeholder="FirstName"
               name="glasGlow"
               value={state.glasGlow}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'glasGlow')}
 			  style={{height:"50px"}}
 
             />
@@ -118,7 +123,7 @@ const ButtonGroups = () => {
              		 placeholder="FirstName"
               		name="generalAssessment"
               		value={state.generalAssessment}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'generalAssessment')}
 					  style={{height:"50px"}}
 
             		/>
@@ -138,7 +143,7 @@ const ButtonGroups = () => {
               placeholder="FirstName"
               name="airway"
               value={state.airway}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'airway')}
 			  style={{height:"50px"}}
 
             />
@@ -156,7 +161,7 @@ const ButtonGroups = () => {
              		 placeholder="FirstName"
               		name="symptoms"
               		value={state.symptoms}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'symptoms')}
 					  style={{height:"50px"}}
 
             		/>
@@ -169,40 +174,61 @@ const ButtonGroups = () => {
 			</CContainer>
 
 		
-		<CRow xs={12}>
+			<CRow>
+        <CCol xs={12}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              Submit
+            </button>
+          </div>
+        </CCol>
+      </CRow>
 
-		<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
-<CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>DOTTY CARE</CModalTitle>
+        </CModalHeader>
+
+        <div class="modal-body mx-3">
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input
+              type="email"
+              id="form2"
+              value={state.email1}
+              onChange={(event) => handleInputChange(event, 'email1')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Hospital EMail-Id
+            </label>
+          </div>
+
+          {/* <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input
+              type="email"
+              id="form2"
+              value={state.email2}
+              onChange={(event) => handleInputChange(event, 'email2')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Ambulance EMail-Id
+            </label>
+          </div> */}
         </div>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
-
-		</CRow>
-		</form>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary" onClick={() => submitHandler()}>
+            Submit
+          </CButton>
+        </CModalFooter>
+      </CModal>
+		</div>
 	)
 }
 

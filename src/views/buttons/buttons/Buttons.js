@@ -18,6 +18,7 @@ import{
 	
 
 }from '@coreui/react'
+import { email } from 'react-admin'
 
 
 
@@ -35,25 +36,32 @@ const Buttons = () => {
 		patientCondition:""	,
 		patientDisplacement:"",	
 		suspectedIntoxication:"",	
-		chiefComplaint:""
+		chiefComplaint:"",
+		email1:"",
+		
 	})
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = (event, name) => {
+		const { value } = event.target
 		setState((prevProps) => ({
 		  ...prevProps,
-		  [name]: value
-		}));
-	  };
+		  [name]: value,
+		}))
+	  }
 	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
+	  const submitHandler = () => {
+		//  AuthAxios.post('Users', state)
+		//   .then((res) => {
+		//     console.log(res.data)
+		//     location.href = '/#/callDetails'
+		//   })
+		//   .catch((err) => console.error(err.message))
+		console.log(state)
+		// location.href = '/#/login'
+	  }
 
 	return (
 
-		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
-
+		<div>
 		<CContainer>
 			<CRow className='mb-3'>
 				<CCol xs={6}>
@@ -62,7 +70,7 @@ const Buttons = () => {
 
                      name ="dateOfInjury"
                      value={state.dateOfInjury}
-                     onChange={handleInputChange}
+                     onChange={(event) => handleInputChange(event, 'dateOfInjury')}
 					 style={{height:"50px"}}
 
 					 >
@@ -77,7 +85,7 @@ const Buttons = () => {
 					<CFormInput type="Time"
 					name ="timeOfInjury"
                      value={state.timeOfInjury}
-                     onChange={handleInputChange}
+                     onChange={(event) => handleInputChange(event, 'timeOfInjury')}
 					 style={{height:"50px"}}
 >
 
@@ -91,7 +99,7 @@ const Buttons = () => {
 
 				name ="coResponders"
 				value={state.coResponders}
-				onChange={handleInputChange}
+				onChange={(event) => handleInputChange(event, 'coResponders')}
 				style={{height:"50px"}}
 >
 
@@ -108,7 +116,7 @@ const Buttons = () => {
 
 					name ="treatmentsProvided"
 					value={state.treatmentsProvided}
-					onChange={handleInputChange}
+					onChange={(event) => handleInputChange(event, 'treatmentsProvided')}
 					style={{height:"50px"}}
 >
 				<option>Treatment Provided by Co-Respondars</option>
@@ -128,7 +136,7 @@ const Buttons = () => {
 
 				name ="patientCondition"
 				value={state.patientCondition}
-				onChange={handleInputChange}
+				onChange={(event) => handleInputChange(event, 'patientCondition')}
 				style={{height:"50px"}}
 >
 
@@ -144,7 +152,7 @@ const Buttons = () => {
 				<CFormLabel htmlFor="floatingInput"
                         name="patientDisplacement"
                         value={state.patientDisplacement}
-                        onChange={handleInputChange}
+                        onChange={(event) => handleInputChange(event, 'patientDisplacement')}
 						// style={{height:"10px"}}
 
             >Patient Displacement</CFormLabel>
@@ -166,7 +174,7 @@ const Buttons = () => {
 
 			name ="suspectedIntoxication"
 			value={state.suspectedIntoxication}
-			onChange={handleInputChange}
+			onChange={(event) => handleInputChange(event, 'suspectedIntoxication')}
 			style={{height:"50px"}}
 >
 			<option>Suspected Intoxication</option>
@@ -186,7 +194,7 @@ const Buttons = () => {
 
 			name ="chiefComplaint"
 			value={state.chiefComplaint}
-			onChange={handleInputChange}
+			onChange={(event) => handleInputChange(event, 'chiefComplaint')}
 			style={{height:"50px"}}
 >
 			<option>Chief Complaint</option>
@@ -198,48 +206,75 @@ const Buttons = () => {
 		</CCol>
 			</CRow>
 		</CContainer>
+		
+		<CContainer>
+				<CRow item xs={12}>
 
+			<CRow>
+        <CCol xs={12}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              Submit
+            </button>
+          </div>
+        </CCol>
+      </CRow>
+	  
+	  </CRow>
 
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>DOTTY CARE</CModalTitle>
+        </CModalHeader>
 
-		<CRow xs={12} className='mt-3'>
-			
-		<div class="d-grid gap-2 col-6 mx-auto">
-  		<button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
-<CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <CFormInput
+              type="email"
+              id="form2"
+              value={state.email1}
+              onChange={(event) => handleInputChange(event, 'email1')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Hospital EMail-Id
+            </label>
+          </div>
+
+          {/* <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <CFormInput
+              type="email"
+              id="form2"
+              value={state.email2}
+              onChange={(event) => handleInputChange(event, 'email2')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Ambulance EMail-Id
+            </label>
+          </div> */}
         </div>
 
-        
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary" onClick={() => submitHandler()}>
+            Submit
+          </CButton>
+        </CModalFooter>
+      </CModal>
 
 		
-		</CRow>
+	  </CContainer>
+
+			
+
 
 		
-		</form>
+		</div>
 
 	)
 }

@@ -53,24 +53,32 @@ const Cards = () => {
 		servicePayment_responsibility: "",
 		servicePayment_number: "",
 		EMS: "",
-		patientDisposition: ""
+		patientDisposition: "",
+    destinationLocationType:"",
+    email1:"",
+    email2:"",
+    
 	})
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = (event,name) => {
+		const { value } = event.target;
 		setState((prevProps) => ({
 		  ...prevProps,
-		  [name]: value
+		  [name]: value,
 		}));
 	  };
-	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
-
+    const submitHandler = () => {
+      //  AuthAxios.post('Users', state)
+      //   .then((res) => {
+      //     console.log(res.data)
+      //     location.href = '/#/callDetails'
+      //   })
+      //   .catch((err) => console.error(err.message))
+      console.log(state)
+      // location.href = '/#/login'
+    }
+	  
 	return (
-	<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
-		
+    <div>
 		<CContainer>
 		<CRow>
         <CCol xs={6}>
@@ -81,7 +89,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="serviceCode"
               value={state.serviceCode}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'serviceCode')}
               style={{width:"490px",height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Service Code</CFormLabel>
@@ -95,7 +103,7 @@ const Cards = () => {
               placeholder="Surname"
               name="serviceType"
               value={state.serviceType}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'serviceType')}
               style={{width:"490px",height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Service Type</CFormLabel>
@@ -110,13 +118,15 @@ const Cards = () => {
 					<Input type="Date"
           name="dateOfIncident"
           value={state.dateOfIncident}
-          onChange={handleInputChange} style={{width:"490px",height:"50px"}}></Input>
+          onChange={(event) => handleInputChange(event, 'dateOfIncident')} 
+          style={{width:"490px",height:"50px"}}></Input>
 				</CCol>
 				<CCol xs={6}>
 					<Input type="Time"
           name="timeOfIncident"
           value={state.timeOfIncident}
-          onChange={handleInputChange} style={{width:"490px",height:"50px"}}></Input>
+          onChange={(event) => handleInputChange(event, 'timeOfIncident')}
+          style={{width:"490px",height:"50px"}}></Input>
 				</CCol>
 			</CRow>
 		</CContainer>
@@ -134,7 +144,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="incidentLocation_street"
               value={state.incidentLocation_street}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'incidentLocation_street')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
@@ -148,7 +158,7 @@ const Cards = () => {
               placeholder="Surname"
               name="incidentLocation_city"
               value={state.incidentLocation_city}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'incidentLocation_city')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">city</CFormLabel>
@@ -166,7 +176,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="incidentLocation_state"
               value={state.incidentLocation_state}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'incidentLocation_state')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">State</CFormLabel>
@@ -180,7 +190,7 @@ const Cards = () => {
               placeholder="Surname"
               name="incidentLocation_postalCode"
               value={state.incidentLocation_postalCode}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'incidentLocation_postalCode')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
@@ -198,7 +208,7 @@ const Cards = () => {
         
         name ="destinationDeterminant"
         value={state.destinationDeterminant}
-        onChange={handleInputChange}
+        onChange={(event) => handleInputChange(event, 'destinationDeterminant')}
         style={{height:"50px"}}>
 
 
@@ -211,9 +221,9 @@ const Cards = () => {
 				<CCol xs={6}>
 				<CFormSelect size="sm" className="mt-3" aria-label="Large select example"
         
-        name ="destinationDeterminant"
-        value={state.destinationDeterminant}
-        onChange={handleInputChange}
+        name ="destnationLocationType"
+        value={state.destinationLocationType}
+        onChange={(event) => handleInputChange(event, 'destinationLocationType')}
         style={{height:"50px"}}>
 
         <option>Destination Location Type</option>
@@ -236,7 +246,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="graphicLocator"
               value={state.graphicLocator}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'graphicLocator')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Geographic Locator</CFormLabel>
@@ -250,7 +260,7 @@ const Cards = () => {
               placeholder="Surname"
               name="sceneFacility"
               value={state.sceneFacility}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'sceneFacility')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Scene Facility</CFormLabel>
@@ -270,7 +280,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="destinationLocation_street"
               value={state.destinationLocation_street}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'destinationLocation_street')}
               style={{height:"50px" ,}}
             />
             <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
@@ -284,7 +294,7 @@ const Cards = () => {
               placeholder="Surname"
               name="destinationLocation_city"
               value={state.destinationLocation_city}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'destinationLocation_city')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">city</CFormLabel>
@@ -302,7 +312,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="destinationLocation_state"
               value={state.destinationLocation_state}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'destinationLocation_state')}
               style={{height:"50px"}}
 
             />
@@ -317,7 +327,7 @@ const Cards = () => {
               placeholder="Surname"
               name="destinationLocation_postalCode"
               value={state.destinationLocation_postalCode}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'destinationLocation_postalCode')}
               style={{height:"50px"}}
 
             />
@@ -335,7 +345,7 @@ const Cards = () => {
         
         name ="patientDisposition"
         value={state.patientDisposition}
-        onChange={handleInputChange}
+        onChange={(event) => handleInputChange(event, 'patientDisposition')}
         style={{height:"50px"}}
         >
 
@@ -350,7 +360,7 @@ const Cards = () => {
         
         name ="EMS"
         value={state.EMS}
-        onChange={handleInputChange}
+        onChange={(event) => handleInputChange(event, 'EMS')}
         style={{height:"50px"}}
         >
 
@@ -375,7 +385,7 @@ const Cards = () => {
               placeholder="FirstName"
               name="servicePayment_responsibility"
               value={state.servicePayment_responsibility}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'servicePayment_responsibility')}
               style={{height:"50px"}}
 
             />
@@ -390,7 +400,7 @@ const Cards = () => {
               placeholder="Surname"
               name="servicePayment_number"
               value={state.servicePayment_number}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'servicePayment_number')}
               style={{height:"50px"}}
 
             />
@@ -401,50 +411,65 @@ const Cards = () => {
 	</CRow>
 		</CContainer>
 
-		
-			
+    <CRow>
+        <CCol xs={12}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              Submit
+            </button>
+          </div>
+        </CCol>
+      </CRow>
 
-			<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
-<CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>DOTTY CARE</CModalTitle>
+        </CModalHeader>
+
+        <div class="modal-body mx-3">
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input
+              type="email"
+              id="form2"
+              value={state.email1}
+              onChange={(event) => handleInputChange(event, 'email1')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Hospital EMail-Id
+            </label>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input
+              type="email"
+              id="form2"
+              value={state.email2}
+              onChange={(event) => handleInputChange(event, 'email2')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Ambulance EMail-Id
+            </label>
+          </div>
         </div>
 
-        <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Ambulance EMail-Id</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
-
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary" onClick={() => submitHandler()}>
+            Submit
+          </CButton>
+        </CModalFooter>
+      </CModal>
+    </div>
 			
 
-		</form>
 		
-		
+	
 	)
 }
 

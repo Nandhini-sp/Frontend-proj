@@ -18,6 +18,7 @@ import{
   CFormCheck,
 
 }from '@coreui/react'
+import { email } from 'react-admin';
 
 
 const formControl = () => {
@@ -36,28 +37,32 @@ successfull:"",
 treatment:"",
 totalTime:"",
 treatmentType:"",
-administrativeRoute:""
+administrativeRoute:"",
+email1:"",
 	})
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = (event, name) => {
+		const { value } = event.target
 		setState((prevProps) => ({
 		  ...prevProps,
-		  [name]: value
-		}));
-	  };
+		  [name]: value,
+		}))
+	  }
 	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
-
+	  const submitHandler = () => {
+		//  AuthAxios.post('Users', state)
+		//   .then((res) => {
+		//     console.log(res.data)
+		//     location.href = '/#/callDetails'
+		//   })
+		//   .catch((err) => console.error(err.message))
+		console.log(state)
+		// location.href = '/#/login'
+	  }
 
 
   return (
   
-    <form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
-
-
+   <div>
         <CContainer className='m-4'>
           <CRow>
           <CCol xs={6}>
@@ -72,7 +77,7 @@ administrativeRoute:""
         		onChange={e => setTime(e.format('LT'))}
             name="procedureStartTime"
             value={state.procedureStartTime}
-            onClick={handleInputChange}
+            onClick={(event) => handleInputChange(event,'procedureStartTime')}
       		/>
 			</CCol>
       <CCol xs={6}>
@@ -87,7 +92,7 @@ administrativeRoute:""
         		onChange={e => setTime(e.format('LT'))}
             name="procedureEndTime"
             value={state.procedureEndTime}
-            onClick={handleInputChange}
+            onClick={(event) => handleInputChange(event, 'procedureEndTime')}
             
       		/>
 			</CCol>
@@ -103,7 +108,7 @@ administrativeRoute:""
               placeholder="FirstName"
               name="procedureType"
               value={state.procedureType}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'procedureType')}
 			  style={{height:"50px"}}
 
 
@@ -119,7 +124,7 @@ administrativeRoute:""
               placeholder="Surname"
               name="state"
               value={state.deviceMethod}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'deviceMethod')}
 			  style={{height:"50px"}}
 
             />
@@ -134,7 +139,7 @@ administrativeRoute:""
               placeholder="Surname"
               name="technicianID"
               value={state.technicianID}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'technicianID')}
 			  style={{height:"50px"}}
 
             />
@@ -151,7 +156,7 @@ administrativeRoute:""
               placeholder="Surname"
               name="deviceSize"
               value={state.deviceSize}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'deviceSize')}
 			  style={{height:"50px"}}
 
             />
@@ -165,7 +170,7 @@ administrativeRoute:""
 
 				name ="outcome"
 				value={state.outcome}
-				onChange={handleInputChange}
+				onChange={(event) => handleInputChange(event, 'outcome')}
         style={{height:"50px",position:"relative", bottom:"7px"}}
         >
 
@@ -181,7 +186,7 @@ administrativeRoute:""
             <CFormLabel htmlFor="floatingInput"
                         name="sucessful"
                         value={state.successfull}
-                        onChange={handleInputChange}
+                        onChange={(event) => handleInputChange(event, 'sucessfull')}
 
             >Successful</CFormLabel>
             
@@ -203,7 +208,7 @@ administrativeRoute:""
               placeholder="Surname"
               name="treatment"
               value={state.treatment}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'treatment')}
               style={{height:"50px"}}
             />
             <CFormLabel htmlFor="floatingInput">Treatment</CFormLabel>
@@ -216,7 +221,7 @@ administrativeRoute:""
 
 				      name ="treatmentType"
 				      value={state.treatmentType}
-				      onChange={handleInputChange}
+				      onChange={(event) => handleInputChange(event, 'treatmentType')}
               style={{height:"50px"}}
               >
 
@@ -236,7 +241,7 @@ administrativeRoute:""
               placeholder="Surname"
               name="todalTime"
               value={state.totalTime}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'totalTime')}
               style={{height:"50px"}}
 
             />
@@ -251,7 +256,7 @@ administrativeRoute:""
               placeholder="Surname"
               name="adminstrativeRoute"
               value={state.administrativeRoute}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'administrativeRoute')}
               style={{height:"50px"}}
 
             />
@@ -260,51 +265,71 @@ administrativeRoute:""
         </CCol>
 	
     
-          </CRow>
-
-          
+          </CRow>    
            
      </CContainer>
 
-    
-   
-    <CRow xs={12}>
-    
+     <CRow item xs={12}>
 
+<CRow>
+  <CCol xs={12}>
     <div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
+      <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+        Submit
+      </button>
+    </div>
+  </CCol>
+</CRow>
+
 <CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
-        </div>
+  <CModalHeader>
+    <CModalTitle>DOTTY CARE</CModalTitle>
+  </CModalHeader>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
+  <div class="modal-body mx-3">
+    <div class="md-form mb-4">
+      <i class="fas fa-envelope prefix grey-text"></i>
+      <CFormInput
+        type="email"
+        id="form2"
+        value={state.email1}
+        onChange={(event) => handleInputChange(event, 'email1')}
+        class="form-control validate"
+      />
+      <label data-error="wrong" data-success="right" for="form2">
+        Hospital EMail-Id
+      </label>
+    </div>
+
+    {/* <div class="md-form mb-4">
+      <i class="fas fa-envelope prefix grey-text"></i>
+      <CFormInput
+        type="email"
+        id="form2"
+        value={state.email2}
+        onChange={(event) => handleInputChange(event, 'email2')}
+        class="form-control validate"
+      />
+      <label data-error="wrong" data-success="right" for="form2">
+        Ambulance EMail-Id
+      </label>
+    </div> */}
+  </div>
+
+  <CModalFooter>
+    <CButton color="secondary" onClick={() => setVisible(false)}>
+      Close
+    </CButton>
+    <CButton color="primary" onClick={() => submitHandler()}>
+      Submit
+    </CButton>
+  </CModalFooter>
+</CModal>
+
+</CRow>
+   
+   
 </div>
-
-
-
-    </CRow>
-</form>
     
   );
 }

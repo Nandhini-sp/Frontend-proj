@@ -1,24 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import {
-	// Checkbox,
-	// FormControl,
-	// FormControlLabel,
-	// FormGroup,
-	Grid,
-	// InputLabel,
-	// MenuItem,
-	Paper,
-	// Select,
-	// Stack,
-	// TextField,
-	// ToggleButton,
-	// ToggleButtonGroup,
-	TextField,
-	Typography,
-
-} from '@mui/material'
-
 import{
 	// CButton,
 	CModal,
@@ -52,28 +33,34 @@ const ComplainBased = () => {
 		chestPain: "",
 		neonatal:"",
 		obstetric: "",
-		trauma	:""	
+		trauma	:""	,
+		email1:"",
 	})
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = (event, name) => {
+		const { value } = event.target
 		setState((prevProps) => ({
 		  ...prevProps,
-		  [name]: value
-		}));
-	  };
+		  [name]: value,
+		}))
+	  }
 	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
+	  const submitHandler = () => {
+		//  AuthAxios.post('Users', state)
+		//   .then((res) => {
+		//     console.log(res.data)
+		//     location.href = '/#/callDetails'
+		//   })
+		//   .catch((err) => console.error(err.message))
+		console.log(state)
+		// location.href = '/#/login'
+	  }
 
 	
 
 	return (
 
-		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
-
-<CContainer>
+		<div>
+		<CContainer>
 				<CRow>
 					<CCol xs={6}>
 					
@@ -84,7 +71,7 @@ const ComplainBased = () => {
               placeholder="FirstName"
               name="respiration"
               value={state.respiration}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'respiration')}
 			  style={{height:"50px"}}
 
             />
@@ -102,7 +89,7 @@ const ComplainBased = () => {
              		 placeholder="FirstName"
               		name="seizure"
               		value={state.seizure}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'seizure')}
 					  style={{height:"50px"}}
 
             		/>
@@ -122,7 +109,7 @@ const ComplainBased = () => {
               placeholder="FirstName"
               name="toxicExposure"
               value={state.toxicExposure}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'toxicExposure')}
 			  style={{height:"50px"}}
 
             />
@@ -140,7 +127,7 @@ const ComplainBased = () => {
              		 placeholder="FirstName"
               		name="cardiacArrest"
               		value={state.cardiacArrest}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'cardiacArrest')}
 					  style={{height:"50px"}}
 
             		/>
@@ -160,7 +147,7 @@ const ComplainBased = () => {
               placeholder="FirstName"
               name="chestPain"
               value={state.chestPain}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'chestPain')}
 			  style={{height:"50px"}}
 
             />
@@ -178,7 +165,7 @@ const ComplainBased = () => {
              		 placeholder="FirstName"
               		name="neonatal"
               		value={state.neonatal}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'neonatal')}
 					  style={{height:"50px"}}
 
             		/>
@@ -198,7 +185,7 @@ const ComplainBased = () => {
               placeholder="FirstName"
               name="obstetricc"
               value={state.obstetric}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'obstetric')}
 			  style={{height:"50px"}}
 
             />
@@ -216,7 +203,7 @@ const ComplainBased = () => {
              		 placeholder="FirstName"
               		name="trauma"
               		value={state.trauma}
-              		onChange={handleInputChange}
+              		onChange={(event) => handleInputChange(event, 'trauma')}
 					  style={{height:"50px"}}
 
             		/>
@@ -229,42 +216,66 @@ const ComplainBased = () => {
 			</CContainer>
 
 
-		
-		<CRow item xs={12}>
+					<CRow item xs={12}>
 
+			<CRow>
+        <CCol xs={12}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              Submit
+            </button>
+          </div>
+        </CCol>
+      </CRow>
 
-		<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
-<CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>DOTTY CARE</CModalTitle>
+        </CModalHeader>
+
+        <div class="modal-body mx-3">
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <CFormInput
+              type="email"
+              id="form2"
+              value={state.email1}
+              onChange={(event) => handleInputChange(event, 'email1')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Hospital EMail-Id
+            </label>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <CFormInput
+              type="email"
+              id="form2"
+              value={state.email2}
+              onChange={(event) => handleInputChange(event, 'email2')}
+              class="form-control validate"
+            />
+            <label data-error="wrong" data-success="right" for="form2">
+              Ambulance EMail-Id
+            </label>
+          </div>
         </div>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
-				
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary" onClick={() => submitHandler()}>
+            Submit
+          </CButton>
+        </CModalFooter>
+      </CModal>
+
 			</CRow>
-		</form>
+	
+		</div>
 	)
 }
 

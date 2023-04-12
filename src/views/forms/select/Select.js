@@ -40,28 +40,35 @@ const Select = () => {
       bloodGlucose: "",
     oxygenSaturation: "",
     preOxygen: "",
-    postOxygen: ""
+    postOxygen: "",
+    email1:""
   })
 
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	
+  const handleInputChange = (event, name) => {
+		const { value } = event.target
 		setState((prevProps) => ({
 		  ...prevProps,
-		  [name]: value
-		}));
-	  };
+		  [name]: value,
+		}))
+	  }
 	
-	  const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(state);
-	  };
+	  const submitHandler = () => {
+		//  AuthAxios.post('Users', state)
+		//   .then((res) => {
+		//     console.log(res.data)
+		//     location.href = '/#/callDetails'
+		//   })
+		//   .catch((err) => console.error(err.message))
+		console.log(state)
+		// location.href = '/#/login'
+	  }
 
 	
 
 	return (
 
-		<form onSubmit={submitHandler} method="post" encType="multipart/form-data" className="form-horizontal">
-
+<div>
 	<CRow>
        	 <CCol xs={12} className='h5' style={{position:'relative', left:'400px'}}>
 
@@ -78,7 +85,7 @@ const Select = () => {
         		onChange={e => setTime(e.format('LT'))}
 				name='assessmentTime'
 				value={state.assessmentTime}
-				onClick={handleInputChange}
+				onClick={(event) => handleInputChange(event, 'assessmentTime')}
 
       			/>
 	</CCol>  
@@ -96,7 +103,7 @@ const Select = () => {
               placeholder="FirstName"
               name="consciousnessLevel"
               value={state.consciousnessLevel}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'consciousnessLevel')}
               style={{height:"50px"}}
 
             />
@@ -111,7 +118,7 @@ const Select = () => {
               placeholder="Surname"
               name="pulseRate"
               value={state.pulseRate}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'pulseRate')}
               style={{height:"50px"}}
 
             />
@@ -128,7 +135,7 @@ const Select = () => {
               placeholder="FirstName"
               name="siteOfPulseCheck"
               value={state.siteOfPulseCheck}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'siteOfPulseCheck')}
               style={{height:"50px"}}
 
             />
@@ -143,7 +150,7 @@ const Select = () => {
               placeholder="Surname"
               name="temperature"
               value={state.temperature}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'temperature')}
               style={{height:"50px"}}
 
             />
@@ -160,7 +167,7 @@ const Select = () => {
               placeholder="FirstName"
               name="skinColor"
               value={state.skinColor}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'skinColor')}
               style={{height:"50px"}}
 
             />
@@ -175,7 +182,7 @@ const Select = () => {
               placeholder="Surname"
               name="siteOfPulseCheck"
               value={state.siteOfPulseCheck}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'siteOfPulseCheck')}
               style={{height:"50px"}}
 
             />
@@ -192,7 +199,7 @@ const Select = () => {
               placeholder="FirstName"
               name="skinColor"
               value={state.skinColor}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'skinColor')}
               style={{height:"50px"}}
 
             />
@@ -207,7 +214,7 @@ const Select = () => {
               placeholder="Surname"
               name="moisture"
               value={state.moisture}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'moisture')}
               style={{height:"50px"}}
 
             />
@@ -224,7 +231,7 @@ const Select = () => {
               placeholder="FirstName"
               name="bloodPressure"
               value={state.bloodPressure}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'bloodPressure')}
               style={{height:"50px"}}
 
             />
@@ -239,7 +246,7 @@ const Select = () => {
               placeholder="Surname"
               name="systolic"
               value={state.systolic}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'systolic')}
               style={{height:"50px"}}
 
             />
@@ -257,7 +264,7 @@ const Select = () => {
               name="diastolic"
               value={state.diastolic}
               style={{height:"50px"}}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'diatolic')}
             />
             <CFormLabel htmlFor="floatingInput">Diastolic</CFormLabel>
           </CFormFloating>
@@ -270,7 +277,7 @@ const Select = () => {
               placeholder="Surname"
               name="respiration"
               value={state.respiration}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'respiration')}
               style={{height:"50px"}}
 
             />
@@ -287,7 +294,7 @@ const Select = () => {
               placeholder="FirstName"
               name="bloodGlucose"
               value={state.bloodGlucose}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'bloodGlucose')}
               style={{height:"50px"}}
 
             />
@@ -302,7 +309,7 @@ const Select = () => {
               placeholder="Surname"
               name="oxygenSaturation"
               value={state.oxygenSaturation}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'oxygenSaturation')}
               style={{height:"50px"}}
 
             />
@@ -319,7 +326,7 @@ const Select = () => {
               placeholder="FirstName"
               name="preOxygen"
               value={state.preOxygen}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'preOxygen')}
               style={{height:"50px"}}
 
             />
@@ -334,7 +341,7 @@ const Select = () => {
               placeholder="Surname"
               name="postOxygen"
               value={state.postOxygen}
-              onChange={handleInputChange}
+              onChange={(event) => handleInputChange(event, 'postOxygen')}
               
               style={{height:"50px"}}
 
@@ -348,42 +355,70 @@ const Select = () => {
 		</CRow>
 
 		
-		<CRow  xs={12}>
+		
 
 
-		<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-success" type="submit"
-  onClick={() => setVisible(!visible)}
->Submit</button>
+    <CRow item xs={12}>
+
+<CRow>
+  <CCol xs={12}>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+        Submit
+      </button>
+    </div>
+  </CCol>
+</CRow>
+
 <CModal visible={visible} onClose={() => setVisible(false)}>
-      <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle>DOTTY CARE</CModalTitle>
-      </CModalHeader>
-  
-      <div class="modal-body mx-3">
-	  <div class="md-form mb-4">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form2" class="form-control validate"/>
-          <label data-error="wrong" data-success="right" for="form2">Hospital EMail-Id</label>
-        </div>
+  <CModalHeader>
+    <CModalTitle>DOTTY CARE</CModalTitle>
+  </CModalHeader>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success" onSubmit={submitHandler}>Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-		
-      <CModalFooter>
-        <CButton color="secondary" onClick={() => setVisible(false)}>
-          Close
-        </CButton>
-        <CButton color="primary">Save changes</CButton>
-      </CModalFooter>
-    </CModal>
-</div>
+  <div class="modal-body mx-3">
+    <div class="md-form mb-4">
+      <i class="fas fa-envelope prefix grey-text"></i>
+      <CFormInput
+        type="email"
+        id="form2"
+        value={state.email1}
+        onChange={(event) => handleInputChange(event, 'email1')}
+        class="form-control validate"
+      />
+      <label data-error="wrong" data-success="right" for="form2">
+        Hospital EMail-Id
+      </label>
+    </div>
 
-		
-			</CRow>
-		</form>
+    {/* <div class="md-form mb-4">
+      <i class="fas fa-envelope prefix grey-text"></i>
+      <CFormInput
+        type="email"
+        id="form2"
+        value={state.email2}
+        onChange={(event) => handleInputChange(event, 'email2')}
+        class="form-control validate"
+      />
+      <label data-error="wrong" data-success="right" for="form2">
+        Ambulance EMail-Id
+      </label>
+    </div> */}
+  </div>
+
+  <CModalFooter>
+    <CButton color="secondary" onClick={() => setVisible(false)}>
+      Close
+    </CButton>
+    <CButton color="primary" onClick={() => submitHandler()}>
+      Submit
+    </CButton>
+  </CModalFooter>
+</CModal>
+
+</CRow>
+   
+	
+		</div>
 	)
 }
 
