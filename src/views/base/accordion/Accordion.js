@@ -21,7 +21,8 @@ import {
   CToaster
 } from '@coreui/react'
 import { Input } from 'reactstrap'
-import AuthAxios from 'src/Interceptors/AuthAxios'
+// import AuthAxios from 'src/Interceptors/AuthAxios'
+// import AuthAxios from 'src/Interceptors/AuthAxios'
 
 const accordion = () => {
   const [visible, setVisible] = useState(false)
@@ -81,18 +82,18 @@ const toaster = useRef()
     }))
   }
 
-  const submitHandler = (event) => {
-    event.preventDefault()
-    console.log(state)
-
-     AuthAxios.post('Users', state)
-      .then((res) => {
-        console.log(res.data)
-        location.href = '/#/callDetails'
-      })
-      .catch((err) => console.error(err.message))
+  const submitHandler = () => {
+    // event.preventDefault()
     // console.log(state)
-    // location.href = '/#/login'
+
+    //  AuthAxios.post('Users', state)
+    //   .then((res) => {
+    //     console.log(res.data)
+    //     location.href = '/#/callDetails'
+    //   })
+    //   .catch((err) => console.error(err.message))
+    console.log(state)
+    location.href = '/#/login'
   }
 
   const Types_ins = ['Private', 'Goverment']
@@ -475,8 +476,9 @@ const toaster = useRef()
 
         <CCol xs={12}>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-success" type="submit" onClick={() => submitHandler()}
-            // onClick={() => setVisible(!visible)}
+            <button class="btn btn-success" type="submit"
+            onClick={() => setVisible(!visible)}
+            // onClick={() => submitHandler()}
             >
               Submit
             </button>
@@ -514,7 +516,7 @@ const toaster = useRef()
                 <CButton color="secondary" onClick={() => setVisible(false)}>
                   Close
                 </CButton>
-                <CButton color="primary">Submit</CButton>
+                <CButton color="primary" onClick={() => submitHandler()}>Submit</CButton>
               </CModalFooter>
             </CModal>
           </div>

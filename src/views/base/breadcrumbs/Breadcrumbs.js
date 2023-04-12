@@ -97,9 +97,11 @@ const [state, setState] = useState({
 				name="timeNotified"
 				value={state.timeNotified}
 				onClick={handleInputChange}
+				style={{height:"61px",width:"174px" }}
+
       		/>
 			</CCol>
-			<CCol xs={4}>
+			<CCol xs={4} >
 				<CFormLabel htmlFor="floatingInput" className='h3'>Time En Route</CFormLabel>
 				<p className='' sty>Selected Time: {time || '-'}</p>
       			<TimePicker
@@ -112,6 +114,9 @@ const [state, setState] = useState({
 				name="timeEnroute"
 				value={state.timeEnroute}
 				onClick={handleInputChange}
+
+				style={{height:"61px",width:"174px"}}
+
       		/>
 			</CCol>
 			<CCol xs={4}>
@@ -127,6 +132,8 @@ const [state, setState] = useState({
 				name="timeAtDestination"
 				value={state.timeAtDestination}
 				onClick={handleInputChange}
+				style={{height:"61px",width:"174px"}}
+
       		/>
 			</CCol>
 			</CRow>
@@ -144,6 +151,8 @@ const [state, setState] = useState({
 				name="timeOutScene"
 				value={state.timeOutScene}
 				onClick={handleInputChange}
+				style={{height:"61px",width:"174px"}}
+
 
       		/>
 			</CCol>
@@ -160,6 +169,8 @@ const [state, setState] = useState({
 				name="timeOutScene"
 				value={state.timeOutScene}
 				onClick={handleInputChange}
+				style={{height:"61px",width:"174px"}}
+
 			
       		/>
 			</CCol>
@@ -176,6 +187,8 @@ const [state, setState] = useState({
 				name="timeAtDestination"
 				value={state.timeAtDestination}
 				onClick={handleInputChange}
+				style={{height:"61px",width:"174px"}}
+
       		/>
 			</CCol>
 			</CRow>
