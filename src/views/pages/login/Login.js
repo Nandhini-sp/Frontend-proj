@@ -100,7 +100,12 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton onClick={() => submitHandler()} color="primary" className="px-4">
+                        <CButton
+                          disabled={state.email !== '' && state.password !== '' ? false : true}
+                          onClick={() => submitHandler()}
+                          color="primary"
+                          className="px-4"
+                        >
                           Login
                         </CButton>
                       </CCol>
@@ -113,7 +118,7 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              <CCard className="text-white bg-primary py-5">
                 <CCardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>

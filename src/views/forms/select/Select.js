@@ -114,7 +114,7 @@ const Select = () => {
   return (
     <div>
       <CRow className="mb-3 vehicle">
-        <CCol xs={4}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormLabel htmlFor="floatingInput" className="h3">
             Time Of Assessment
           </CFormLabel>
@@ -138,7 +138,7 @@ const Select = () => {
 
       <CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -152,7 +152,7 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Level Of Consciousness</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -168,7 +168,7 @@ const Select = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -182,7 +182,7 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Site Of Pulse Check</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -198,7 +198,7 @@ const Select = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -212,7 +212,7 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">skinColor</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -227,7 +227,7 @@ const Select = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={12}>
+          <CCol lg={12} md={12} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -246,7 +246,7 @@ const Select = () => {
           <CFormLabel htmlFor="floatingInput" className="h5">
             Blood Pressure
           </CFormLabel>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -260,7 +260,7 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Systolic</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -276,7 +276,7 @@ const Select = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -290,7 +290,7 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -309,7 +309,7 @@ const Select = () => {
           <CFormLabel htmlFor="floatingInput" className="h5">
             Oxygen Saturation
           </CFormLabel>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -323,7 +323,7 @@ const Select = () => {
               <CFormLabel htmlFor="floatingInput">Pre Oxygen</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"

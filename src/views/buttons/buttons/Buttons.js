@@ -85,7 +85,7 @@ const Buttons = () => {
     <div>
       <CContainer>
         <CRow className="mb-3">
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <p>Date Of Injury</p>
             <CFormInput
               type="Date"
@@ -95,7 +95,7 @@ const Buttons = () => {
               style={{ height: '50px' }}
             ></CFormInput>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <p>Time Of Injury</p>
             <CFormInput
               type="Time"
@@ -107,8 +107,8 @@ const Buttons = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
@@ -120,8 +120,8 @@ const Buttons = () => {
               <CFormLabel htmlFor="floatingInput">Co-Respondars</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
@@ -137,8 +137,8 @@ const Buttons = () => {
       </CContainer>
       <CContainer>
         <CRow className="mt-3">
-          <CCol xs={6}>
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
@@ -150,8 +150,8 @@ const Buttons = () => {
               <CFormLabel htmlFor="floatingInput">Patient Condition at Destination</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6} className="">
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
@@ -167,8 +167,8 @@ const Buttons = () => {
       </CContainer>
       <CContainer>
         <CRow className="mt-3 mb-4">
-          <CCol xs={6}>
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
@@ -181,8 +181,8 @@ const Buttons = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6}>
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"

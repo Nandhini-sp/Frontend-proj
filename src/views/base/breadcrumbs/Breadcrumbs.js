@@ -113,7 +113,7 @@ const BreadCrumbs = () => {
     <div className="vehicle">
       <CContainer className="m-0 mb-4">
         <CRow className="mb-3">
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time Notified
             </CFormLabel>
@@ -133,7 +133,7 @@ const BreadCrumbs = () => {
               className="times"
             />
           </CCol>
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time En Route
             </CFormLabel>
@@ -153,7 +153,7 @@ const BreadCrumbs = () => {
               className="times"
             />
           </CCol>
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time At Scene
             </CFormLabel>
@@ -175,7 +175,7 @@ const BreadCrumbs = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time Out Of Scene
             </CFormLabel>
@@ -195,7 +195,7 @@ const BreadCrumbs = () => {
               className="times"
             />
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Time At Destination
             </CFormLabel>
@@ -220,7 +220,7 @@ const BreadCrumbs = () => {
 
       <CContainer>
         <CRow className="">
-          <CCol xs={4} className="">
+          <CCol lg={4} md={4} sm={12} className="">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -233,7 +233,7 @@ const BreadCrumbs = () => {
               <CFormLabel htmlFor="floatingInput">Crew Patient</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -246,7 +246,7 @@ const BreadCrumbs = () => {
               <CFormLabel htmlFor="floatingInput">Available</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -264,7 +264,7 @@ const BreadCrumbs = () => {
 
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormSelect
               size="sm"
               className="mt-3"
@@ -279,7 +279,7 @@ const BreadCrumbs = () => {
             </CFormSelect>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormSelect
               size="sm"
               className="mt-3"
@@ -298,7 +298,7 @@ const BreadCrumbs = () => {
 
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormSelect
               size="sm"
               className="mt-3"
@@ -314,7 +314,7 @@ const BreadCrumbs = () => {
             </CFormSelect>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormSelect
               size="sm"
               className="mt-3"
@@ -336,7 +336,7 @@ const BreadCrumbs = () => {
 
       <CContainer>
         <CRow className="">
-          <CCol xs={6} className="mt-3">
+          <CCol lg={6} md={6} sm={12} className="mt-3">
             <CFormFloating className="">
               <CFormInput
                 type="text"
@@ -349,7 +349,7 @@ const BreadCrumbs = () => {
               <CFormLabel htmlFor="floatingInput">Patient Contact</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -367,7 +367,7 @@ const BreadCrumbs = () => {
 
       <CContainer>
         <CRow className="mt-3">
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="date"
@@ -378,7 +378,7 @@ const BreadCrumbs = () => {
               <CFormLabel htmlFor="floatingInput">Document Start Date</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="date"
@@ -389,7 +389,7 @@ const BreadCrumbs = () => {
               <CFormLabel htmlFor="floatingInput">Document End Date</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="date"

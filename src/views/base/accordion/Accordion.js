@@ -161,7 +161,7 @@ const accordion = () => {
   return (
     <div>
       <CRow>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -174,7 +174,7 @@ const accordion = () => {
             <CFormLabel htmlFor="floatingInput">FirstName</CFormLabel>
           </CFormFloating>
         </CCol>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -190,7 +190,7 @@ const accordion = () => {
       </CRow>
 
       <CRow>
-        <CCol xs={12}>
+        <CCol lg={12} md={12} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -204,8 +204,9 @@ const accordion = () => {
           </CFormFloating>
         </CCol>
       </CRow>
+
       <CRow>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -218,7 +219,7 @@ const accordion = () => {
             <CFormLabel htmlFor="floatingInput">City</CFormLabel>
           </CFormFloating>
         </CCol>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -232,8 +233,9 @@ const accordion = () => {
           </CFormFloating>
         </CCol>
       </CRow>
+
       <CRow>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -246,7 +248,7 @@ const accordion = () => {
             <CFormLabel htmlFor="floatingInput">Country</CFormLabel>
           </CFormFloating>
         </CCol>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -262,7 +264,7 @@ const accordion = () => {
       </CRow>
 
       <CRow>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -275,7 +277,7 @@ const accordion = () => {
             <CFormLabel htmlFor="floatingInput">Telephone</CFormLabel>
           </CFormFloating>
         </CCol>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <Input
               type="date"
@@ -290,7 +292,7 @@ const accordion = () => {
       </CRow>
 
       <CRow>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -303,7 +305,7 @@ const accordion = () => {
             <CFormLabel htmlFor="floatingInput">Age</CFormLabel>
           </CFormFloating>
         </CCol>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
@@ -319,7 +321,7 @@ const accordion = () => {
       </CRow>
 
       <CRow>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormLabel name="gender">Gender</CFormLabel>
           <div>
             <CFormCheck
@@ -348,7 +350,7 @@ const accordion = () => {
             />
           </div>
         </CCol>
-        <CCol xs={6}>
+        <CCol lg={6} md={6} sm={12}>
           <CFormLabel>Medical Insurance</CFormLabel>
           <div>
             <CFormCheck
@@ -371,106 +373,119 @@ const accordion = () => {
         </CCol>
       </CRow>
 
-      <CRow>
-        <CCol xs={12}>
-          <CFormLabel htmlFor="floatingInput" className="mt-3">
-            (fill the below details only if Medical Insurance exist)
-          </CFormLabel>
-          <CFormSelect
-            size="lg"
-            className="mb-3"
-            aria-label="Large select example"
-            value={state.typeOfInsurance}
-            onChange={(event) => handleInputChange(event.target.value, 'typeOfInsurance')}
-          >
-            <option>Types Of Insurance</option>
-            <option value="Government">Government</option>
-            <option value="Private">Private</option>
-          </CFormSelect>
-        </CCol>
-      </CRow>
+      {state.medicalInsurance === 'Yes' && (
+        <CRow>
+          <CCol lg={12} md={12} sm={12}>
+            <CFormLabel htmlFor="floatingInput" className="mt-3">
+              (fill the below details only if Medical Insurance exist)
+            </CFormLabel>
+            <CFormSelect
+              size="lg"
+              className="mb-3"
+              aria-label="Large select example"
+              value={state.typeOfInsurance}
+              onChange={(event) => handleInputChange(event.target.value, 'typeOfInsurance')}
+            >
+              <option>Types Of Insurance</option>
+              <option value="Government">Government</option>
+              <option value="Private">Private</option>
+            </CFormSelect>
+          </CCol>
+        </CRow>
+      )}
 
-      <CRow>
-        <CCol>
-          <CFormLabel htmlFor="floatingInput">((For Goverment Insurance))</CFormLabel>
-        </CCol>
-      </CRow>
+      {state.medicalInsurance === 'Yes' && (
+        <CRow>
+          <CCol>
+            <CFormLabel htmlFor="floatingInput">
+              {state.typeOfInsurance === 'Government'
+                ? `((For Goverment Insurance))`
+                : `((For Private Insurance))`}
+            </CFormLabel>
+          </CCol>
+        </CRow>
+      )}
 
-      <CRow>
-        <CCol xs={12}>
-          <CFormFloating className="mb-3">
-            <CFormInput
-              type="text"
-              id="floatingInput"
-              placeholder="Insurance ID Number"
-              value={state.govt_ins_Id}
-              onChange={(event) => handleInputChange(event.target.value, 'govt_ins_Id')}
-              style={{ height: '50px' }}
-            />
-            <CFormLabel htmlFor="floatingInput">Insurance ID Number</CFormLabel>
-          </CFormFloating>
-        </CCol>
-      </CRow>
-
-      <CRow>
-        {state.typeOfInsurance === 'Government' && (
-          <CCol xs={6}>
+      {state.medicalInsurance === 'Yes' && (
+        <CRow>
+          <CCol lg={12} md={12} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                value={state.coverage_Amount}
-                onChange={(event) => handleInputChange(event.target.value, 'coverage_Amount')}
+                placeholder="Insurance ID Number"
+                value={state.govt_ins_Id}
+                onChange={(event) => handleInputChange(event.target.value, 'govt_ins_Id')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Maximum Coverage Amount</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Insurance ID Number</CFormLabel>
             </CFormFloating>
           </CCol>
-        )}
-        <CCol xs={6}>
-          {state.typeOfInsurance === 'Government' ? (
-            <CFormSelect
-              size="lg"
-              className="mb-3"
-              aria-label="Large select example"
-              value={state.benifits}
-              onChange={(event) => handleInputChange(event.target.value, 'benifits')}
-            >
-              <option>Types Of Benefits</option>
-              <option value="Aayushman Bharat Yojana">Aayushman Bharat Yojana</option>
-              <option value="Pradhan Mantri Jeevan Jyoti Beema Yojana">
-                Pradhan Mantri Jeevan Jyoti Beema Yojana
-              </option>
-            </CFormSelect>
-          ) : (
-            <CFormSelect
-              size="lg"
-              className="mb-3"
-              aria-label="Large select example"
-              value={state.benifits}
-              onChange={(event) => handleInputChange(event.target.value, 'benifits')}
-            >
-              <option>Types Of Benefits</option>
-              <option value="Family Floater">Family Floater</option>
-              <option value="Group Health">Group Health</option>
-              <option value="Senior Citizen Health">Senior Citizen Health</option>
-              <option value="Maternity Health">Maternity Health</option>
-              <option value="Criticial lllness">Criticial lllness</option>
-              <option value="Top-up Health">Top-up Health</option>
-            </CFormSelect>
+        </CRow>
+      )}
+
+      {state.medicalInsurance === 'Yes' && (
+        <CRow>
+          {state.typeOfInsurance === 'Government' && (
+            <CCol lg={6} md={6} sm={12}>
+              <CFormFloating className="mb-3">
+                <CFormInput
+                  type="text"
+                  id="floatingInput"
+                  placeholder="FirstName"
+                  value={state.coverage_Amount}
+                  onChange={(event) => handleInputChange(event.target.value, 'coverage_Amount')}
+                  style={{ height: '50px' }}
+                />
+                <CFormLabel htmlFor="floatingInput">Maximum Coverage Amount</CFormLabel>
+              </CFormFloating>
+            </CCol>
           )}
-        </CCol>
-      </CRow>
+          <CCol lg={6} md={6} sm={12}>
+            {state.typeOfInsurance === 'Government' ? (
+              <CFormSelect
+                size="lg"
+                className="mb-3"
+                aria-label="Large select example"
+                value={state.benifits}
+                onChange={(event) => handleInputChange(event.target.value, 'benifits')}
+              >
+                <option>Types Of Benefits</option>
+                <option value="Aayushman Bharat Yojana">Aayushman Bharat Yojana</option>
+                <option value="Pradhan Mantri Jeevan Jyoti Beema Yojana">
+                  Pradhan Mantri Jeevan Jyoti Beema Yojana
+                </option>
+              </CFormSelect>
+            ) : (
+              <CFormSelect
+                size="lg"
+                className="mb-3"
+                aria-label="Large select example"
+                value={state.benifits}
+                onChange={(event) => handleInputChange(event.target.value, 'benifits')}
+              >
+                <option>Types Of Benefits</option>
+                <option value="Family Floater">Family Floater</option>
+                <option value="Group Health">Group Health</option>
+                <option value="Senior Citizen Health">Senior Citizen Health</option>
+                <option value="Maternity Health">Maternity Health</option>
+                <option value="Criticial lllness">Criticial lllness</option>
+                <option value="Top-up Health">Top-up Health</option>
+              </CFormSelect>
+            )}
+          </CCol>
+        </CRow>
+      )}
 
       <CRow>
-        <CCol xs={12}>
+        <CCol lg={12} md={12} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="text"
               id="floatingInput"
               placeholder="FirstName"
               name="hospital_chart_no"
+              className="mt-3"
               value={state.hospital_chart_no}
               onChange={(event) => handleInputChange(event.target.value, 'hospital_chart_no')}
             />
@@ -478,8 +493,9 @@ const accordion = () => {
           </CFormFloating>
         </CCol>
       </CRow>
+
       <CRow>
-        <CCol xs={12}>
+        <CCol lg={12} md={12} sm={12}>
           <CFormFloating className="mb-3">
             <CFormInput
               type="commends"
@@ -495,7 +511,7 @@ const accordion = () => {
       </CRow>
 
       <CRow>
-        <CCol xs={12}>
+        <CCol lg={12} md={12} sm={12}>
           <div class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-success" onClick={() => setVisible(!visible)}>
               Submit

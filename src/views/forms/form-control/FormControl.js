@@ -96,7 +96,7 @@ const formControl = () => {
     <div>
       <CContainer className="m-4 vehicle">
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Procedure Start Time
             </CFormLabel>
@@ -116,7 +116,7 @@ const formControl = () => {
               className="times"
             />
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormLabel htmlFor="floatingInput" className="h3">
               Treatment End Time
             </CFormLabel>
@@ -139,7 +139,7 @@ const formControl = () => {
         </CRow>
 
         <CRow>
-          <CCol xs={4} className="mt-4">
+          <CCol lg={4} md={4} sm={12} className="mt-4">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -153,7 +153,7 @@ const formControl = () => {
               <CFormLabel htmlFor="floatingInput">Types Of Procedure</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4} className="mt-4">
+          <CCol lg={4} md={4} sm={12} className="mt-4">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -167,7 +167,7 @@ const formControl = () => {
               <CFormLabel htmlFor="floatingInput">Device Method</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={4} className="mt-4">
+          <CCol lg={4} md={4} sm={12} className="mt-4">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -183,7 +183,7 @@ const formControl = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={4} className="">
+          <CCol lg={4} md={4} sm={12} className="">
             <CFormFloating className="">
               <CFormInput
                 type="text"
@@ -193,12 +193,13 @@ const formControl = () => {
                 value={state.deviceSize}
                 onChange={(event) => handleInputChange(event, 'deviceSize')}
                 style={{ height: '50px' }}
+                className="mb-3"
               />
               <CFormLabel htmlFor="floatingInput">Device Size</CFormLabel>
             </CFormFloating>
           </CCol>
 
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="">
               <CFormInput
                 type="text"
@@ -207,12 +208,13 @@ const formControl = () => {
                 value={state.outcome}
                 onChange={(event) => handleInputChange(event, 'outcome')}
                 style={{ height: '50px' }}
+                className="mb-3"
               />
               <CFormLabel htmlFor="floatingInput">Outcome</CFormLabel>
             </CFormFloating>
           </CCol>
 
-          <CCol xs={4}>
+          <CCol lg={4} md={4} sm={12}>
             <CFormFloating className="">
               <CFormInput
                 type="text"
@@ -221,6 +223,7 @@ const formControl = () => {
                 value={state.successfull}
                 onChange={(event) => handleInputChange(event, 'successfull')}
                 style={{ height: '50px' }}
+                className="mb-3"
               />
               <CFormLabel htmlFor="floatingInput">Successful</CFormLabel>
             </CFormFloating>
@@ -228,7 +231,7 @@ const formControl = () => {
         </CRow>
 
         <CRow>
-          <CCol xs={6} className="mt-3">
+          <CCol lg={6} md={6} sm={12} className="mt-3">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -243,7 +246,7 @@ const formControl = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6} className="mt-3">
+          <CCol lg={6} md={6} sm={12} className="mt-3">
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -258,7 +261,7 @@ const formControl = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -272,7 +275,7 @@ const formControl = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"

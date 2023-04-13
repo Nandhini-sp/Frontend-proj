@@ -78,7 +78,7 @@ const ButtonGroups = () => {
     <div>
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -93,7 +93,7 @@ const ButtonGroups = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -109,7 +109,7 @@ const ButtonGroups = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -124,7 +124,7 @@ const ButtonGroups = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -140,7 +140,7 @@ const ButtonGroups = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -155,7 +155,7 @@ const ButtonGroups = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"

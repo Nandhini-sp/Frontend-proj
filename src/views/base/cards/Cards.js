@@ -143,20 +143,20 @@ const Cards = () => {
     <div>
       <CContainer>
         <CRow>
-          <CCol xs={6}>
-            <CFormFloating className="">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
                 placeholder="FirstName"
                 value={state.serviceCode}
                 onChange={(event) => handleInputChange(event, 'serviceCode')}
-                style={{ width: '490px', height: '50px' }}
+                style={{ width: '100%', height: '50px' }}
               />
               <CFormLabel htmlFor="floatingInput">Service Code</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -165,7 +165,7 @@ const Cards = () => {
                 name="serviceType"
                 value={state.serviceType}
                 onChange={(event) => handleInputChange(event, 'serviceType')}
-                style={{ width: '490px', height: '50px' }}
+                style={{ width: '100%', height: '50px' }}
               />
               <CFormLabel htmlFor="floatingInput">Service Type</CFormLabel>
             </CFormFloating>
@@ -175,22 +175,24 @@ const Cards = () => {
 
       <CContainer>
         <CRow className="mb-3">
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <Input
               type="Date"
               name="dateOfIncident"
               value={state.dateOfIncident}
               onChange={(event) => handleInputChange(event, 'dateOfIncident')}
-              style={{ width: '490px', height: '50px' }}
+              style={{ width: '100%', height: '50px' }}
+              className="mb-3"
             ></Input>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <Input
               type="Time"
               name="timeOfIncident"
               value={state.timeOfIncident}
               onChange={(event) => handleInputChange(event, 'timeOfIncident')}
-              style={{ width: '490px', height: '50px' }}
+              style={{ width: '100%', height: '50px' }}
+              className="mb-3"
             ></Input>
           </CCol>
         </CRow>
@@ -199,76 +201,68 @@ const Cards = () => {
       <CContainer className="">
         <CRow>
           <p>Incident Location</p>
-          <CCol xs={6}>
-            <CRow>
-              <CCol xs={6}>
-                <CFormFloating className="mb-3">
-                  <CFormInput
-                    type="text"
-                    id="floatingInput"
-                    placeholder="FirstName"
-                    name="incidentLocation_street"
-                    value={state.incidentLocation_street}
-                    onChange={(event) => handleInputChange(event, 'incidentLocation_street')}
-                    style={{ height: '50px' }}
-                  />
-                  <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
-                </CFormFloating>
-              </CCol>
-              <CCol xs={6}>
-                <CFormFloating className="mb-3">
-                  <CFormInput
-                    type="text"
-                    id="floatingInput"
-                    placeholder="Surname"
-                    name="incidentLocation_city"
-                    value={state.incidentLocation_city}
-                    onChange={(event) => handleInputChange(event, 'incidentLocation_city')}
-                    style={{ height: '50px' }}
-                  />
-                  <CFormLabel htmlFor="floatingInput">city</CFormLabel>
-                </CFormFloating>
-              </CCol>
-            </CRow>
+          <CCol lg={3} md={3} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="incidentLocation_street"
+                value={state.incidentLocation_street}
+                onChange={(event) => handleInputChange(event, 'incidentLocation_street')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
+            </CFormFloating>
           </CCol>
-          <CCol xs={6}>
-            <CRow>
-              <CCol xs={6}>
-                <CFormFloating className="mb-3">
-                  <CFormInput
-                    type="text"
-                    id="floatingInput"
-                    placeholder="FirstName"
-                    name="incidentLocation_state"
-                    value={state.incidentLocation_state}
-                    onChange={(event) => handleInputChange(event, 'incidentLocation_state')}
-                    style={{ height: '50px' }}
-                  />
-                  <CFormLabel htmlFor="floatingInput">State</CFormLabel>
-                </CFormFloating>
-              </CCol>
-              <CCol xs={6}>
-                <CFormFloating className="mb-3">
-                  <CFormInput
-                    type="text"
-                    id="floatingInput"
-                    placeholder="Surname"
-                    name="incidentLocation_postalCode"
-                    value={state.incidentLocation_postalCode}
-                    onChange={(event) => handleInputChange(event, 'incidentLocation_postalCode')}
-                    style={{ height: '50px' }}
-                  />
-                  <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
-                </CFormFloating>
-              </CCol>
-            </CRow>
+          <CCol lg={3} md={3} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Surname"
+                name="incidentLocation_city"
+                value={state.incidentLocation_city}
+                onChange={(event) => handleInputChange(event, 'incidentLocation_city')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">city</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={3} md={3} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="incidentLocation_state"
+                value={state.incidentLocation_state}
+                onChange={(event) => handleInputChange(event, 'incidentLocation_state')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">State</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={3} md={3} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Surname"
+                name="incidentLocation_postalCode"
+                value={state.incidentLocation_postalCode}
+                onChange={(event) => handleInputChange(event, 'incidentLocation_postalCode')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
+            </CFormFloating>
           </CCol>
         </CRow>
       </CContainer>
 
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -281,7 +275,7 @@ const Cards = () => {
               <CFormLabel htmlFor="floatingInput">Destination Determinant</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -299,7 +293,7 @@ const Cards = () => {
 
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -313,7 +307,7 @@ const Cards = () => {
               <CFormLabel htmlFor="floatingInput">Geographic Locator</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -332,7 +326,7 @@ const Cards = () => {
 
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -345,7 +339,7 @@ const Cards = () => {
               <CFormLabel htmlFor="floatingInput">Scene Location Type</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mt-3">
               <CFormInput
                 type="text"
@@ -364,7 +358,7 @@ const Cards = () => {
       <CContainer className="">
         <CRow className="mt-3">
           <p>Destination Location</p>
-          <CCol xs={3}>
+          <CCol lg={3} md={3} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -378,7 +372,7 @@ const Cards = () => {
               <CFormLabel htmlFor="floatingInput">Street</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={3}>
+          <CCol lg={3} md={3} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -393,7 +387,7 @@ const Cards = () => {
             </CFormFloating>
           </CCol>
 
-          <CCol xs={3}>
+          <CCol lg={3} md={3} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -407,7 +401,7 @@ const Cards = () => {
               <CFormLabel htmlFor="floatingInput">State</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={3}>
+          <CCol lg={3} md={3} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -426,7 +420,7 @@ const Cards = () => {
 
       <CContainer>
         <CRow>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -439,7 +433,7 @@ const Cards = () => {
               <CFormLabel htmlFor="floatingInput">Patient Disposition</CFormLabel>
             </CFormFloating>
           </CCol>
-          <CCol xs={6}>
+          <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
@@ -458,7 +452,7 @@ const Cards = () => {
         <CRow>
           <p className="mt-3">Service Payment</p>
           <CRow>
-            <CCol xs={6}>
+            <CCol lg={6} md={6} sm={12}>
               <CFormFloating className="mb-3">
                 <CFormInput
                   type="text"
@@ -472,7 +466,7 @@ const Cards = () => {
                 <CFormLabel htmlFor="floatingInput">Response</CFormLabel>
               </CFormFloating>
             </CCol>
-            <CCol xs={6}>
+            <CCol lg={6} md={6} sm={12}>
               <CFormFloating className="mb-3">
                 <CFormInput
                   type="text"

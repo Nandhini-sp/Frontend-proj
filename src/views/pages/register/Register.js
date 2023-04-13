@@ -25,7 +25,7 @@ const Register = () => {
     email: '',
     phone: '',
     password: '',
-    userType: '',
+    userType: 'client',
   })
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -123,21 +123,19 @@ const Register = () => {
                     />
                   </CInputGroup>
 
-                  <CInputGroup className="mb-4">
-                    <CFormSelect
-                      aria-label="Default select example"
-                      name="userType"
-                      value={state.userType}
-                      onChange={(event) => handleInputChange(event, 'userType')}
-                    >
-                      <option>User Type</option>
-                      <option value="admin">Admin</option>
-                      <option value="client">Client</option>
-                    </CFormSelect>
-                  </CInputGroup>
-
                   <div className="d-grid">
-                    <CButton onClick={() => submitHandler()} color="success">
+                    <CButton
+                      disabled={
+                        state.userName !== '' &&
+                        state.email !== '' &&
+                        state.password !== '' &&
+                        state.phone !== ''
+                          ? false
+                          : true
+                      }
+                      onClick={() => submitHandler()}
+                      color="success"
+                    >
                       Create Account
                     </CButton>
                   </div>
