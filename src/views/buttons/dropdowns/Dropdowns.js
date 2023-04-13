@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import {
   // CButton,
@@ -43,6 +43,14 @@ const ComplainBased = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+  useEffect(() => {
+    setState((prevProps) => ({
+      ...prevProps,
+      userId: users.result._id,
+    }))
+  }, [])
+
   const submitHandler = () => {
     AuthAxios.post('PatientAssessment', state)
       .then((res) => {
@@ -50,8 +58,20 @@ const ComplainBased = () => {
         success(res.data.message)
         setVisible(false)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            userId: '1',
+            respiration: '',
+            seizure: '',
+            toxicExposure: '',
+            cardiacArrest: '',
+            chestPain: '',
+            neonatal: '',
+            obstetric: '',
+            trauma: '',
+            email: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')

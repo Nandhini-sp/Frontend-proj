@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import TimePicker from 'rc-time-picker'
 import 'rc-time-picker/assets/index.css'
@@ -52,6 +52,14 @@ const formControl = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+  useEffect(() => {
+    setState((prevProps) => ({
+      ...prevProps,
+      userId: users.result._id,
+    }))
+  }, [])
+
   const submitHandler = () => {
     AuthAxios.post('PatientTreatmentDetails', state)
       .then((res) => {
@@ -59,8 +67,24 @@ const formControl = () => {
         success(res.data.message)
         setVisible(false)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            userId: '1',
+            procedureStartTime: '',
+            procedureType: '',
+            procedureEndTime: '',
+            deviceMethod: '',
+            technicianID: '',
+            deviceSize: '',
+            outcome: '',
+            successfull: '',
+            treatment: '',
+            totalTime: '',
+            treatmentType: '',
+            administrativeRoute: '',
+            email: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')

@@ -82,9 +82,11 @@ const accordion = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+
   const submitHandler = () => {
     const item = {
-      userId: '1',
+      userId: users.result._id,
       firstName: state.firstName,
       sureName: state.sureName,
       address: {
@@ -121,8 +123,34 @@ const accordion = () => {
         success(res.data.message)
         setVisible(false)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            firstName: '',
+            sureName: '',
+            street: '',
+            city: '',
+            state: '',
+            postalCode: '',
+            country: '',
+            telePhone: '',
+            aadhar: '',
+            DOB: '',
+            age: '',
+            gender: '',
+            medicalInsurance: '',
+            typeOfInsurance: '',
+            govt_ins_Id: '',
+            coverage_Amount: '',
+            govt_benefits: '',
+            private_ins_id: '',
+            private_benefits: '',
+            hospital_chart_no: '',
+            commends: '',
+            email1: '',
+            email2: '',
+            benifits: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')

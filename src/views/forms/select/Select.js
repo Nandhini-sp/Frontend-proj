@@ -53,9 +53,11 @@ const Select = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+
   const submitHandler = () => {
     const item = {
-      userId: '1',
+      userId: users.result._id,
       assessmentTime: state.assessmentTime,
       consciousnessLevel: state.consciousnessLevel,
       pulseRate: state.pulseRate,
@@ -82,8 +84,26 @@ const Select = () => {
         success(res.data.message)
         setVisible(false)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            assessmentTime: '',
+            consciousnessLevel: '',
+            pulseRate: '',
+            siteOfPulseCheck: '',
+            temperature: '',
+            siteOfTemperatureCheck: '',
+            skinColor: '',
+            moisture: '',
+            systolic: '',
+            diastolic: '',
+            respiration: '',
+            bloodGlucose: '',
+            preOxygen: '',
+            postOxygen: '',
+            diatolic: '',
+            email: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')

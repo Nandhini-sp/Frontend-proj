@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import TimePicker from 'rc-time-picker'
 import 'rc-time-picker/assets/index.css'
@@ -64,6 +64,14 @@ const BreadCrumbs = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+  useEffect(() => {
+    setState((prevProps) => ({
+      ...prevProps,
+      userId: users.result._id,
+    }))
+  }, [])
+
   const submitHandler = () => {
     AuthAxios.post('VehicleCallDetails', state)
       .then((res) => {
@@ -71,8 +79,30 @@ const BreadCrumbs = () => {
         console.log(res.data)
         setVisible(false)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            userId: '1',
+            timeNotified: '',
+            timeEnroute: '',
+            timeAtScene: '',
+            crewPatient: '',
+            timeOutScene: '',
+            timeAtDestination: '',
+            available: '',
+            backArea: '',
+            responseToScene: '',
+            responseFromScene: '',
+            crewType: '',
+            mileage: '',
+            patientContact: '',
+            destinationDeterminant: '',
+            startDate: '',
+            endDate: '',
+            dateModified: '',
+            email1: '',
+            email2: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')

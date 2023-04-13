@@ -60,9 +60,11 @@ const Cards = () => {
       [name]: value,
     }))
   }
+  const users = JSON.parse(localStorage.getItem('user'))
+
   const submitHandler = () => {
     const item = {
-      userId: '1',
+      userId: users.result._id,
       serviceCode: state.serviceCode,
       serviceType: state.serviceType,
       dateOfIncident: state.dateOfIncident,
@@ -100,8 +102,36 @@ const Cards = () => {
         setVisible(false)
         console.log(res.data)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            userId: '',
+            serviceCode: '',
+            serviceType: '',
+            dateOfIncident: '',
+            timeOfIncident: '',
+            incidentLocation_street: '',
+            incidentLocation_city: '',
+            incidentLocation_state: '',
+            incidentLocation_postalCode: '',
+            destinationDeterminant: '',
+            graphicLocator: '',
+            sceneLocationType: '',
+            destinationFacility: '',
+            sceneFacility: '',
+            destinationLocationAddress: '',
+            destinationLocation_street: '',
+            destinationLocation_city: '',
+            destinationLocation_state: '',
+            destinationLocation_postalCode: '',
+            servicePayment_responsibility: '',
+            servicePayment_number: '',
+            EMS: '',
+            patientDisposition: '',
+            destinationLocationType: '',
+            email1: '',
+            email2: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')

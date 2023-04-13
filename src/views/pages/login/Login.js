@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import {
@@ -34,10 +34,19 @@ const Login = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+
+  useEffect(() => {
+    if (users) {
+      location.href = '/#/dashboard'
+    }
+  }, [])
+
   const submitHandler = () => {
     AuthAxios.post('UsersLogin', state)
       .then((res) => {
         console.log(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data.data))
         if (res.data.status === 'Success') {
           success('Login Successfully')
           setTimeout(() => {

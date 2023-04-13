@@ -20,7 +20,7 @@ function BasicExample() {
   }, [])
 
   const [itemOffset, setItemOffset] = useState(0)
-  const itemsPerPage = 5
+  const itemsPerPage = 10
   const endOffset = itemOffset + itemsPerPage
   const currentItems = data.slice(itemOffset, endOffset)
   const pageCount = Math.ceil(data.length / itemsPerPage)

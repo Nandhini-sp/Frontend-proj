@@ -37,6 +37,14 @@ const Register = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+
+  useEffect(() => {
+    if (users) {
+      location.href = '/#/dashboard'
+    }
+  }, [])
+
   const submitHandler = () => {
     AuthAxios.post('Users', state)
       .then((res) => {

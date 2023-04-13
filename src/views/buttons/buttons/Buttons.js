@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import { CButton } from '@coreui/react'
@@ -45,6 +45,14 @@ const Buttons = () => {
     }))
   }
 
+  const users = JSON.parse(localStorage.getItem('user'))
+  useEffect(() => {
+    setState((prevProps) => ({
+      ...prevProps,
+      userId: users.result._id,
+    }))
+  }, [])
+
   const submitHandler = () => {
     AuthAxios.post('PatientHistoryAssessment', state)
       .then((res) => {
@@ -52,8 +60,20 @@ const Buttons = () => {
         success(res.data.message)
         setVisible(false)
         setTimeout(() => {
-          location.href = '/'
-        }, 2000)
+          setState((prevProps) => ({
+            ...prevProps,
+            userId: '1',
+            dateOfInjury: '',
+            timeOfInjury: '',
+            coResponders: '',
+            treatmentRendered: '',
+            patientCondition: '',
+            patientDisplacement: '',
+            suspectedIntoxication: '',
+            chiefComplaint: '',
+            email: '',
+          }))
+        }, 1000)
       })
       .catch((err) => {
         failure('Internal Server Error')
