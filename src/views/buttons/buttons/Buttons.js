@@ -17,13 +17,16 @@ import {
   CFormCheck,
   CFormFloating,
 } from '@coreui/react'
-import { email } from 'react-admin'
+import { ToastContainer, toast } from 'react-toastify'
+import AuthAxios from 'src/Interceptors/AuthAxios'
 
 const Buttons = () => {
   const [visible, setVisible] = useState(false)
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
 
   const [state, setState] = useState({
-    userId: '',
+    userId: '1',
     dateOfInjury: '',
     timeOfInjury: '',
     coResponders: '',
@@ -43,16 +46,19 @@ const Buttons = () => {
   }
 
   const submitHandler = () => {
-    // AuthAxios.post('PatientHistoryAssessment', state)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(state)
-    // location.href = '/#/login'
+    AuthAxios.post('PatientHistoryAssessment', state)
+      .then((res) => {
+        console.log(res.data)
+        success(res.data.message)
+        setVisible(false)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -215,6 +221,7 @@ const Buttons = () => {
           </CModalFooter>
         </CModal>
       </CContainer>
+      <ToastContainer />
     </div>
   )
 }

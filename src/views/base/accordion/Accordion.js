@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import {
   CButton,
   CModal,
@@ -20,15 +20,14 @@ import {
   CToaster,
 } from '@coreui/react'
 import { Input } from 'reactstrap'
-// import AuthAxios from 'src/Interceptors/AuthAxios'
-// import AuthAxios from 'src/Interceptors/AuthAxios'
+import AuthAxios from 'src/Interceptors/AuthAxios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const accordion = () => {
   const [visible, setVisible] = useState(false)
 
-  // const [toast, addToast] = useState(0)
-  const [toast, addToast] = useState(0)
-  const toaster = useRef()
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
 
   const [state, setState] = useState({
     firstName: '',
@@ -116,15 +115,19 @@ const accordion = () => {
       email1: state.email1,
       email2: state.email2,
     }
-    // AuthAxios.post('PatientCallDetails', item)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(item)
+    AuthAxios.post('PatientCallDetails', item)
+      .then((res) => {
+        console.log(res.data)
+        success(res.data.message)
+        setVisible(false)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -517,6 +520,7 @@ const accordion = () => {
           </CButton>
         </CModalFooter>
       </CModal>
+      <ToastContainer />
     </div>
   )
 }

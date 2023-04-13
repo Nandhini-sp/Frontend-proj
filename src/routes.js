@@ -33,7 +33,7 @@ const PrimaryAssessment = React.lazy(() =>
   import('./views/reports/assessment/reportprimaryassessment'),
 )
 const PatientAssessment = React.lazy(() =>
-  import('./views/reports/assessment/reportpatienthistory'),
+  import('./views/reports/assessment/reportpatientassessment'),
 )
 
 const PatientDetailsTreatment = React.lazy(() =>

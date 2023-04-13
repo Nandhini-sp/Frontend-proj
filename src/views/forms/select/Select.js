@@ -16,10 +16,15 @@ import {
 
 import TimePicker from 'rc-time-picker'
 import 'rc-time-picker/assets/index.css'
+import AuthAxios from 'src/Interceptors/AuthAxios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Select = () => {
   const [visible, setVisible] = useState(false)
   const [time, setTime] = useState('')
+
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
 
   const [state, setState] = useState({
     assessmentTime: '',
@@ -71,15 +76,19 @@ const Select = () => {
       },
       email: state.email,
     }
-    // AuthAxios.post('VitalSignTreatment', item)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(item)
+    AuthAxios.post('VitalSignTreatment', item)
+      .then((res) => {
+        console.log(res.data)
+        success(res.data.message)
+        setVisible(false)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -353,6 +362,7 @@ const Select = () => {
           </CModalFooter>
         </CModal>
       </CRow>
+      <ToastContainer />
     </div>
   )
 }

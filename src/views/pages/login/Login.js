@@ -17,13 +17,15 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import AuthAxios from 'src/Interceptors/AuthAxios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Login = () => {
   const [state, setState] = useState({
-    userName: '',
-
+    email: '',
     password: '',
   })
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -33,14 +35,22 @@ const Login = () => {
   }
 
   const submitHandler = () => {
-    // AuthAxios.post('UsersLogin', state)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     location.href = '/#/login'
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(state)
-    location.href = '/#/dashboard'
+    AuthAxios.post('UsersLogin', state)
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.status === 'Success') {
+          success('Login Successfully')
+          setTimeout(() => {
+            location.href = '/#/dashboard'
+          }, 1000)
+        } else {
+          failure('Enter valid credential!')
+        }
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -58,11 +68,12 @@ const Login = () => {
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
-                        placeholder="Username"
-                        autoComplete="username"
-                        name="userName"
-                        value={state.userName}
-                        onChange={(event) => handleInputChange(event, 'userName')}
+                        type="email"
+                        placeholder="Email"
+                        autoComplete="email"
+                        name="email"
+                        value={state.email}
+                        onChange={(event) => handleInputChange(event, 'email')}
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -110,6 +121,7 @@ const Login = () => {
           </CCol>
         </CRow>
       </CContainer>
+      <ToastContainer />
     </div>
   )
 }

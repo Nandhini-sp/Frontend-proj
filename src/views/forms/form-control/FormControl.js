@@ -18,13 +18,18 @@ import {
   CFormCheck,
 } from '@coreui/react'
 import './style.css'
+import AuthAxios from 'src/Interceptors/AuthAxios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const formControl = () => {
   const [visible, setVisible] = useState(false)
   const [time, setTime] = useState('')
 
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
+
   const [state, setState] = useState({
-    userId: '',
+    userId: '1',
     procedureStartTime: '',
     procedureType: '',
     procedureEndTime: '',
@@ -48,15 +53,19 @@ const formControl = () => {
   }
 
   const submitHandler = () => {
-    // AuthAxios.post('VehicleCallDetails', state)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(state)
+    AuthAxios.post('PatientTreatmentDetails', state)
+      .then((res) => {
+        console.log(res.data)
+        success(res.data.message)
+        setVisible(false)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -298,6 +307,7 @@ const formControl = () => {
           </CModalFooter>
         </CModal>
       </CRow>
+      <ToastContainer />
     </div>
   )
 }

@@ -17,6 +17,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import AuthAxios from 'src/Interceptors/AuthAxios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Register = () => {
   const [state, setState] = useState({
@@ -26,6 +27,8 @@ const Register = () => {
     password: '',
     userType: '',
   })
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -35,14 +38,22 @@ const Register = () => {
   }
 
   const submitHandler = () => {
-    // AuthAxios.post('Users', state)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     location.href = '/#/login'
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(state)
-    location.href = '/#/login'
+    AuthAxios.post('Users', state)
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.message === 'Success') {
+          success('Register Successfully')
+          setTimeout(() => {
+            location.href = '/#/login'
+          }, 1000)
+        } else {
+          failure('Email already Exist!')
+        }
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -128,6 +139,7 @@ const Register = () => {
           </CCol>
         </CRow>
       </CContainer>
+      <ToastContainer />
     </div>
   )
 }

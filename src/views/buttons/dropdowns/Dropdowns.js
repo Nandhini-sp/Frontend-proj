@@ -14,14 +14,17 @@ import {
   CFormInput,
   CFormLabel,
 } from '@coreui/react'
-
+import { ToastContainer, toast } from 'react-toastify'
 import { CButton } from '@coreui/react'
+import AuthAxios from 'src/Interceptors/AuthAxios'
 
 const ComplainBased = () => {
   const [visible, setVisible] = useState(false)
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
 
   const [state, setState] = useState({
-    userId: '',
+    userId: '1',
     respiration: '',
     seizure: '',
     toxicExposure: '',
@@ -41,15 +44,19 @@ const ComplainBased = () => {
   }
 
   const submitHandler = () => {
-    // AuthAxios.post('PatientAssessment', state)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(state)
+    AuthAxios.post('PatientAssessment', state)
+      .then((res) => {
+        console.log(res.data)
+        success(res.data.message)
+        setVisible(false)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -223,6 +230,7 @@ const ComplainBased = () => {
           </CModalFooter>
         </CModal>
       </CRow>
+      <ToastContainer />
     </div>
   )
 }

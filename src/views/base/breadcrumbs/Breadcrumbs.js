@@ -21,21 +21,8 @@ import {
   CFormSelect,
 } from '@coreui/react'
 import './style.css'
-
-const crewTypes = [
-  'EMT-1',
-  'EMT-2',
-  'EMT-3',
-  'EMR',
-  'PCP',
-  'ACP',
-  'CCP',
-  'RT',
-  'RN',
-  'MD',
-  'Student',
-  'Other',
-]
+import AuthAxios from 'src/Interceptors/AuthAxios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const BreadCrumbs = () => {
   const [time, setTime] = useState(null)
@@ -44,9 +31,11 @@ const BreadCrumbs = () => {
   const [time4, setTime4] = useState(null)
   const [time5, setTime5] = useState(null)
   const [visible, setVisible] = useState(false)
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
 
   const [state, setState] = useState({
-    userId: '',
+    userId: '1',
     timeNotified: '',
     timeEnroute: '',
     timeAtScene: '',
@@ -76,15 +65,19 @@ const BreadCrumbs = () => {
   }
 
   const submitHandler = () => {
-    // AuthAxios.post('VehicleCallDetails', state)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(state)
+    AuthAxios.post('VehicleCallDetails', state)
+      .then((res) => {
+        success(res.data.message)
+        console.log(res.data)
+        setVisible(false)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
   return (
     <div className="vehicle">
@@ -436,6 +429,7 @@ const BreadCrumbs = () => {
           </CModalFooter>
         </CModal>
       </CRow>
+      <ToastContainer />
     </div>
   )
 }

@@ -16,11 +16,14 @@ import {
 } from '@coreui/react'
 
 import { CButton } from '@coreui/react'
-
+import { ToastContainer, toast } from 'react-toastify'
 import { Input } from 'reactstrap'
+import AuthAxios from 'src/Interceptors/AuthAxios'
 
 const Cards = () => {
   const [visible, setVisible] = useState(false)
+  const success = (e) => toast.success(e)
+  const failure = (e) => toast.error(e)
 
   const [state, setState] = useState({
     userId: '',
@@ -91,15 +94,19 @@ const Cards = () => {
       email1: state.email1,
       email2: state.email2,
     }
-    // AuthAxios.post('IncidentCallDetails', item)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setTimeout(() => {
-    //       location.href = '/'
-    //     }, 2000)
-    //   })
-    //   .catch((err) => console.error(err.message))
-    console.log(item)
+    AuthAxios.post('IncidentCallDetails', item)
+      .then((res) => {
+        success(res.data.message)
+        setVisible(false)
+        console.log(res.data)
+        setTimeout(() => {
+          location.href = '/'
+        }, 2000)
+      })
+      .catch((err) => {
+        failure('Internal Server Error')
+        console.error(err.message)
+      })
   }
 
   return (
@@ -292,6 +299,38 @@ const Cards = () => {
           </CCol>
         </CRow>
       </CContainer>
+
+      <CContainer>
+        <CRow>
+          <CCol xs={6}>
+            <CFormFloating className="mt-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Scene Location Typ"
+                value={state.sceneLocationType}
+                onChange={(event) => handleInputChange(event, 'sceneLocationType')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Scene Location Type</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol xs={6}>
+            <CFormFloating className="mt-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Destination Facility"
+                value={state.destinationFacility}
+                onChange={(event) => handleInputChange(event, 'destinationFacility')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Destination Facility</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+      </CContainer>
+
       <CContainer className="">
         <CRow className="mt-3">
           <p>Destination Location</p>
@@ -475,6 +514,7 @@ const Cards = () => {
           </CButton>
         </CModalFooter>
       </CModal>
+      <ToastContainer />
     </div>
   )
 }
