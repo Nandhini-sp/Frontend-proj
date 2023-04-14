@@ -174,7 +174,7 @@ const Cards = () => {
       </CContainer>
 
       <CContainer>
-        <CRow className="mb-3">
+        <CRow className="">
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <Input
@@ -183,7 +183,7 @@ const Cards = () => {
                 value={state.dateOfIncident}
                 onChange={(event) => handleInputChange(event, 'dateOfIncident')}
                 style={{ width: '100%', height: '50px' }}
-                className="mb-3"
+                className=""
               ></Input>
               <CFormLabel htmlFor="floatingInput">Date of Incident</CFormLabel>
             </CFormFloating>
@@ -196,9 +196,135 @@ const Cards = () => {
                 value={state.timeOfIncident}
                 onChange={(event) => handleInputChange(event, 'timeOfIncident')}
                 style={{ width: '100%', height: '50px' }}
-                className="mb-3"
+                className=""
               ></Input>
               <CFormLabel htmlFor="floatingInput">Time of Incident</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+      </CContainer>
+
+      <CContainer>
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Destination Determinant"
+                value={state.destinationDeterminant}
+                onChange={(event) => handleInputChange(event, 'destinationDeterminant')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Destination Determinant</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Destination Determinant"
+                value={state.destinationLocationType}
+                onChange={(event) => handleInputChange(event, 'destinationLocationType')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Destination Location Type</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+      </CContainer>
+
+      <CContainer>
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="graphicLocator"
+                value={state.graphicLocator}
+                onChange={(event) => handleInputChange(event, 'graphicLocator')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Geographic Locator</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Surname"
+                name="sceneFacility"
+                value={state.sceneFacility}
+                onChange={(event) => handleInputChange(event, 'sceneFacility')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Scene Facility</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+      </CContainer>
+
+      <CContainer>
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Scene Location Typ"
+                value={state.sceneLocationType}
+                onChange={(event) => handleInputChange(event, 'sceneLocationType')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Scene Location Type</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Destination Facility"
+                value={state.destinationFacility}
+                onChange={(event) => handleInputChange(event, 'destinationFacility')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Destination Facility</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+      </CContainer>
+
+      <CContainer>
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Patient Disposition"
+                value={state.patientDisposition}
+                onChange={(event) => handleInputChange(event, 'patientDisposition')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Patient Disposition</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Factors Affecting EMS"
+                value={state.EMS}
+                onChange={(event) => handleInputChange(event, 'EMS')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Factors Affecting EMS</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
@@ -261,101 +387,6 @@ const Cards = () => {
                 style={{ height: '50px' }}
               />
               <CFormLabel htmlFor="floatingInput">Postal Code</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
-      </CContainer>
-
-      <CContainer>
-        <CRow>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mt-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Destination Determinant"
-                value={state.destinationDeterminant}
-                onChange={(event) => handleInputChange(event, 'destinationDeterminant')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Destination Determinant</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mt-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Destination Determinant"
-                value={state.destinationLocationType}
-                onChange={(event) => handleInputChange(event, 'destinationLocationType')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Destination Location Type</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
-      </CContainer>
-
-      <CContainer>
-        <CRow>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mt-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="FirstName"
-                name="graphicLocator"
-                value={state.graphicLocator}
-                onChange={(event) => handleInputChange(event, 'graphicLocator')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Geographic Locator</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mt-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Surname"
-                name="sceneFacility"
-                value={state.sceneFacility}
-                onChange={(event) => handleInputChange(event, 'sceneFacility')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Scene Facility</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
-      </CContainer>
-
-      <CContainer>
-        <CRow>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mt-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Scene Location Typ"
-                value={state.sceneLocationType}
-                onChange={(event) => handleInputChange(event, 'sceneLocationType')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Scene Location Type</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mt-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Destination Facility"
-                value={state.destinationFacility}
-                onChange={(event) => handleInputChange(event, 'destinationFacility')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Destination Facility</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
@@ -424,36 +455,6 @@ const Cards = () => {
         </CRow>
       </CContainer>
 
-      <CContainer>
-        <CRow>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Patient Disposition"
-                value={state.patientDisposition}
-                onChange={(event) => handleInputChange(event, 'patientDisposition')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Patient Disposition</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Factors Affecting EMS"
-                value={state.EMS}
-                onChange={(event) => handleInputChange(event, 'EMS')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Factors Affecting EMS</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
-      </CContainer>
       <CContainer className="">
         <CRow>
           <p className="mt-3">Service Payment</p>
