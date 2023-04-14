@@ -113,27 +113,29 @@ const Select = () => {
 
   return (
     <div>
-      <CRow className="mb-3 vehicle">
-        <CCol lg={6} md={6} sm={12}>
-          <CFormLabel htmlFor="floatingInput" className="h3">
-            Time Of Assessment
-          </CFormLabel>
-          <TimePicker
-            placeholder="Select Time"
-            use12Hours
-            showSecond={false}
-            focusOnOpen={true}
-            format="hh:mm A"
-            onChange={(e) => {
-              setState((prevProps) => ({
-                ...prevProps,
-                assessmentTime: e.format('LT'),
-              }))
-              setTime(e.format('LT'))
-            }}
-            className="times"
-          />
-        </CCol>
+      <CRow>
+        <CRow className="mb-3 vehicle">
+          <CCol lg={6} md={6} sm={12}>
+            <CFormLabel htmlFor="floatingInput" className="h3">
+              Time Of Assessment
+            </CFormLabel>
+            <TimePicker
+              placeholder="Select Time"
+              use12Hours
+              showSecond={false}
+              focusOnOpen={true}
+              format="hh:mm A"
+              onChange={(e) => {
+                setState((prevProps) => ({
+                  ...prevProps,
+                  assessmentTime: e.format('LT'),
+                }))
+                setTime(e.format('LT'))
+              }}
+              className="times"
+            />
+          </CCol>
+        </CRow>
       </CRow>
 
       <CRow>
@@ -242,6 +244,38 @@ const Select = () => {
             </CFormFloating>
           </CCol>
         </CRow>
+
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="Surname"
+                name="respiration"
+                value={state.respiration}
+                onChange={(event) => handleInputChange(event, 'respiration')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
+            </CFormFloating>
+          </CCol>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="bloodGlucose"
+                value={state.bloodGlucose}
+                onChange={(event) => handleInputChange(event, 'bloodGlucose')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Blood Glucose</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+
         <CRow>
           <CFormLabel htmlFor="floatingInput" className="h5">
             Blood Pressure
@@ -275,36 +309,7 @@ const Select = () => {
             </CFormFloating>
           </CCol>
         </CRow>
-        <CRow>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Surname"
-                name="respiration"
-                value={state.respiration}
-                onChange={(event) => handleInputChange(event, 'respiration')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="FirstName"
-                name="bloodGlucose"
-                value={state.bloodGlucose}
-                onChange={(event) => handleInputChange(event, 'bloodGlucose')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Blood Glucose</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
+
         <CRow>
           <CFormLabel htmlFor="floatingInput" className="h5">
             Oxygen Saturation

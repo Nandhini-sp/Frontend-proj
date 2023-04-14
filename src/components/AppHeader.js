@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CContainer,
@@ -8,16 +7,14 @@ import {
   CHeaderDivider,
   CHeaderNav,
   CHeaderToggler,
-  CNavLink,
-  CNavItem,
   CLink,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
+import { cilMenu } from '@coreui/icons'
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
-import logo1  from 'src/assets/brand/logo1.png'
+import logo1 from 'src/assets/brand/logo1.png'
 
 const AppHeader = () => {
   const dispatch = useDispatch()
@@ -33,45 +30,16 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
-          {/* <CIcon icon={logo} height={48} alt="Logo" /> */}
           <div>
-          <img src={logo1} class="rounded float-start" alt="..."/>
-</div>
+            <img src={logo1} class="rounded float-start" alt="..." />
+          </div>
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
-
-        <CLink href="/base" target="" className='text-decoration-none fw-4'>  
-          DOTTY CARE
-        </CLink>
-          {/* <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>
-              Dashboard
-            </CNavLink>
-          </CNavItem> */}
-          {/* <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
-          </CNavItem> */}
-          {/* <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
-          </CNavItem> */}
+          <CLink href="/#/dashboard" target="" className="text-decoration-none fw-4">
+            DOTTY CARE
+          </CLink>
         </CHeaderNav>
-        <CHeaderNav>
-          {/* <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
-            </CNavLink>
-          </CNavItem> */}
-          {/* <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
-            </CNavLink>
-          </CNavItem> */}
-          {/* <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
-            </CNavLink>
-          </CNavItem> */}
-        </CHeaderNav>
+        <CHeaderNav></CHeaderNav>
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />
         </CHeaderNav>

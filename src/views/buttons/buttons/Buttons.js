@@ -19,6 +19,7 @@ import {
 } from '@coreui/react'
 import { ToastContainer, toast } from 'react-toastify'
 import AuthAxios from 'src/Interceptors/AuthAxios'
+import { Input } from 'reactstrap'
 
 const Buttons = () => {
   const [visible, setVisible] = useState(false)
@@ -86,24 +87,28 @@ const Buttons = () => {
       <CContainer>
         <CRow className="mb-3">
           <CCol lg={6} md={6} sm={12}>
-            <p>Date Of Injury</p>
-            <CFormInput
-              type="Date"
-              name="dateOfInjury"
-              value={state.dateOfInjury}
-              onChange={(event) => handleInputChange(event, 'dateOfInjury')}
-              style={{ height: '50px' }}
-            ></CFormInput>
+            <CFormFloating className="mb-3">
+              <Input
+                type="date"
+                name="dateOfInjury"
+                value={state.dateOfInjury}
+                onChange={(event) => handleInputChange(event, 'dateOfInjury')}
+                style={{ width: '100%', height: '50px' }}
+              ></Input>
+              <CFormLabel htmlFor="floatingInput">Date Of Injury</CFormLabel>
+            </CFormFloating>
           </CCol>
           <CCol lg={6} md={6} sm={12}>
-            <p>Time Of Injury</p>
-            <CFormInput
-              type="Time"
-              name="timeOfInjury"
-              value={state.timeOfInjury}
-              onChange={(event) => handleInputChange(event, 'timeOfInjury')}
-              style={{ height: '50px' }}
-            ></CFormInput>
+            <CFormFloating className="mb-3">
+              <Input
+                type="Time"
+                name="timeOfInjury"
+                value={state.timeOfInjury}
+                onChange={(event) => handleInputChange(event, 'timeOfInjury')}
+                style={{ width: '100%', height: '50px' }}
+              ></Input>
+              <CFormLabel htmlFor="floatingInput">Time Of Injury</CFormLabel>
+            </CFormFloating>
           </CCol>
         </CRow>
         <CRow>

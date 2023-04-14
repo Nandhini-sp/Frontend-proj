@@ -176,24 +176,30 @@ const Cards = () => {
       <CContainer>
         <CRow className="mb-3">
           <CCol lg={6} md={6} sm={12}>
-            <Input
-              type="Date"
-              name="dateOfIncident"
-              value={state.dateOfIncident}
-              onChange={(event) => handleInputChange(event, 'dateOfIncident')}
-              style={{ width: '100%', height: '50px' }}
-              className="mb-3"
-            ></Input>
+            <CFormFloating className="mb-3">
+              <Input
+                type="date"
+                name="dateOfIncident"
+                value={state.dateOfIncident}
+                onChange={(event) => handleInputChange(event, 'dateOfIncident')}
+                style={{ width: '100%', height: '50px' }}
+                className="mb-3"
+              ></Input>
+              <CFormLabel htmlFor="floatingInput">Date of Incident</CFormLabel>
+            </CFormFloating>
           </CCol>
           <CCol lg={6} md={6} sm={12}>
-            <Input
-              type="Time"
-              name="timeOfIncident"
-              value={state.timeOfIncident}
-              onChange={(event) => handleInputChange(event, 'timeOfIncident')}
-              style={{ width: '100%', height: '50px' }}
-              className="mb-3"
-            ></Input>
+            <CFormFloating className="mb-3">
+              <Input
+                type="Time"
+                name="timeOfIncident"
+                value={state.timeOfIncident}
+                onChange={(event) => handleInputChange(event, 'timeOfIncident')}
+                style={{ width: '100%', height: '50px' }}
+                className="mb-3"
+              ></Input>
+              <CFormLabel htmlFor="floatingInput">Time of Incident</CFormLabel>
+            </CFormFloating>
           </CCol>
         </CRow>
       </CContainer>
