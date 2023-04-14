@@ -1,6 +1,16 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilChartPie, cilCursor, cilNotes, cilPuzzle } from '@coreui/icons'
+import {
+  cilBike,
+  cilBlind,
+  cilBook,
+  cilHospital,
+  cilPhone,
+  cilSave,
+  cilSitemap,
+  cilTag,
+  cilVector,
+} from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
@@ -12,22 +22,25 @@ const _nav = [
     component: CNavGroup,
     name: 'Call Details',
     to: '/base',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPhone} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'Patient Details',
         to: '/callDetails/PatientDetails',
+        icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Vehicle Details',
         to: '/callDetails/VehicleDetails',
+        icon: <CIcon icon={cilBike} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Incident Details',
         to: '/callDetails/IncidentDetails',
+        icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
       },
     ],
   },
@@ -35,39 +48,44 @@ const _nav = [
     component: CNavGroup,
     name: 'Assessment',
     to: '/buttons',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilSitemap} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'Patient History',
         to: '/assessment/PatientHistory',
+        icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Primary Assessment',
         to: '/assessment/PrimaryAssessment',
+        icon: <CIcon icon={cilSave} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Patient Assessment',
         to: '/assessment/PatientAssessment',
+        icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
       },
     ],
   },
   {
     component: CNavGroup,
     name: 'Treatment',
-    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilHospital} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'Patient Details',
         to: '/treatment/PatientDetails',
+        icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Vital Sign',
         to: '/treatment/VitalSign',
+        icon: <CIcon icon={cilVector} customClassName="nav-icon" />,
       },
     ],
   },
@@ -75,28 +93,31 @@ const _nav = [
     component: CNavGroup,
     name: 'Report',
     to: '/reports',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilBook} customClassName="nav-icon" />,
     items: [
       {
         component: CNavGroup,
         name: 'Call Details Report',
         to: '/base',
-        icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+        icon: <CIcon icon={cilPhone} customClassName="nav-icon" />,
         items: [
           {
             component: CNavItem,
             name: 'Patient Report',
             to: '/reports/calldetails/patientdetails',
+            icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
           },
           {
             component: CNavItem,
             name: 'Vehicle Report',
             to: '/reports/calldetails/vehicledetails',
+            icon: <CIcon icon={cilBike} customClassName="nav-icon" />,
           },
           {
             component: CNavItem,
             name: 'Incident Report',
             to: '/reports/calldetails/incidentdetails',
+            icon: <CIcon icon={cilTag} customClassName="nav-icon" />,
           },
         ],
       },
@@ -104,39 +125,44 @@ const _nav = [
         component: CNavGroup,
         name: 'Assessment Report',
         to: '/buttons',
-        icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+        icon: <CIcon icon={cilSitemap} customClassName="nav-icon" />,
         items: [
           {
             component: CNavItem,
             name: 'Patient History Report',
             to: '/reports/assessment/patienthistory',
+            icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
           },
           {
             component: CNavItem,
             name: 'Primary Assess Report',
             to: '/reports/assessment/primaryassessment',
+            icon: <CIcon icon={cilSave} customClassName="nav-icon" />,
           },
           {
             component: CNavItem,
             name: 'Patient Assess Report',
             to: '/reports/assessment/patientassessment',
+            icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
           },
         ],
       },
       {
         component: CNavGroup,
         name: 'Treatment Report',
-        icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+        icon: <CIcon icon={cilHospital} customClassName="nav-icon" />,
         items: [
           {
             component: CNavItem,
             name: 'Patient Report',
             to: '/reports/tratment/Patientdetailstreatment',
+            icon: <CIcon icon={cilBlind} customClassName="nav-icon" />,
           },
           {
             component: CNavItem,
             name: 'Vital Sign Report',
             to: '/reports/treatment/vitalsign',
+            icon: <CIcon icon={cilVector} customClassName="nav-icon" />,
           },
         ],
       },

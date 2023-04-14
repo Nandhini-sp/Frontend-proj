@@ -31,12 +31,16 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
-      <CSidebarBrand className="d-flex justify-content-center pe-2 ps-2" to="/">
+      <CSidebarBrand
+        className="d-flex justify-content-center pe-2 ps-2"
+        style={{ background: '#fdfdfd', border: '2px solid #3c4b64' }}
+        to="/"
+      >
         {/* <CImage rounded thumbnail src="/assets/brand/logo" width={200} height={200} /> */}
 
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
         <img src={logo1} class="pe-2" alt="..." style={{ width: 40 }} />
-        <div>DOTTY CARE</div>
+        <div style={{ color: 'black' }}>DOTTY CARE</div>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
