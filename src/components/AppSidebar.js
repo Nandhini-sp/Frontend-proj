@@ -22,6 +22,8 @@ const AppSidebar = () => {
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
+  console.log(unfoldable, sidebarShow)
+
   return (
     <CSidebar
       position="fixed"
@@ -36,11 +38,8 @@ const AppSidebar = () => {
         style={{ background: '#fdfdfd', border: '2px solid #3c4b64' }}
         to="/"
       >
-        {/* <CImage rounded thumbnail src="/assets/brand/logo" width={200} height={200} /> */}
-
-        {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
         <img src={logo1} class="pe-2" alt="..." style={{ width: 40 }} />
-        <div style={{ color: 'black' }}>DOTTY CARE</div>
+        {!unfoldable && <div style={{ color: 'black' }}>DOTTY CARE</div>}
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
