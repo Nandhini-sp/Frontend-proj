@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import {
@@ -23,7 +23,10 @@ import AuthAxios from 'src/Interceptors/AuthAxios'
 const Cards = () => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
+  const [disabel, setdisabel] = useState(true)
   const failure = (e) => toast.error(e)
+
+  const [submitCon, setsubmitCon] = useState(true)
 
   const [state, setState] = useState({
     userId: '',
@@ -53,6 +56,38 @@ const Cards = () => {
     email1: '',
     email2: '',
   })
+
+  useEffect(() => {
+    if (
+      state.serviceCode !== '' &&
+      state.serviceType !== '' &&
+      state.dateOfIncident !== '' &&
+      state.timeOfIncident !== '' &&
+      state.incidentLocation_street !== '' &&
+      state.incidentLocation_city !== '' &&
+      state.incidentLocation_state !== '' &&
+      state.incidentLocation_postalCode !== '' &&
+      state.destinationDeterminant !== '' &&
+      state.graphicLocator !== '' &&
+      state.sceneLocationType !== '' &&
+      state.destinationFacility !== '' &&
+      state.sceneFacility !== '' &&
+      state.destinationLocation_street !== '' &&
+      state.destinationLocation_city !== '' &&
+      state.destinationLocation_state !== '' &&
+      state.destinationLocation_postalCode !== '' &&
+      state.servicePayment_responsibility !== '' &&
+      state.servicePayment_number !== '' &&
+      state.EMS !== '' &&
+      state.patientDisposition !== '' &&
+      state.destinationLocationType !== ''
+    ) {
+      setsubmitCon(false)
+    } else {
+      setsubmitCon(true)
+    }
+  }, [state])
+
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -69,74 +104,78 @@ const Cards = () => {
       serviceType: state.serviceType,
       dateOfIncident: state.dateOfIncident,
       timeOfIncident: state.timeOfIncident,
-      incidentLocation: {
-        street: state.incidentLocation_street,
-        city: state.incidentLocation_city,
-        state: state.incidentLocation_state,
-        postalCode: state.incidentLocation_postalCode,
-      },
+      incidentLocation_street: state.incidentLocation_street,
+      incidentLocation_city: state.incidentLocation_city,
+      incidentLocation_state: state.incidentLocation_state,
+      incidentLocation_postalCode: state.incidentLocation_postalCode,
       destinationDeterminant: state.destinationDeterminant,
       graphicLocator: state.graphicLocator,
       sceneLocationType: state.sceneLocationType,
       destinationFacility: state.destinationFacility,
       sceneFacility: state.sceneFacility,
       destinationLocationType: state.destinationLocationType,
-      destinationLocation: {
-        street: state.destinationLocation_street,
-        city: state.destinationLocation_city,
-        state: state.destinationLocation_state,
-        postalCode: state.destinationLocation_postalCode,
-      },
-      servicePayment: {
-        responsibility: state.servicePayment_responsibility,
-        number: state.servicePayment_number,
-      },
+      destinationLocation_street: state.destinationLocation_street,
+      destinationLocation_city: state.destinationLocation_city,
+      destinationLocation_state: state.destinationLocation_state,
+      destinationLocation_postalCode: state.destinationLocation_postalCode,
+      responsibility: state.servicePayment_responsibility,
+      number: state.servicePayment_number,
       EMS: state.EMS,
       patientDisposition: state.patientDisposition,
       email1: state.email1,
       email2: state.email2,
     }
-    AuthAxios.post('IncidentCallDetails', item)
-      .then((res) => {
-        success(res.data.message)
-        setVisible(false)
-        console.log(res.data)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            userId: '',
-            serviceCode: '',
-            serviceType: '',
-            dateOfIncident: '',
-            timeOfIncident: '',
-            incidentLocation_street: '',
-            incidentLocation_city: '',
-            incidentLocation_state: '',
-            incidentLocation_postalCode: '',
-            destinationDeterminant: '',
-            graphicLocator: '',
-            sceneLocationType: '',
-            destinationFacility: '',
-            sceneFacility: '',
-            destinationLocationAddress: '',
-            destinationLocation_street: '',
-            destinationLocation_city: '',
-            destinationLocation_state: '',
-            destinationLocation_postalCode: '',
-            servicePayment_responsibility: '',
-            servicePayment_number: '',
-            EMS: '',
-            patientDisposition: '',
-            destinationLocationType: '',
-            email1: '',
-            email2: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email1 = regex.test(state.email1)
+    const email2 = regex.test(state.email2)
+    if (email1 && email2) {
+      setdisabel(false)
+      AuthAxios.post('IncidentCallDetails', item)
+        .then((res) => {
+          success(res.data.message)
+          setdisabel(true)
+          setVisible(false)
+          console.log(res.data)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              userId: '',
+              serviceCode: '',
+              serviceType: '',
+              dateOfIncident: '',
+              timeOfIncident: '',
+              incidentLocation_street: '',
+              incidentLocation_city: '',
+              incidentLocation_state: '',
+              incidentLocation_postalCode: '',
+              destinationDeterminant: '',
+              graphicLocator: '',
+              sceneLocationType: '',
+              destinationFacility: '',
+              sceneFacility: '',
+              destinationLocationAddress: '',
+              destinationLocation_street: '',
+              destinationLocation_city: '',
+              destinationLocation_state: '',
+              destinationLocation_postalCode: '',
+              servicePayment_responsibility: '',
+              servicePayment_number: '',
+              EMS: '',
+              patientDisposition: '',
+              destinationLocationType: '',
+              email1: '',
+              email2: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
 
   return (
@@ -494,14 +533,18 @@ const Cards = () => {
       <CRow>
         <CCol xs={12}>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+            <button
+              class="btn btn-success"
+              disabled={submitCon}
+              onClick={() => setVisible(!visible)}
+            >
               Submit
             </button>
           </div>
         </CCol>
       </CRow>
 
-      <CModal visible={visible} onClose={() => setVisible(false)}>
+      <CModal visible={visible}>
         <CModalHeader>
           <CModalTitle>DOTTY CARE</CModalTitle>
         </CModalHeader>
@@ -540,7 +583,11 @@ const Cards = () => {
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          <CButton color="primary" onClick={() => submitHandler()}>
+          <CButton
+            color="primary"
+            disabled={state.email1 !== '' && state.email2 !== '' && disabel ? false : true}
+            onClick={() => submitHandler()}
+          >
             Submit
           </CButton>
         </CModalFooter>

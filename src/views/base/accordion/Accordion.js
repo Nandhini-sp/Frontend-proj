@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import {
   CButton,
@@ -25,6 +25,8 @@ import { ToastContainer, toast } from 'react-toastify'
 
 const accordion = () => {
   const [visible, setVisible] = useState(false)
+  const [submitCon, setsubmitCon] = useState(true)
+  const [disabel, setdisabel] = useState(true)
 
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -55,26 +57,88 @@ const accordion = () => {
     email2: '',
     benifits: '',
   })
-  const exampleToast = (
-    <CToast>
-      <CToastHeader closeButton>
-        <svg
-          className="rounded me-2"
-          width="20"
-          height="20"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-          role="img"
-        >
-          <rect width="100%" height="100%" fill="#007aff"></rect>
-        </svg>
-        <div className="fw-bold me-auto">CoreUI for React.js</div>
-        <small>7 min ago</small>
-      </CToastHeader>
-      <CToastBody>Hello, world! This is a toast message.</CToastBody>
-    </CToast>
-  )
+
+  useEffect(() => {
+    if (state.medicalInsurance === 'Yes') {
+      if (state.typeOfInsurance === 'Government') {
+        if (
+          state.firstName !== '' &&
+          state.sureName !== '' &&
+          state.street !== '' &&
+          state.city !== '' &&
+          state.state !== '' &&
+          state.postalCode !== '' &&
+          state.country !== '' &&
+          state.telePhone !== '' &&
+          state.aadhar !== '' &&
+          state.DOB !== '' &&
+          state.age !== '' &&
+          state.gender !== '' &&
+          state.medicalInsurance !== '' &&
+          state.typeOfInsurance !== '' &&
+          state.govt_ins_Id !== '' &&
+          state.coverage_Amount !== '' &&
+          state.benifits !== '' &&
+          state.hospital_chart_no !== '' &&
+          state.commends !== ''
+        ) {
+          setsubmitCon(false)
+        } else {
+          setsubmitCon(true)
+        }
+      } else if (state.typeOfInsurance === 'Private') {
+        if (
+          state.firstName !== '' &&
+          state.sureName !== '' &&
+          state.street !== '' &&
+          state.city !== '' &&
+          state.state !== '' &&
+          state.postalCode !== '' &&
+          state.country !== '' &&
+          state.telePhone !== '' &&
+          state.aadhar !== '' &&
+          state.DOB !== '' &&
+          state.age !== '' &&
+          state.gender !== '' &&
+          state.medicalInsurance !== '' &&
+          state.typeOfInsurance !== '' &&
+          state.govt_ins_Id !== '' &&
+          state.benifits !== '' &&
+          state.hospital_chart_no !== '' &&
+          state.commends !== ''
+        ) {
+          setsubmitCon(false)
+        } else {
+          setsubmitCon(true)
+        }
+      } else {
+        setsubmitCon(true)
+      }
+    } else {
+      if (
+        state.firstName !== '' &&
+        state.sureName !== '' &&
+        state.street !== '' &&
+        state.city !== '' &&
+        state.state !== '' &&
+        state.postalCode !== '' &&
+        state.country !== '' &&
+        state.telePhone !== '' &&
+        state.aadhar !== '' &&
+        state.DOB !== '' &&
+        state.age !== '' &&
+        state.gender !== '' &&
+        state.medicalInsurance !== '' &&
+        state.hospital_chart_no !== '' &&
+        state.commends !== ''
+      ) {
+        setsubmitCon(false)
+      } else {
+        setsubmitCon(true)
+      }
+    }
+  }, [state])
+
   const handleInputChange = (event, name) => {
     setState((prevProps) => ({
       ...prevProps,
@@ -89,13 +153,11 @@ const accordion = () => {
       userId: users.result._id,
       firstName: state.firstName,
       sureName: state.sureName,
-      address: {
-        street: state.street,
-        city: state.city,
-        state: state.state,
-        country: state.country,
-        postalCode: state.postalCode,
-      },
+      street: state.street,
+      city: state.city,
+      state: state.state,
+      country: state.country,
+      postalCode: state.postalCode,
       telePhone: state.telePhone,
       DOB: state.DOB,
       age: state.age,
@@ -103,59 +165,67 @@ const accordion = () => {
       aadhar: state.aadhar,
       medicalInsurance: state.medicalInsurance,
       typeOfInsurance: state.typeOfInsurance,
-      governmentInsurance: {
-        insuranceId: state.typeOfInsurance === 'Government' ? state.govt_ins_Id : '',
-        coverageAmount: state.typeOfInsurance === 'Government' ? state.coverage_Amount : '',
-        benefits: state.typeOfInsurance === 'Government' ? state.benifits : '',
-      },
-      privateInsurance: {
-        insuranceId: state.typeOfInsurance === 'Private' ? state.govt_ins_Id : '',
-        benefits: state.typeOfInsurance === 'Private' ? state.benifits : '',
-      },
+      governmentInsurance_insuranceId:
+        state.typeOfInsurance === 'Government' ? state.govt_ins_Id : '',
+      governmentInsurance_coverageAmount:
+        state.typeOfInsurance === 'Government' ? state.coverage_Amount : '',
+      governmentInsurance_benefits: state.typeOfInsurance === 'Government' ? state.benifits : '',
+      privateInsurance_insuranceId: state.typeOfInsurance === 'Private' ? state.govt_ins_Id : '',
+      privateInsurance_benefits: state.typeOfInsurance === 'Private' ? state.benifits : '',
       hospitalChart: state.hospital_chart_no,
       comments: state.commends,
       email1: state.email1,
       email2: state.email2,
     }
-    AuthAxios.post('PatientCallDetails', item)
-      .then((res) => {
-        console.log(res.data)
-        success(res.data.message)
-        setVisible(false)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            firstName: '',
-            sureName: '',
-            street: '',
-            city: '',
-            state: '',
-            postalCode: '',
-            country: '',
-            telePhone: '',
-            aadhar: '',
-            DOB: '',
-            age: '',
-            gender: '',
-            medicalInsurance: '',
-            typeOfInsurance: '',
-            govt_ins_Id: '',
-            coverage_Amount: '',
-            govt_benefits: '',
-            private_ins_id: '',
-            private_benefits: '',
-            hospital_chart_no: '',
-            commends: '',
-            email1: '',
-            email2: '',
-            benifits: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email1 = regex.test(state.email1)
+    const email2 = regex.test(state.email2)
+    if (email1 && email2) {
+      setdisabel(false)
+      AuthAxios.post('PatientCallDetails', item)
+        .then((res) => {
+          console.log(res.data)
+          success(res.data.message)
+          setVisible(false)
+          setdisabel(true)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              firstName: '',
+              sureName: '',
+              street: '',
+              city: '',
+              state: '',
+              postalCode: '',
+              country: '',
+              telePhone: '',
+              aadhar: '',
+              DOB: '',
+              age: '',
+              gender: '',
+              medicalInsurance: '',
+              typeOfInsurance: '',
+              govt_ins_Id: '',
+              coverage_Amount: '',
+              govt_benefits: '',
+              private_ins_id: '',
+              private_benefits: '',
+              hospital_chart_no: '',
+              commends: '',
+              email1: '',
+              email2: '',
+              benifits: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
 
   return (
@@ -513,14 +583,18 @@ const accordion = () => {
       <CRow>
         <CCol lg={12} md={12} sm={12}>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+            <button
+              class="btn btn-success"
+              disabled={submitCon}
+              onClick={() => setVisible(!visible)}
+            >
               Submit
             </button>
           </div>
         </CCol>
       </CRow>
 
-      <CModal visible={visible} onClose={() => setVisible(false)}>
+      <CModal visible={visible}>
         <CModalHeader>
           <CModalTitle>DOTTY CARE</CModalTitle>
         </CModalHeader>
@@ -559,7 +633,11 @@ const accordion = () => {
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          <CButton color="primary" onClick={() => submitHandler()}>
+          <CButton
+            color="primary"
+            disabled={state.email1 !== '' && state.email2 !== '' && disabel ? false : true}
+            onClick={() => submitHandler()}
+          >
             Submit
           </CButton>
         </CModalFooter>

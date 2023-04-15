@@ -21,6 +21,9 @@ const ButtonGroups = () => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
+  const [disabel, setdisabel] = useState(true)
+
+  const [submitCon, setsubmitCon] = useState(true)
 
   const [state, setState] = useState({
     userId: '1',
@@ -32,6 +35,22 @@ const ButtonGroups = () => {
     symptoms: '',
     email: '',
   })
+
+  useEffect(() => {
+    if (
+      state.neroResponse !== '' &&
+      state.bodySystem !== '' &&
+      state.glasGlow !== '' &&
+      state.generalAssessment !== '' &&
+      state.airway !== '' &&
+      state.symptoms !== ''
+    ) {
+      setsubmitCon(false)
+    } else {
+      setsubmitCon(true)
+    }
+  }, [state])
+
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -49,29 +68,38 @@ const ButtonGroups = () => {
   }, [])
 
   const submitHandler = () => {
-    AuthAxios.post('PrimaryAssessment', state)
-      .then((res) => {
-        console.log(res.data)
-        success(res.data.message)
-        setVisible(false)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            userId: '1',
-            neroResponse: '',
-            bodySystem: '',
-            glasGlow: '',
-            generalAssessment: '',
-            airway: '',
-            symptoms: '',
-            email: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email = regex.test(state.email)
+    if (email) {
+      setdisabel(false)
+      AuthAxios.post('PrimaryAssessment', state)
+        .then((res) => {
+          console.log(res.data)
+          success(res.data.message)
+          setdisabel(true)
+          setVisible(false)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              userId: '1',
+              neroResponse: '',
+              bodySystem: '',
+              glasGlow: '',
+              generalAssessment: '',
+              airway: '',
+              symptoms: '',
+              email: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
 
   return (
@@ -175,14 +203,18 @@ const ButtonGroups = () => {
       <CRow>
         <CCol xs={12}>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+            <button
+              class="btn btn-success"
+              disabled={submitCon}
+              onClick={() => setVisible(!visible)}
+            >
               Submit
             </button>
           </div>
         </CCol>
       </CRow>
 
-      <CModal visible={visible} onClose={() => setVisible(false)}>
+      <CModal visible={visible}>
         <CModalHeader>
           <CModalTitle>DOTTY CARE</CModalTitle>
         </CModalHeader>
@@ -207,7 +239,11 @@ const ButtonGroups = () => {
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          <CButton color="primary" onClick={() => submitHandler()}>
+          <CButton
+            color="primary"
+            disabled={state.email !== '' && disabel ? false : true}
+            onClick={() => submitHandler()}
+          >
             Submit
           </CButton>
         </CModalFooter>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './style.css'
 import {
@@ -22,9 +22,12 @@ import { ToastContainer, toast } from 'react-toastify'
 const Select = () => {
   const [visible, setVisible] = useState(false)
   const [time, setTime] = useState('')
+  const [disabel, setdisabel] = useState(true)
 
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
+
+  const [submitCon, setsubmitCon] = useState(true)
 
   const [state, setState] = useState({
     assessmentTime: '',
@@ -44,6 +47,29 @@ const Select = () => {
     diatolic: '',
     email: '',
   })
+
+  useEffect(() => {
+    if (
+      state.assessmentTime !== '' &&
+      state.consciousnessLevel !== '' &&
+      state.pulseRate !== '' &&
+      state.siteOfPulseCheck !== '' &&
+      state.temperature !== '' &&
+      state.siteOfTemperatureCheck !== '' &&
+      state.skinColor !== '' &&
+      state.moisture !== '' &&
+      state.systolic !== '' &&
+      state.diastolic !== '' &&
+      state.respiration !== '' &&
+      state.bloodGlucose !== '' &&
+      state.preOxygen !== '' &&
+      state.postOxygen !== ''
+    ) {
+      setsubmitCon(false)
+    } else {
+      setsubmitCon(true)
+    }
+  }, [state])
 
   const handleInputChange = (event, name) => {
     const { value } = event.target
@@ -66,49 +92,54 @@ const Select = () => {
       siteOfTemperatureCheck: state.siteOfTemperatureCheck,
       skinColor: state.skinColor,
       moisture: state.moisture,
-      bloodPressure: {
-        systolic: state.systolic,
-        diastolic: state.diastolic,
-      },
+      bloodPressure_systolic: state.systolic,
+      bloodPressure_diastolic: state.diastolic,
       respiration: state.respiration,
       bloodGlucose: state.bloodGlucose,
-      oxygenSaturation: {
-        preOxygen: state.preOxygen,
-        postOxygen: state.postOxygen,
-      },
+      oxygenSaturation_preOxygen: state.preOxygen,
+      oxygenSaturation_postOxygen: state.postOxygen,
       email: state.email,
     }
-    AuthAxios.post('VitalSignTreatment', item)
-      .then((res) => {
-        console.log(res.data)
-        success(res.data.message)
-        setVisible(false)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            assessmentTime: '',
-            consciousnessLevel: '',
-            pulseRate: '',
-            siteOfPulseCheck: '',
-            temperature: '',
-            siteOfTemperatureCheck: '',
-            skinColor: '',
-            moisture: '',
-            systolic: '',
-            diastolic: '',
-            respiration: '',
-            bloodGlucose: '',
-            preOxygen: '',
-            postOxygen: '',
-            diatolic: '',
-            email: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email = regex.test(state.email)
+    if (email) {
+      setdisabel(false)
+      AuthAxios.post('VitalSignTreatment', item)
+        .then((res) => {
+          console.log(res.data)
+          success(res.data.message)
+          setdisabel(true)
+          setVisible(false)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              assessmentTime: '',
+              consciousnessLevel: '',
+              pulseRate: '',
+              siteOfPulseCheck: '',
+              temperature: '',
+              siteOfTemperatureCheck: '',
+              skinColor: '',
+              moisture: '',
+              systolic: '',
+              diastolic: '',
+              respiration: '',
+              bloodGlucose: '',
+              preOxygen: '',
+              postOxygen: '',
+              diatolic: '',
+              email: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
 
   return (
@@ -116,9 +147,7 @@ const Select = () => {
       <CRow>
         <CRow className="mb-3 vehicle">
           <CCol lg={6} md={6} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time Of Assessment
-            </CFormLabel>
+            <p>Time Of Assessment</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -277,9 +306,7 @@ const Select = () => {
         </CRow>
 
         <CRow>
-          <CFormLabel htmlFor="floatingInput" className="h5">
-            Blood Pressure
-          </CFormLabel>
+          <p>Blood Pressure</p>
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
@@ -311,9 +338,7 @@ const Select = () => {
         </CRow>
 
         <CRow>
-          <CFormLabel htmlFor="floatingInput" className="h5">
-            Oxygen Saturation
-          </CFormLabel>
+          <p>Oxygen Saturation</p>
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
@@ -349,14 +374,18 @@ const Select = () => {
         <CRow>
           <CCol xs={12}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              <button
+                class="btn btn-success"
+                disabled={submitCon}
+                onClick={() => setVisible(!visible)}
+              >
                 Submit
               </button>
             </div>
           </CCol>
         </CRow>
 
-        <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModal visible={visible}>
           <CModalHeader>
             <CModalTitle>DOTTY CARE</CModalTitle>
           </CModalHeader>
@@ -381,7 +410,11 @@ const Select = () => {
             <CButton color="secondary" onClick={() => setVisible(false)}>
               Close
             </CButton>
-            <CButton color="primary" onClick={() => submitHandler()}>
+            <CButton
+              color="primary"
+              disabled={state.email !== '' && disabel ? false : true}
+              onClick={() => submitHandler()}
+            >
               Submit
             </CButton>
           </CModalFooter>

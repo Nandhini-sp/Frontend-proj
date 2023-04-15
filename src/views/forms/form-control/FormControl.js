@@ -23,10 +23,13 @@ import { ToastContainer, toast } from 'react-toastify'
 
 const formControl = () => {
   const [visible, setVisible] = useState(false)
+  const [disabel, setdisabel] = useState(true)
   const [time, setTime] = useState('')
 
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
+
+  const [submitCon, setsubmitCon] = useState(true)
 
   const [state, setState] = useState({
     userId: '1',
@@ -44,6 +47,28 @@ const formControl = () => {
     administrativeRoute: '',
     email: '',
   })
+
+  useEffect(() => {
+    if (
+      state.procedureStartTime !== '' &&
+      state.procedureType !== '' &&
+      state.procedureEndTime !== '' &&
+      state.deviceMethod !== '' &&
+      state.technicianID !== '' &&
+      state.deviceSize !== '' &&
+      state.outcome !== '' &&
+      state.successfull !== '' &&
+      state.treatment !== '' &&
+      state.totalTime !== '' &&
+      state.treatmentType !== '' &&
+      state.administrativeRoute !== ''
+    ) {
+      setsubmitCon(false)
+    } else {
+      setsubmitCon(true)
+    }
+  }, [state])
+
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -61,35 +86,44 @@ const formControl = () => {
   }, [])
 
   const submitHandler = () => {
-    AuthAxios.post('PatientTreatmentDetails', state)
-      .then((res) => {
-        console.log(res.data)
-        success(res.data.message)
-        setVisible(false)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            userId: '1',
-            procedureStartTime: '',
-            procedureType: '',
-            procedureEndTime: '',
-            deviceMethod: '',
-            technicianID: '',
-            deviceSize: '',
-            outcome: '',
-            successfull: '',
-            treatment: '',
-            totalTime: '',
-            treatmentType: '',
-            administrativeRoute: '',
-            email: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email = regex.test(state.email)
+    if (email) {
+      setdisabel(false)
+      AuthAxios.post('PatientTreatmentDetails', state)
+        .then((res) => {
+          console.log(res.data)
+          success(res.data.message)
+          setVisible(false)
+          setdisabel(true)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              userId: '1',
+              procedureStartTime: '',
+              procedureType: '',
+              procedureEndTime: '',
+              deviceMethod: '',
+              technicianID: '',
+              deviceSize: '',
+              outcome: '',
+              successfull: '',
+              treatment: '',
+              totalTime: '',
+              treatmentType: '',
+              administrativeRoute: '',
+              email: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
 
   return (
@@ -97,9 +131,7 @@ const formControl = () => {
       <CContainer className="m-4 vehicle">
         <CRow>
           <CCol lg={6} md={6} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Procedure Start Time
-            </CFormLabel>
+            <p>Procedure Start Time</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -117,9 +149,7 @@ const formControl = () => {
             />
           </CCol>
           <CCol lg={6} md={6} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Treatment End Time
-            </CFormLabel>
+            <p>Treatment End Time</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -296,14 +326,18 @@ const formControl = () => {
         <CRow>
           <CCol xs={12}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              <button
+                class="btn btn-success"
+                disabled={submitCon}
+                onClick={() => setVisible(!visible)}
+              >
                 Submit
               </button>
             </div>
           </CCol>
         </CRow>
 
-        <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModal visible={visible}>
           <CModalHeader>
             <CModalTitle>DOTTY CARE</CModalTitle>
           </CModalHeader>
@@ -328,7 +362,11 @@ const formControl = () => {
             <CButton color="secondary" onClick={() => setVisible(false)}>
               Close
             </CButton>
-            <CButton color="primary" onClick={() => submitHandler()}>
+            <CButton
+              color="primary"
+              disabled={state.email !== '' && disabel ? false : true}
+              onClick={() => submitHandler()}
+            >
               Submit
             </CButton>
           </CModalFooter>

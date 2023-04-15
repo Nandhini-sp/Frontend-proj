@@ -22,6 +22,9 @@ const ComplainBased = () => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
+  const [disabel, setdisabel] = useState(true)
+
+  const [submitCon, setsubmitCon] = useState(true)
 
   const [state, setState] = useState({
     userId: '1',
@@ -35,6 +38,24 @@ const ComplainBased = () => {
     trauma: '',
     email: '',
   })
+
+  useEffect(() => {
+    if (
+      state.respiration !== '' &&
+      state.seizure !== '' &&
+      state.toxicExposure !== '' &&
+      state.cardiacArrest !== '' &&
+      state.chestPain !== '' &&
+      state.neonatal !== '' &&
+      state.obstetric !== '' &&
+      state.trauma !== ''
+    ) {
+      setsubmitCon(false)
+    } else {
+      setsubmitCon(true)
+    }
+  }, [state])
+
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -52,31 +73,40 @@ const ComplainBased = () => {
   }, [])
 
   const submitHandler = () => {
-    AuthAxios.post('PatientAssessment', state)
-      .then((res) => {
-        console.log(res.data)
-        success(res.data.message)
-        setVisible(false)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            userId: '1',
-            respiration: '',
-            seizure: '',
-            toxicExposure: '',
-            cardiacArrest: '',
-            chestPain: '',
-            neonatal: '',
-            obstetric: '',
-            trauma: '',
-            email: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email = regex.test(state.email)
+    if (email) {
+      setdisabel(false)
+      AuthAxios.post('PatientAssessment', state)
+        .then((res) => {
+          console.log(res.data)
+          success(res.data.message)
+          setVisible(false)
+          setdisabel(true)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              userId: '1',
+              respiration: '',
+              seizure: '',
+              toxicExposure: '',
+              cardiacArrest: '',
+              chestPain: '',
+              neonatal: '',
+              obstetric: '',
+              trauma: '',
+              email: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
 
   return (
@@ -212,14 +242,18 @@ const ComplainBased = () => {
         <CRow>
           <CCol xs={12}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              <button
+                class="btn btn-success"
+                disabled={submitCon}
+                onClick={() => setVisible(!visible)}
+              >
                 Submit
               </button>
             </div>
           </CCol>
         </CRow>
 
-        <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModal visible={visible}>
           <CModalHeader>
             <CModalTitle>DOTTY CARE</CModalTitle>
           </CModalHeader>
@@ -244,7 +278,11 @@ const ComplainBased = () => {
             <CButton color="secondary" onClick={() => setVisible(false)}>
               Close
             </CButton>
-            <CButton color="primary" onClick={() => submitHandler()}>
+            <CButton
+              color="primary"
+              disabled={state.email !== '' && disabel ? false : true}
+              onClick={() => submitHandler()}
+            >
               Submit
             </CButton>
           </CModalFooter>

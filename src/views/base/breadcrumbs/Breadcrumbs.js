@@ -33,6 +33,9 @@ const BreadCrumbs = () => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
+  const [disabel, setdisabel] = useState(true)
+
+  const [submitCon, setsubmitCon] = useState(true)
 
   const [state, setState] = useState({
     userId: '1',
@@ -56,6 +59,33 @@ const BreadCrumbs = () => {
     email1: '',
     email2: '',
   })
+
+  useEffect(() => {
+    if (
+      state.timeNotified !== '' &&
+      state.timeEnroute !== '' &&
+      state.timeAtScene !== '' &&
+      state.crewPatient !== '' &&
+      state.timeOutScene !== '' &&
+      state.timeAtDestination !== '' &&
+      state.available !== '' &&
+      state.backArea !== '' &&
+      state.responseToScene !== '' &&
+      state.responseFromScene !== '' &&
+      state.crewType !== '' &&
+      state.mileage !== '' &&
+      state.patientContact !== '' &&
+      state.destinationDeterminant !== '' &&
+      state.startDate !== '' &&
+      state.endDate !== '' &&
+      state.dateModified !== ''
+    ) {
+      setsubmitCon(false)
+    } else {
+      setsubmitCon(true)
+    }
+  }, [state])
+
   const handleInputChange = (event, name) => {
     const { value } = event.target
     setState((prevProps) => ({
@@ -73,50 +103,58 @@ const BreadCrumbs = () => {
   }, [])
 
   const submitHandler = () => {
-    AuthAxios.post('VehicleCallDetails', state)
-      .then((res) => {
-        success(res.data.message)
-        console.log(res.data)
-        setVisible(false)
-        setTimeout(() => {
-          setState((prevProps) => ({
-            ...prevProps,
-            userId: '1',
-            timeNotified: '',
-            timeEnroute: '',
-            timeAtScene: '',
-            crewPatient: '',
-            timeOutScene: '',
-            timeAtDestination: '',
-            available: '',
-            backArea: '',
-            responseToScene: '',
-            responseFromScene: '',
-            crewType: '',
-            mileage: '',
-            patientContact: '',
-            destinationDeterminant: '',
-            startDate: '',
-            endDate: '',
-            dateModified: '',
-            email1: '',
-            email2: '',
-          }))
-        }, 1000)
-      })
-      .catch((err) => {
-        failure('Internal Server Error')
-        console.error(err.message)
-      })
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const email1 = regex.test(state.email1)
+    const email2 = regex.test(state.email2)
+    if (email1 && email2) {
+      setdisabel(false)
+      AuthAxios.post('VehicleCallDetails', state)
+        .then((res) => {
+          success(res.data.message)
+          console.log(res.data)
+          setVisible(false)
+          setdisabel(true)
+          setTimeout(() => {
+            setState((prevProps) => ({
+              ...prevProps,
+              userId: '1',
+              timeNotified: '',
+              timeEnroute: '',
+              timeAtScene: '',
+              crewPatient: '',
+              timeOutScene: '',
+              timeAtDestination: '',
+              available: '',
+              backArea: '',
+              responseToScene: '',
+              responseFromScene: '',
+              crewType: '',
+              mileage: '',
+              patientContact: '',
+              destinationDeterminant: '',
+              startDate: '',
+              endDate: '',
+              dateModified: '',
+              email1: '',
+              email2: '',
+            }))
+          }, 1000)
+        })
+        .catch((err) => {
+          failure('Internal Server Error')
+          setdisabel(true)
+          console.error(err.message)
+        })
+    } else {
+      failure('Enter valid emails!')
+    }
   }
   return (
     <div className="vehicle">
       <CContainer className="m-0 mb-4">
         <CRow className="mb-3">
           <CCol lg={4} md={4} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time Notified
-            </CFormLabel>
+            <p>Time Notified</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -134,9 +172,7 @@ const BreadCrumbs = () => {
             />
           </CCol>
           <CCol lg={4} md={4} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time En Route
-            </CFormLabel>
+            <p>Time En Route</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -154,9 +190,7 @@ const BreadCrumbs = () => {
             />
           </CCol>
           <CCol lg={4} md={4} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time At Scene
-            </CFormLabel>
+            <p>Time At Scene</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -176,9 +210,7 @@ const BreadCrumbs = () => {
         </CRow>
         <CRow>
           <CCol lg={6} md={6} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time Out Of Scene
-            </CFormLabel>
+            <p>Time Out Of Scene</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -196,9 +228,7 @@ const BreadCrumbs = () => {
             />
           </CCol>
           <CCol lg={6} md={6} sm={12}>
-            <CFormLabel htmlFor="floatingInput" className="h3">
-              Time At Destination
-            </CFormLabel>
+            <p>Time At Destination</p>
             <TimePicker
               placeholder="Select Time"
               use12Hours
@@ -407,14 +437,18 @@ const BreadCrumbs = () => {
         <CRow>
           <CCol xs={12}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-success" onClick={() => setVisible(!visible)}>
+              <button
+                class="btn btn-success"
+                disabled={submitCon}
+                onClick={() => setVisible(!visible)}
+              >
                 Submit
               </button>
             </div>
           </CCol>
         </CRow>
 
-        <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModal visible={visible}>
           <CModalHeader>
             <CModalTitle>DOTTY CARE</CModalTitle>
           </CModalHeader>
@@ -453,7 +487,11 @@ const BreadCrumbs = () => {
             <CButton color="secondary" onClick={() => setVisible(false)}>
               Close
             </CButton>
-            <CButton color="primary" onClick={() => submitHandler()}>
+            <CButton
+              color="primary"
+              disabled={state.email1 !== '' && state.email2 !== '' && disabel ? false : true}
+              onClick={() => submitHandler()}
+            >
               Submit
             </CButton>
           </CModalFooter>
