@@ -39,7 +39,7 @@ const AppSidebar = () => {
         to="/"
       >
         <img src={logo1} class="pe-2" alt="..." style={{ width: 40 }} />
-        {!unfoldable && <div style={{ color: 'black' }}>DOTTY CARE</div>}
+        {!unfoldable && <div style={{ color: 'black' }}>DottyCare</div>}
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

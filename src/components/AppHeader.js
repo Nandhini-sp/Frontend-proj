@@ -34,11 +34,11 @@ const AppHeader = () => {
             <img src={logo1} class="rounded float-start" alt="..." />
           </div>
         </CHeaderBrand>
-        <CHeaderNav className="d-none d-md-flex me-auto">
+        {/* <CHeaderNav className="d-none d-md-flex me-auto">
           <CLink href="/#/dashboard" target="" className="text-decoration-none fw-4">
             DOTTY CARE
           </CLink>
-        </CHeaderNav>
+        </CHeaderNav> */}
         <CHeaderNav></CHeaderNav>
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />

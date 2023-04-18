@@ -33,9 +33,13 @@ const AppBreadcrumb = () => {
 
   return (
     <CBreadcrumb className="m-0 ms-2">
-      <CBreadcrumbItem>DOTTY CARE</CBreadcrumbItem>
+      {/* <CBreadcrumbItem>DOTTY CARE</CBreadcrumbItem> */}
       {breadcrumbs.map((breadcrumb, index) => {
-        return <CBreadcrumbItem key={index}>{breadcrumb.name}</CBreadcrumbItem>
+        return (
+          <CBreadcrumbItem className="h3" key={index}>
+            {breadcrumb.name}
+          </CBreadcrumbItem>
+        )
       })}
     </CBreadcrumb>
   )
