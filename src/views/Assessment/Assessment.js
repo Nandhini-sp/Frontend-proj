@@ -7,6 +7,7 @@ import PatientAssessmentDetails from '../buttons/PatientAssessmentDetails/Patien
 
 export default function Assessment() {
   const [activeKey, setActiveKey] = useState('patientHistory')
+  const [conditions, setconditions] = useState(false)
   const [assessment, setAssessment] = useState({
     dateOfInjury: '',
     timeOfInjury: '',
@@ -35,29 +36,17 @@ export default function Assessment() {
     <div>
       <CNav variant="tabs">
         <CNavItem>
-          <CNavLink
-            active={activeKey === 'patientHistory'}
-            onClick={() => setActiveKey('patientHistory')}
-            style={{ cursor: 'pointer' }}
-          >
+          <CNavLink active={activeKey === 'patientHistory'} style={{ cursor: 'pointer' }}>
             Patient History
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink
-            style={{ cursor: 'pointer' }}
-            active={activeKey === 'primary'}
-            onClick={() => setActiveKey('primary')}
-          >
+          <CNavLink style={{ cursor: 'pointer' }} active={activeKey === 'primary'}>
             Primary Assessment
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink
-            style={{ cursor: 'pointer' }}
-            active={activeKey === 'patientAssessment'}
-            onClick={() => setActiveKey('patientAssessment')}
-          >
+          <CNavLink style={{ cursor: 'pointer' }} active={activeKey === 'patientAssessment'}>
             Patient Assessment
           </CNavLink>
         </CNavItem>
@@ -74,6 +63,8 @@ export default function Assessment() {
               activeKey={activeKey}
               setAssessment={setAssessment}
               assessment={assessment}
+              conditions={conditions}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>
@@ -84,6 +75,8 @@ export default function Assessment() {
               activeKey={activeKey}
               setAssessment={setAssessment}
               assessment={assessment}
+              conditions={conditions}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>
@@ -98,6 +91,7 @@ export default function Assessment() {
               activeKey={activeKey}
               setAssessment={setAssessment}
               assessment={assessment}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>

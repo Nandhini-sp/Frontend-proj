@@ -18,7 +18,13 @@ import { ToastContainer, toast } from 'react-toastify'
 import { CButton } from '@coreui/react'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 
-const PatientAssessmentDetails = ({ setActiveKey, activeKey, setAssessment, assessment }) => {
+const PatientAssessmentDetails = ({
+  setActiveKey,
+  activeKey,
+  setAssessment,
+  assessment,
+  setconditions,
+}) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -73,11 +79,37 @@ const PatientAssessmentDetails = ({ setActiveKey, activeKey, setAssessment, asse
   }, [])
 
   const submitHandler = () => {
+    const item = {
+      userId: users.result._id,
+      dateOfInjury: assessment.dateOfInjury,
+      timeOfInjury: assessment.timeOfInjury,
+      coResponders: assessment.coResponders,
+      treatmentRendered: assessment.treatmentRendered,
+      patientCondition: assessment.patientCondition,
+      patientDisplacement: assessment.patientDisplacement,
+      suspectedIntoxication: assessment.suspectedIntoxication,
+      chiefComplaint: assessment.chiefComplaint,
+      neroResponse: assessment.neroResponse,
+      bodySystem: assessment.bodySystem,
+      glasGlow: assessment.glasGlow,
+      generalAssessment: assessment.generalAssessment,
+      airway: assessment.airway,
+      symptoms: assessment.symptoms,
+      respiration: state.respiration,
+      seizure: state.seizure,
+      toxicExposure: state.toxicExposure,
+      cardiacArrest: state.cardiacArrest,
+      chestPain: state.chestPain,
+      neonatal: state.neonatal,
+      obstetric: state.obstetric,
+      trauma: state.trauma,
+      email: state.email,
+    }
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const email = regex.test(state.email)
     if (email) {
       setdisabel(false)
-      AuthAxios.post('PatientAssessment', state)
+      AuthAxios.post('Assessment', item)
         .then((res) => {
           console.log(res.data)
           success(res.data.message)
@@ -97,6 +129,8 @@ const PatientAssessmentDetails = ({ setActiveKey, activeKey, setAssessment, asse
               trauma: '',
               email: '',
             }))
+            setconditions(true)
+            setActiveKey('patientHistory')
           }, 1000)
         })
         .catch((err) => {

@@ -17,7 +17,14 @@ import {
 import { ToastContainer, toast } from 'react-toastify'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 
-const PrimaryAssessment = ({ setActiveKey, activeKey, setAssessment, assessment }) => {
+const PrimaryAssessment = ({
+  setActiveKey,
+  activeKey,
+  setAssessment,
+  assessment,
+  conditions,
+  setconditions,
+}) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -105,15 +112,32 @@ const PrimaryAssessment = ({ setActiveKey, activeKey, setAssessment, assessment 
   const nextTab = () => {
     setAssessment((callDetails) => ({
       ...callDetails,
-      neroResponse: '',
-      bodySystem: '',
-      glasGlow: '',
-      generalAssessment: '',
-      airway: '',
-      symptoms: '',
+      neroResponse: state.neroResponse,
+      bodySystem: state.bodySystem,
+      glasGlow: state.glasGlow,
+      generalAssessment: state.generalAssessment,
+      airway: state.airway,
+      symptoms: state.symptoms,
     }))
     setActiveKey('patientAssessment')
   }
+
+  useEffect(() => {
+    if (conditions) {
+      setState((prevProps) => ({
+        ...prevProps,
+        userId: '1',
+        neroResponse: '',
+        bodySystem: '',
+        glasGlow: '',
+        generalAssessment: '',
+        airway: '',
+        symptoms: '',
+        email: '',
+      }))
+    }
+    setconditions(false)
+  }, [conditions])
 
   return (
     <div>

@@ -21,7 +21,14 @@ import './style.css'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const PatientTreatmentDetails = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
+const PatientTreatmentDetails = ({
+  setActiveKey,
+  activeKey,
+  setTreatment,
+  treatment,
+  conditions,
+  setconditions,
+}) => {
   const [visible, setVisible] = useState(false)
   const [disabel, setdisabel] = useState(true)
   const [time, setTime] = useState('')
@@ -129,21 +136,44 @@ const PatientTreatmentDetails = ({ setActiveKey, activeKey, setTreatment, treatm
   const nextTab = () => {
     setTreatment((callDetails) => ({
       ...callDetails,
-      procedureStartTime: '',
-      procedureType: '',
-      procedureEndTime: '',
-      deviceMethod: '',
-      technicianID: '',
-      deviceSize: '',
-      outcome: '',
-      successfull: '',
-      treatment: '',
-      totalTime: '',
-      treatmentType: '',
-      administrativeRoute: '',
+      procedureStartTime: state.procedureStartTime,
+      procedureType: state.procedureType,
+      procedureEndTime: state.procedureEndTime,
+      deviceMethod: state.deviceMethod,
+      technicianID: state.technicianID,
+      deviceSize: state.deviceSize,
+      outcome: state.outcome,
+      successfull: state.successfull,
+      treatment: state.treatment,
+      totalTime: state.totalTime,
+      treatmentType: state.treatmentType,
+      administrativeRoute: state.administrativeRoute,
     }))
     setActiveKey('vitalSign')
   }
+
+  useEffect(() => {
+    if (conditions) {
+      setState((prevProps) => ({
+        ...prevProps,
+        userId: '1',
+        procedureStartTime: '',
+        procedureType: '',
+        procedureEndTime: '',
+        deviceMethod: '',
+        technicianID: '',
+        deviceSize: '',
+        outcome: '',
+        successfull: '',
+        treatment: '',
+        totalTime: '',
+        treatmentType: '',
+        administrativeRoute: '',
+        email: '',
+      }))
+    }
+    setconditions(false)
+  }, [conditions])
 
   return (
     <div>

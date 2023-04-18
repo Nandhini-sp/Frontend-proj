@@ -24,7 +24,14 @@ import './style.css'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const VehicleCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetails }) => {
+const VehicleCallDetails = ({
+  setActiveKey,
+  activeKey,
+  setCallDetails,
+  callDetails,
+  conditions,
+  setconditions,
+}) => {
   const [time, setTime] = useState(null)
   const [time2, setTime2] = useState(null)
   const [time3, setTime3] = useState(null)
@@ -153,26 +160,55 @@ const VehicleCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetai
   const nextTab = () => {
     setCallDetails((callDetails) => ({
       ...callDetails,
-      timeNotified: '',
-      timeEnroute: '',
-      timeAtScene: '',
-      crewPatient: '',
-      timeOutScene: '',
-      timeAtDestination: '',
-      available: '',
-      backArea: '',
-      responseToScene: '',
-      responseFromScene: '',
-      crewType: '',
-      mileage: '',
-      patientContact: '',
-      destinationDeterminant: '',
-      startDate: '',
-      endDate: '',
-      dateModified: '',
+      timeNotified: state.timeNotified,
+      timeEnroute: state.timeEnroute,
+      timeAtScene: state.timeAtScene,
+      crewPatient: state.crewPatient,
+      timeOutScene: state.timeOutScene,
+      timeAtDestination: state.timeAtDestination,
+      available: state.available,
+      backArea: state.backArea,
+      responseToScene: state.responseToScene,
+      responseFromScene: state.responseFromScene,
+      crewType: state.crewType,
+      mileage: state.mileage,
+      patientContact: state.patientContact,
+      vehicle_destinationDeterminant: state.destinationDeterminant,
+      startDate: state.startDate,
+      endDate: state.endDate,
+      dateModified: state.dateModified,
     }))
     setActiveKey('incident')
   }
+
+  useEffect(() => {
+    if (conditions) {
+      setState((prevProps) => ({
+        ...prevProps,
+        userId: '1',
+        timeNotified: '',
+        timeEnroute: '',
+        timeAtScene: '',
+        crewPatient: '',
+        timeOutScene: '',
+        timeAtDestination: '',
+        available: '',
+        backArea: '',
+        responseToScene: '',
+        responseFromScene: '',
+        crewType: '',
+        mileage: '',
+        patientContact: '',
+        destinationDeterminant: '',
+        startDate: '',
+        endDate: '',
+        dateModified: '',
+        email1: '',
+        email2: '',
+      }))
+    }
+    setconditions(false)
+  }, [conditions])
 
   return (
     <div className="vehicle">

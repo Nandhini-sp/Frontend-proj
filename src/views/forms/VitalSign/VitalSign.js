@@ -19,7 +19,7 @@ import 'rc-time-picker/assets/index.css'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const VitalSign = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
+const VitalSign = ({ setActiveKey, activeKey, setTreatment, treatment, setconditions }) => {
   const [visible, setVisible] = useState(false)
   const [time, setTime] = useState('')
   const [disabel, setdisabel] = useState(true)
@@ -84,6 +84,18 @@ const VitalSign = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
   const submitHandler = () => {
     const item = {
       userId: users.result._id,
+      procedureStartTime: treatment.procedureStartTime,
+      procedureType: treatment.procedureType,
+      procedureEndTime: treatment.procedureEndTime,
+      deviceMethod: treatment.deviceMethod,
+      technicianID: treatment.technicianID,
+      deviceSize: treatment.deviceSize,
+      outcome: treatment.outcome,
+      successfull: treatment.successfull,
+      treatment: treatment.treatment,
+      totalTime: treatment.totalTime,
+      treatmentType: treatment.treatmentType,
+      administrativeRoute: treatment.administrativeRoute,
       assessmentTime: state.assessmentTime,
       consciousnessLevel: state.consciousnessLevel,
       pulseRate: state.pulseRate,
@@ -104,7 +116,7 @@ const VitalSign = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
     const email = regex.test(state.email)
     if (email) {
       setdisabel(false)
-      AuthAxios.post('VitalSignTreatment', item)
+      AuthAxios.post('Treatment', item)
         .then((res) => {
           console.log(res.data)
           success(res.data.message)
@@ -130,6 +142,8 @@ const VitalSign = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
               diatolic: '',
               email: '',
             }))
+            setconditions(true)
+            setActiveKey('patientDetails')
           }, 1000)
         })
         .catch((err) => {

@@ -6,6 +6,7 @@ import VitalSign from '../forms/VitalSign/VitalSign'
 
 export default function Treatment() {
   const [activeKey, setActiveKey] = useState('patientDetails')
+  const [conditions, setconditions] = useState(false)
   const [treatment, setTreatment] = useState({
     procedureStartTime: '',
     procedureType: '',
@@ -38,20 +39,12 @@ export default function Treatment() {
     <div>
       <CNav variant="tabs">
         <CNavItem>
-          <CNavLink
-            active={activeKey === 'patientDetails'}
-            onClick={() => setActiveKey('patientDetails')}
-            style={{ cursor: 'pointer' }}
-          >
+          <CNavLink active={activeKey === 'patientDetails'} style={{ cursor: 'pointer' }}>
             Patient Details
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink
-            style={{ cursor: 'pointer' }}
-            active={activeKey === 'vitalSign'}
-            onClick={() => setActiveKey('vitalSign')}
-          >
+          <CNavLink style={{ cursor: 'pointer' }} active={activeKey === 'vitalSign'}>
             Vital Sign
           </CNavLink>
         </CNavItem>
@@ -68,6 +61,8 @@ export default function Treatment() {
               activeKey={activeKey}
               setTreatment={setTreatment}
               treatment={treatment}
+              conditions={conditions}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>
@@ -78,6 +73,7 @@ export default function Treatment() {
               activeKey={activeKey}
               setTreatment={setTreatment}
               treatment={treatment}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>

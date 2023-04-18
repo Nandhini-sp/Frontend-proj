@@ -20,7 +20,13 @@ import { ToastContainer, toast } from 'react-toastify'
 import { Input } from 'reactstrap'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 
-const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetails }) => {
+const IncidentCallDetails = ({
+  setActiveKey,
+  activeKey,
+  setCallDetails,
+  callDetails,
+  setconditions,
+}) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const [disabel, setdisabel] = useState(true)
@@ -108,7 +114,7 @@ const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDeta
       incidentLocation_city: state.incidentLocation_city,
       incidentLocation_state: state.incidentLocation_state,
       incidentLocation_postalCode: state.incidentLocation_postalCode,
-      destinationDeterminant: state.destinationDeterminant,
+      incident_destinationDeterminant: state.destinationDeterminant,
       graphicLocator: state.graphicLocator,
       sceneLocationType: state.sceneLocationType,
       destinationFacility: state.destinationFacility,
@@ -122,6 +128,44 @@ const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDeta
       number: state.servicePayment_number,
       EMS: state.EMS,
       patientDisposition: state.patientDisposition,
+      firstName: callDetails.firstName,
+      sureName: callDetails.sureName,
+      street: callDetails.street,
+      city: callDetails.city,
+      state: callDetails.state,
+      country: callDetails.country,
+      postalCode: callDetails.postalCode,
+      telePhone: callDetails.telePhone,
+      DOB: callDetails.DOB,
+      age: callDetails.age,
+      gender: callDetails.gender,
+      aadhar: callDetails.aadhar,
+      medicalInsurance: callDetails.medicalInsurance,
+      typeOfInsurance: callDetails.typeOfInsurance,
+      governmentInsurance_insuranceId: callDetails.governmentInsurance_insuranceId,
+      governmentInsurance_coverageAmount: callDetails.governmentInsurance_coverageAmount,
+      governmentInsurance_benefits: callDetails.governmentInsurance_benefits,
+      privateInsurance_insuranceId: callDetails.privateInsurance_insuranceId,
+      privateInsurance_benefits: callDetails.privateInsurance_benefits,
+      hospitalChart: callDetails.hospitalChart,
+      comments: callDetails.comments,
+      timeNotified: callDetails.timeNotified,
+      timeEnroute: callDetails.timeEnroute,
+      timeAtScene: callDetails.timeAtScene,
+      crewPatient: callDetails.crewPatient,
+      timeOutScene: callDetails.timeOutScene,
+      timeAtDestination: callDetails.timeAtDestination,
+      available: callDetails.available,
+      backArea: callDetails.backArea,
+      responseToScene: callDetails.responseToScene,
+      responseFromScene: callDetails.responseFromScene,
+      crewType: callDetails.crewType,
+      mileage: callDetails.mileage,
+      patientContact: callDetails.patientContact,
+      vehicle_destinationDeterminant: callDetails.vehicle_destinationDeterminant,
+      startDate: callDetails.startDate,
+      endDate: callDetails.endDate,
+      dateModified: callDetails.dateModified,
       email1: state.email1,
       email2: state.email2,
     }
@@ -130,7 +174,7 @@ const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDeta
     const email2 = regex.test(state.email2)
     if (email1 && email2) {
       setdisabel(false)
-      AuthAxios.post('IncidentCallDetails', item)
+      AuthAxios.post('CallDetails', item)
         .then((res) => {
           success(res.data.message)
           setdisabel(true)
@@ -166,6 +210,8 @@ const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDeta
               email1: '',
               email2: '',
             }))
+            setconditions(true)
+            setActiveKey('patient')
           }, 1000)
         })
         .catch((err) => {
@@ -177,6 +223,7 @@ const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDeta
       failure('Enter valid emails!')
     }
   }
+  console.log(callDetails)
 
   return (
     <div>

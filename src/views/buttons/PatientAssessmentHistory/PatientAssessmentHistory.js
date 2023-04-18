@@ -21,7 +21,14 @@ import { ToastContainer, toast } from 'react-toastify'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { Input } from 'reactstrap'
 
-const PatientAssessmentHistory = ({ setActiveKey, activeKey, setAssessment, assessment }) => {
+const PatientAssessmentHistory = ({
+  setActiveKey,
+  activeKey,
+  setAssessment,
+  assessment,
+  conditions,
+  setconditions,
+}) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -115,17 +122,36 @@ const PatientAssessmentHistory = ({ setActiveKey, activeKey, setAssessment, asse
   const nextTab = () => {
     setAssessment((callDetails) => ({
       ...callDetails,
-      dateOfInjury: '',
-      timeOfInjury: '',
-      coResponders: '',
-      treatmentRendered: '',
-      patientCondition: '',
-      patientDisplacement: '',
-      suspectedIntoxication: '',
-      chiefComplaint: '',
+      dateOfInjury: state.dateOfInjury,
+      timeOfInjury: state.timeOfInjury,
+      coResponders: state.coResponders,
+      treatmentRendered: state.treatmentRendered,
+      patientCondition: state.patientCondition,
+      patientDisplacement: state.patientDisplacement,
+      suspectedIntoxication: state.suspectedIntoxication,
+      chiefComplaint: state.chiefComplaint,
     }))
     setActiveKey('primary')
   }
+
+  useEffect(() => {
+    if (conditions) {
+      setState((prevProps) => ({
+        ...prevProps,
+        userId: '1',
+        dateOfInjury: '',
+        timeOfInjury: '',
+        coResponders: '',
+        treatmentRendered: '',
+        patientCondition: '',
+        patientDisplacement: '',
+        suspectedIntoxication: '',
+        chiefComplaint: '',
+        email: '',
+      }))
+    }
+    setconditions(false)
+  }, [conditions])
 
   return (
     <div>

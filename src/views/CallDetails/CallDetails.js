@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react'
 import { useState } from 'react'
 import PatientCallDetails from '../base/PatientCallDetails/PatientCallDetails'
@@ -7,6 +7,7 @@ import IncidentCallDetails from '../base/IncidentCallDetails/IncidentCallDetails
 
 export default function CallDetails() {
   const [activeKey, setActiveKey] = useState('patient')
+  const [conditions, setconditions] = useState(false)
   const [callDetails, setCallDetails] = useState({
     firstName: '',
     sureName: '',
@@ -42,38 +43,27 @@ export default function CallDetails() {
     crewType: '',
     mileage: '',
     patientContact: '',
-    destinationDeterminant: '',
+    vehicle_destinationDeterminant: '',
     startDate: '',
     endDate: '',
     dateModified: '',
   })
+
   return (
     <div>
       <CNav variant="tabs">
         <CNavItem>
-          <CNavLink
-            active={activeKey === 'patient'}
-            onClick={() => setActiveKey('patient')}
-            style={{ cursor: 'pointer' }}
-          >
+          <CNavLink active={activeKey === 'patient'} style={{ cursor: 'pointer' }}>
             Patient Details
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink
-            style={{ cursor: 'pointer' }}
-            active={activeKey === 'vehicle'}
-            onClick={() => setActiveKey('vehicle')}
-          >
+          <CNavLink style={{ cursor: 'pointer' }} active={activeKey === 'vehicle'}>
             Vehicle Details
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink
-            style={{ cursor: 'pointer' }}
-            active={activeKey === 'incident'}
-            onClick={() => setActiveKey('incident')}
-          >
+          <CNavLink style={{ cursor: 'pointer' }} active={activeKey === 'incident'}>
             Incident Details
           </CNavLink>
         </CNavItem>
@@ -86,6 +76,8 @@ export default function CallDetails() {
               activeKey={activeKey}
               setCallDetails={setCallDetails}
               callDetails={callDetails}
+              conditions={conditions}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>
@@ -96,6 +88,8 @@ export default function CallDetails() {
               activeKey={activeKey}
               setCallDetails={setCallDetails}
               callDetails={callDetails}
+              conditions={conditions}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>
@@ -106,6 +100,7 @@ export default function CallDetails() {
               activeKey={activeKey}
               setCallDetails={setCallDetails}
               callDetails={callDetails}
+              setconditions={setconditions}
             />
           </div>
         </CTabPane>

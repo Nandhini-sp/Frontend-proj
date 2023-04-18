@@ -23,7 +23,14 @@ import { Input } from 'reactstrap'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const PatientCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetails }) => {
+const PatientCallDetails = ({
+  setActiveKey,
+  activeKey,
+  setCallDetails,
+  callDetails,
+  conditions,
+  setconditions,
+}) => {
   const [visible, setVisible] = useState(false)
   const [submitCon, setsubmitCon] = useState(true)
   const [disabel, setdisabel] = useState(true)
@@ -231,30 +238,65 @@ const PatientCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetai
   const nextTab = () => {
     setCallDetails((callDetails) => ({
       ...callDetails,
-      firstName: '',
-      sureName: '',
-      street: '',
-      city: '',
-      state: '',
-      country: '',
-      postalCode: '',
-      telePhone: '',
-      DOB: '',
-      age: '',
-      gender: '',
-      aadhar: '',
-      medicalInsurance: '',
-      typeOfInsurance: '',
-      governmentInsurance_insuranceId: '',
-      governmentInsurance_coverageAmount: '',
-      governmentInsurance_benefits: '',
-      privateInsurance_insuranceId: '',
-      privateInsurance_benefits: '',
-      hospitalChart: '',
-      comments: '',
+      firstName: state.firstName,
+      sureName: state.sureName,
+      street: state.street,
+      city: state.city,
+      state: state.state,
+      country: state.country,
+      postalCode: state.postalCode,
+      telePhone: state.telePhone,
+      DOB: state.DOB,
+      age: state.age,
+      gender: state.gender,
+      aadhar: state.aadhar,
+      medicalInsurance: state.medicalInsurance,
+      typeOfInsurance: state.typeOfInsurance,
+      governmentInsurance_insuranceId:
+        state.typeOfInsurance === 'Government' ? state.govt_ins_Id : '',
+      governmentInsurance_coverageAmount:
+        state.typeOfInsurance === 'Government' ? state.coverage_Amount : '',
+      governmentInsurance_benefits: state.typeOfInsurance === 'Government' ? state.benifits : '',
+      privateInsurance_insuranceId: state.typeOfInsurance === 'Private' ? state.govt_ins_Id : '',
+      privateInsurance_benefits: state.typeOfInsurance === 'Private' ? state.benifits : '',
+      hospitalChart: state.hospital_chart_no,
+      comments: state.commends,
     }))
     setActiveKey('vehicle')
   }
+
+  useEffect(() => {
+    if (conditions) {
+      setState((prevProps) => ({
+        ...prevProps,
+        firstName: '',
+        sureName: '',
+        street: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: '',
+        telePhone: '',
+        aadhar: '',
+        DOB: '',
+        age: '',
+        gender: '',
+        medicalInsurance: '',
+        typeOfInsurance: '',
+        govt_ins_Id: '',
+        coverage_Amount: '',
+        govt_benefits: '',
+        private_ins_id: '',
+        private_benefits: '',
+        hospital_chart_no: '',
+        commends: '',
+        email1: '',
+        email2: '',
+        benifits: '',
+      }))
+    }
+    setconditions(false)
+  }, [conditions])
 
   return (
     <div>
