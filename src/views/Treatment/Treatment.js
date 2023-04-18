@@ -1,0 +1,87 @@
+import React from 'react'
+import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react'
+import { useState } from 'react'
+import PatientTreatmentDetails from '../forms/PatientTreatmentDetails/PatientTreatmentDetails'
+import VitalSign from '../forms/VitalSign/VitalSign'
+
+export default function Treatment() {
+  const [activeKey, setActiveKey] = useState('patientDetails')
+  const [treatment, setTreatment] = useState({
+    procedureStartTime: '',
+    procedureType: '',
+    procedureEndTime: '',
+    deviceMethod: '',
+    technicianID: '',
+    deviceSize: '',
+    outcome: '',
+    successfull: '',
+    treatment: '',
+    totalTime: '',
+    treatmentType: '',
+    administrativeRoute: '',
+    assessmentTime: '',
+    consciousnessLevel: '',
+    pulseRate: '',
+    siteOfPulseCheck: '',
+    temperature: '',
+    siteOfTemperatureCheck: '',
+    skinColor: '',
+    moisture: '',
+    bloodPressure_systolic: '',
+    bloodPressure_diastolic: '',
+    respiration: '',
+    bloodGlucose: '',
+    oxygenSaturation_preOxygen: '',
+    oxygenSaturation_postOxygen: '',
+  })
+  return (
+    <div>
+      <CNav variant="tabs">
+        <CNavItem>
+          <CNavLink
+            active={activeKey === 'patientDetails'}
+            onClick={() => setActiveKey('patientDetails')}
+            style={{ cursor: 'pointer' }}
+          >
+            Patient Details
+          </CNavLink>
+        </CNavItem>
+        <CNavItem>
+          <CNavLink
+            style={{ cursor: 'pointer' }}
+            active={activeKey === 'vitalSign'}
+            onClick={() => setActiveKey('vitalSign')}
+          >
+            Vital Sign
+          </CNavLink>
+        </CNavItem>
+      </CNav>
+      <CTabContent>
+        <CTabPane
+          role="tabpanel"
+          aria-labelledby="home-tab"
+          visible={activeKey === 'patientDetails'}
+        >
+          <div className="mt-4 mb-4">
+            <PatientTreatmentDetails
+              setActiveKey={setActiveKey}
+              activeKey={activeKey}
+              setTreatment={setTreatment}
+              treatment={treatment}
+            />
+          </div>
+        </CTabPane>
+        <CTabPane role="tabpanel" aria-labelledby="profile-tab" visible={activeKey === 'vitalSign'}>
+          <div className="mt-4 mb-4">
+            <VitalSign
+              setActiveKey={setActiveKey}
+              activeKey={activeKey}
+              setTreatment={setTreatment}
+              treatment={treatment}
+            />
+          </div>
+        </CTabPane>
+      </CTabContent>
+    </div>
+  )
+}

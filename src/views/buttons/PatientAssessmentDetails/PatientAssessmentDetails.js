@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-
-import { CButton } from '@coreui/react'
-
 import {
+  // CButton,
   CModal,
   CModalHeader,
   CModalTitle,
+  CModalBody,
   CModalFooter,
   CContainer,
   CRow,
   CCol,
-  CFormInput,
-  CFormSelect,
-  CFormLabel,
-  CFormCheck,
   CFormFloating,
+  CFormInput,
+  CFormLabel,
 } from '@coreui/react'
 import { ToastContainer, toast } from 'react-toastify'
+import { CButton } from '@coreui/react'
 import AuthAxios from 'src/Interceptors/AuthAxios'
-import { Input } from 'reactstrap'
 
-const Buttons = () => {
+const PatientAssessmentDetails = ({ setActiveKey, activeKey, setAssessment, assessment }) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -31,27 +28,27 @@ const Buttons = () => {
 
   const [state, setState] = useState({
     userId: '1',
-    dateOfInjury: '',
-    timeOfInjury: '',
-    coResponders: '',
-    treatmentRendered: '',
-    patientCondition: '',
-    patientDisplacement: '',
-    suspectedIntoxication: '',
-    chiefComplaint: '',
+    respiration: '',
+    seizure: '',
+    toxicExposure: '',
+    cardiacArrest: '',
+    chestPain: '',
+    neonatal: '',
+    obstetric: '',
+    trauma: '',
     email: '',
   })
 
   useEffect(() => {
     if (
-      state.dateOfInjury !== '' &&
-      state.timeOfInjury !== '' &&
-      state.coResponders !== '' &&
-      state.treatmentRendered !== '' &&
-      state.patientCondition !== '' &&
-      state.patientDisplacement !== '' &&
-      state.suspectedIntoxication !== '' &&
-      state.chiefComplaint !== ''
+      state.respiration !== '' &&
+      state.seizure !== '' &&
+      state.toxicExposure !== '' &&
+      state.cardiacArrest !== '' &&
+      state.chestPain !== '' &&
+      state.neonatal !== '' &&
+      state.obstetric !== '' &&
+      state.trauma !== ''
     ) {
       setsubmitCon(false)
     } else {
@@ -80,24 +77,24 @@ const Buttons = () => {
     const email = regex.test(state.email)
     if (email) {
       setdisabel(false)
-      AuthAxios.post('PatientHistoryAssessment', state)
+      AuthAxios.post('PatientAssessment', state)
         .then((res) => {
           console.log(res.data)
           success(res.data.message)
-          setdisabel(true)
           setVisible(false)
+          setdisabel(true)
           setTimeout(() => {
             setState((prevProps) => ({
               ...prevProps,
               userId: '1',
-              dateOfInjury: '',
-              timeOfInjury: '',
-              coResponders: '',
-              treatmentRendered: '',
-              patientCondition: '',
-              patientDisplacement: '',
-              suspectedIntoxication: '',
-              chiefComplaint: '',
+              respiration: '',
+              seizure: '',
+              toxicExposure: '',
+              cardiacArrest: '',
+              chestPain: '',
+              neonatal: '',
+              obstetric: '',
+              trauma: '',
               email: '',
             }))
           }, 1000)
@@ -115,29 +112,34 @@ const Buttons = () => {
   return (
     <div>
       <CContainer>
-        <CRow className="mb-3">
+        <CRow>
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
-              <Input
-                type="date"
-                name="dateOfInjury"
-                value={state.dateOfInjury}
-                onChange={(event) => handleInputChange(event, 'dateOfInjury')}
-                style={{ width: '100%', height: '50px' }}
-              ></Input>
-              <CFormLabel htmlFor="floatingInput">Date Of Injury</CFormLabel>
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="respiration"
+                value={state.respiration}
+                onChange={(event) => handleInputChange(event, 'respiration')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
             </CFormFloating>
           </CCol>
+
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
-              <Input
-                type="Time"
-                name="timeOfInjury"
-                value={state.timeOfInjury}
-                onChange={(event) => handleInputChange(event, 'timeOfInjury')}
-                style={{ width: '100%', height: '50px' }}
-              ></Input>
-              <CFormLabel htmlFor="floatingInput">Time Of Injury</CFormLabel>
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="seizure"
+                value={state.seizure}
+                onChange={(event) => handleInputChange(event, 'seizure')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Seizure</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
@@ -147,72 +149,13 @@ const Buttons = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="Co-Respondars"
-                value={state.coResponders}
-                onChange={(event) => handleInputChange(event, 'coResponders')}
+                placeholder="FirstName"
+                name="toxicExposure"
+                value={state.toxicExposure}
+                onChange={(event) => handleInputChange(event, 'toxicExposure')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Co-Respondars</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Treatment Rendered"
-                value={state.treatmentRendered}
-                onChange={(event) => handleInputChange(event, 'treatmentRendered')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Treatment Rendered</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
-      </CContainer>
-      <CContainer>
-        <CRow className="mt-3">
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Patient Condition at Destination"
-                value={state.patientCondition}
-                onChange={(event) => handleInputChange(event, 'patientCondition')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Patient Condition at Destination</CFormLabel>
-            </CFormFloating>
-          </CCol>
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Patient Displacement"
-                value={state.patientDisplacement}
-                onChange={(event) => handleInputChange(event, 'patientDisplacement')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Patient Displacement</CFormLabel>
-            </CFormFloating>
-          </CCol>
-        </CRow>
-      </CContainer>
-      <CContainer>
-        <CRow className="mt-3 mb-4">
-          <CCol lg={6} md={6} sm={12}>
-            <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="Suspected Intoxication"
-                value={state.suspectedIntoxication}
-                onChange={(event) => handleInputChange(event, 'suspectedIntoxication')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Suspected Intoxication</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Toxic Exposure</CFormLabel>
             </CFormFloating>
           </CCol>
 
@@ -221,32 +164,100 @@ const Buttons = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="Chief Complaint"
-                value={state.chiefComplaint}
-                onChange={(event) => handleInputChange(event, 'chiefComplaint')}
+                placeholder="FirstName"
+                name="cardiacArrest"
+                value={state.cardiacArrest}
+                onChange={(event) => handleInputChange(event, 'cardiacArrest')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Chief Complaint</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">CardiacArrest</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="chestPain"
+                value={state.chestPain}
+                onChange={(event) => handleInputChange(event, 'chestPain')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Chest Pain</CFormLabel>
+            </CFormFloating>
+          </CCol>
+
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="neonatal"
+                value={state.neonatal}
+                onChange={(event) => handleInputChange(event, 'neonatal')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Neonatal</CFormLabel>
+            </CFormFloating>
+          </CCol>
+        </CRow>
+        <CRow>
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="obstetricc"
+                value={state.obstetric}
+                onChange={(event) => handleInputChange(event, 'obstetric')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Obstetric</CFormLabel>
+            </CFormFloating>
+          </CCol>
+
+          <CCol lg={6} md={6} sm={12}>
+            <CFormFloating className="mb-3">
+              <CFormInput
+                type="text"
+                id="floatingInput"
+                placeholder="FirstName"
+                name="trauma"
+                value={state.trauma}
+                onChange={(event) => handleInputChange(event, 'trauma')}
+                style={{ height: '50px' }}
+              />
+              <CFormLabel htmlFor="floatingInput">Trauma</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
       </CContainer>
 
-      <CContainer>
-        <CRow item xs={12}>
-          <CRow>
-            <CCol xs={12}>
-              <div class="d-grid gap-2 col-6 mx-auto">
-                <button
-                  class="btn btn-success"
-                  disabled={submitCon}
-                  onClick={() => setVisible(!visible)}
-                >
-                  Submit
-                </button>
-              </div>
-            </CCol>
-          </CRow>
+      <CRow item xs={12}>
+        <CRow>
+          <CCol lg={6} md={6} sm={6}>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-secondary" onClick={() => setActiveKey('primary')}>
+                Back
+              </button>
+            </div>
+          </CCol>
+          <CCol lg={6} md={6} sm={6}>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button
+                class="btn btn-success"
+                disabled={submitCon}
+                onClick={() => setVisible(!visible)}
+              >
+                Submit
+              </button>
+            </div>
+          </CCol>
         </CRow>
 
         <CModal visible={visible}>
@@ -283,10 +294,10 @@ const Buttons = () => {
             </CButton>
           </CModalFooter>
         </CModal>
-      </CContainer>
+      </CRow>
       <ToastContainer />
     </div>
   )
 }
 
-export default Buttons
+export default PatientAssessmentDetails

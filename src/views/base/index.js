@@ -1,5 +1,5 @@
-import Breadcrumbs from './Breadcrumbs'
-import Cards from './Cards'
+import Breadcrumbs from './VehicleCallDetails'
+import Cards from './IncidentCallDetails'
 import Carousels from './Carousels'
 import Collapses from './Collapses'
 import Dropdowns from './Dropdowns'

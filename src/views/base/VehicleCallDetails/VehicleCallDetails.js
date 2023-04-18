@@ -24,7 +24,7 @@ import './style.css'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const BreadCrumbs = () => {
+const VehicleCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetails }) => {
   const [time, setTime] = useState(null)
   const [time2, setTime2] = useState(null)
   const [time3, setTime3] = useState(null)
@@ -149,6 +149,31 @@ const BreadCrumbs = () => {
       failure('Enter valid emails!')
     }
   }
+
+  const nextTab = () => {
+    setCallDetails((callDetails) => ({
+      ...callDetails,
+      timeNotified: '',
+      timeEnroute: '',
+      timeAtScene: '',
+      crewPatient: '',
+      timeOutScene: '',
+      timeAtDestination: '',
+      available: '',
+      backArea: '',
+      responseToScene: '',
+      responseFromScene: '',
+      crewType: '',
+      mileage: '',
+      patientContact: '',
+      destinationDeterminant: '',
+      startDate: '',
+      endDate: '',
+      dateModified: '',
+    }))
+    setActiveKey('incident')
+  }
+
   return (
     <div className="vehicle">
       <CContainer className="m-0 mb-4">
@@ -435,14 +460,17 @@ const BreadCrumbs = () => {
 
       <CRow item xs={12}>
         <CRow>
-          <CCol xs={12}>
+          <CCol lg={6} md={6} sm={6}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button
-                class="btn btn-success"
-                disabled={submitCon}
-                onClick={() => setVisible(!visible)}
-              >
-                Submit
+              <button class="btn btn-secondary" onClick={() => setActiveKey('patient')}>
+                Back
+              </button>
+            </div>
+          </CCol>
+          <CCol lg={6} md={6} sm={6}>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-success" disabled={submitCon} onClick={() => nextTab()}>
+                Next
               </button>
             </div>
           </CCol>
@@ -502,4 +530,4 @@ const BreadCrumbs = () => {
   )
 }
 
-export default BreadCrumbs
+export default VehicleCallDetails

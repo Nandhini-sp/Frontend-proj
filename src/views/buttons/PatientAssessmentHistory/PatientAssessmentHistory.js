@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+
+import { CButton } from '@coreui/react'
+
 import {
-  // CButton,
   CModal,
   CModalHeader,
   CModalTitle,
-  CModalBody,
   CModalFooter,
   CContainer,
   CRow,
   CCol,
-  CFormFloating,
   CFormInput,
+  CFormSelect,
   CFormLabel,
+  CFormCheck,
+  CFormFloating,
 } from '@coreui/react'
 import { ToastContainer, toast } from 'react-toastify'
-import { CButton } from '@coreui/react'
 import AuthAxios from 'src/Interceptors/AuthAxios'
+import { Input } from 'reactstrap'
 
-const ComplainBased = () => {
+const PatientAssessmentHistory = ({ setActiveKey, activeKey, setAssessment, assessment }) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -28,27 +31,27 @@ const ComplainBased = () => {
 
   const [state, setState] = useState({
     userId: '1',
-    respiration: '',
-    seizure: '',
-    toxicExposure: '',
-    cardiacArrest: '',
-    chestPain: '',
-    neonatal: '',
-    obstetric: '',
-    trauma: '',
+    dateOfInjury: '',
+    timeOfInjury: '',
+    coResponders: '',
+    treatmentRendered: '',
+    patientCondition: '',
+    patientDisplacement: '',
+    suspectedIntoxication: '',
+    chiefComplaint: '',
     email: '',
   })
 
   useEffect(() => {
     if (
-      state.respiration !== '' &&
-      state.seizure !== '' &&
-      state.toxicExposure !== '' &&
-      state.cardiacArrest !== '' &&
-      state.chestPain !== '' &&
-      state.neonatal !== '' &&
-      state.obstetric !== '' &&
-      state.trauma !== ''
+      state.dateOfInjury !== '' &&
+      state.timeOfInjury !== '' &&
+      state.coResponders !== '' &&
+      state.treatmentRendered !== '' &&
+      state.patientCondition !== '' &&
+      state.patientDisplacement !== '' &&
+      state.suspectedIntoxication !== '' &&
+      state.chiefComplaint !== ''
     ) {
       setsubmitCon(false)
     } else {
@@ -77,24 +80,24 @@ const ComplainBased = () => {
     const email = regex.test(state.email)
     if (email) {
       setdisabel(false)
-      AuthAxios.post('PatientAssessment', state)
+      AuthAxios.post('PatientHistoryAssessment', state)
         .then((res) => {
           console.log(res.data)
           success(res.data.message)
-          setVisible(false)
           setdisabel(true)
+          setVisible(false)
           setTimeout(() => {
             setState((prevProps) => ({
               ...prevProps,
               userId: '1',
-              respiration: '',
-              seizure: '',
-              toxicExposure: '',
-              cardiacArrest: '',
-              chestPain: '',
-              neonatal: '',
-              obstetric: '',
-              trauma: '',
+              dateOfInjury: '',
+              timeOfInjury: '',
+              coResponders: '',
+              treatmentRendered: '',
+              patientCondition: '',
+              patientDisplacement: '',
+              suspectedIntoxication: '',
+              chiefComplaint: '',
               email: '',
             }))
           }, 1000)
@@ -109,37 +112,47 @@ const ComplainBased = () => {
     }
   }
 
+  const nextTab = () => {
+    setAssessment((callDetails) => ({
+      ...callDetails,
+      dateOfInjury: '',
+      timeOfInjury: '',
+      coResponders: '',
+      treatmentRendered: '',
+      patientCondition: '',
+      patientDisplacement: '',
+      suspectedIntoxication: '',
+      chiefComplaint: '',
+    }))
+    setActiveKey('primary')
+  }
+
   return (
     <div>
       <CContainer>
-        <CRow>
+        <CRow className="mb-3">
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="FirstName"
-                name="respiration"
-                value={state.respiration}
-                onChange={(event) => handleInputChange(event, 'respiration')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Respiration</CFormLabel>
+              <Input
+                type="date"
+                name="dateOfInjury"
+                value={state.dateOfInjury}
+                onChange={(event) => handleInputChange(event, 'dateOfInjury')}
+                style={{ width: '100%', height: '50px' }}
+              ></Input>
+              <CFormLabel htmlFor="floatingInput">Date Of Injury</CFormLabel>
             </CFormFloating>
           </CCol>
-
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
-              <CFormInput
-                type="text"
-                id="floatingInput"
-                placeholder="FirstName"
-                name="seizure"
-                value={state.seizure}
-                onChange={(event) => handleInputChange(event, 'seizure')}
-                style={{ height: '50px' }}
-              />
-              <CFormLabel htmlFor="floatingInput">Seizure</CFormLabel>
+              <Input
+                type="Time"
+                name="timeOfInjury"
+                value={state.timeOfInjury}
+                onChange={(event) => handleInputChange(event, 'timeOfInjury')}
+                style={{ width: '100%', height: '50px' }}
+              ></Input>
+              <CFormLabel htmlFor="floatingInput">Time Of Injury</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
@@ -149,75 +162,72 @@ const ComplainBased = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="toxicExposure"
-                value={state.toxicExposure}
-                onChange={(event) => handleInputChange(event, 'toxicExposure')}
+                placeholder="Co-Respondars"
+                value={state.coResponders}
+                onChange={(event) => handleInputChange(event, 'coResponders')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Toxic Exposure</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Co-Respondars</CFormLabel>
             </CFormFloating>
           </CCol>
-
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="cardiacArrest"
-                value={state.cardiacArrest}
-                onChange={(event) => handleInputChange(event, 'cardiacArrest')}
+                placeholder="Treatment Rendered"
+                value={state.treatmentRendered}
+                onChange={(event) => handleInputChange(event, 'treatmentRendered')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">CardiacArrest</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Treatment Rendered</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
-        <CRow>
+      </CContainer>
+      <CContainer>
+        <CRow className="mt-3">
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="chestPain"
-                value={state.chestPain}
-                onChange={(event) => handleInputChange(event, 'chestPain')}
+                placeholder="Patient Condition at Destination"
+                value={state.patientCondition}
+                onChange={(event) => handleInputChange(event, 'patientCondition')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Chest Pain</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Patient Condition at Destination</CFormLabel>
             </CFormFloating>
           </CCol>
-
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="neonatal"
-                value={state.neonatal}
-                onChange={(event) => handleInputChange(event, 'neonatal')}
+                placeholder="Patient Displacement"
+                value={state.patientDisplacement}
+                onChange={(event) => handleInputChange(event, 'patientDisplacement')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Neonatal</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Patient Displacement</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
-        <CRow>
+      </CContainer>
+      <CContainer>
+        <CRow className="mt-3 mb-4">
           <CCol lg={6} md={6} sm={12}>
             <CFormFloating className="mb-3">
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="obstetricc"
-                value={state.obstetric}
-                onChange={(event) => handleInputChange(event, 'obstetric')}
+                placeholder="Suspected Intoxication"
+                value={state.suspectedIntoxication}
+                onChange={(event) => handleInputChange(event, 'suspectedIntoxication')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Obstetric</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Suspected Intoxication</CFormLabel>
             </CFormFloating>
           </CCol>
 
@@ -226,27 +236,29 @@ const ComplainBased = () => {
               <CFormInput
                 type="text"
                 id="floatingInput"
-                placeholder="FirstName"
-                name="trauma"
-                value={state.trauma}
-                onChange={(event) => handleInputChange(event, 'trauma')}
+                placeholder="Chief Complaint"
+                value={state.chiefComplaint}
+                onChange={(event) => handleInputChange(event, 'chiefComplaint')}
                 style={{ height: '50px' }}
               />
-              <CFormLabel htmlFor="floatingInput">Trauma</CFormLabel>
+              <CFormLabel htmlFor="floatingInput">Chief Complaint</CFormLabel>
             </CFormFloating>
           </CCol>
         </CRow>
       </CContainer>
 
-      <CRow item xs={12}>
+      <CContainer>
         <CRow>
-          <CCol xs={12}>
+          <CCol lg={6} md={6} sm={6}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button
-                class="btn btn-success"
-                disabled={submitCon}
-                onClick={() => setVisible(!visible)}
-              >
+              <button class="btn btn-secondary" disabled>
+                Back
+              </button>
+            </div>
+          </CCol>
+          <CCol lg={6} md={6} sm={6}>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-success" disabled={submitCon} onClick={() => nextTab()}>
                 Submit
               </button>
             </div>
@@ -287,10 +299,10 @@ const ComplainBased = () => {
             </CButton>
           </CModalFooter>
         </CModal>
-      </CRow>
+      </CContainer>
       <ToastContainer />
     </div>
   )
 }
 
-export default ComplainBased
+export default PatientAssessmentHistory

@@ -21,7 +21,7 @@ import './style.css'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const formControl = () => {
+const PatientTreatmentDetails = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
   const [visible, setVisible] = useState(false)
   const [disabel, setdisabel] = useState(true)
   const [time, setTime] = useState('')
@@ -124,6 +124,25 @@ const formControl = () => {
     } else {
       failure('Enter valid emails!')
     }
+  }
+
+  const nextTab = () => {
+    setTreatment((callDetails) => ({
+      ...callDetails,
+      procedureStartTime: '',
+      procedureType: '',
+      procedureEndTime: '',
+      deviceMethod: '',
+      technicianID: '',
+      deviceSize: '',
+      outcome: '',
+      successfull: '',
+      treatment: '',
+      totalTime: '',
+      treatmentType: '',
+      administrativeRoute: '',
+    }))
+    setActiveKey('vitalSign')
   }
 
   return (
@@ -324,13 +343,16 @@ const formControl = () => {
 
       <CRow item xs={12}>
         <CRow>
-          <CCol xs={12}>
+          <CCol lg={6} md={6} sm={6}>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button
-                class="btn btn-success"
-                disabled={submitCon}
-                onClick={() => setVisible(!visible)}
-              >
+              <button class="btn btn-secondary" disabled>
+                Back
+              </button>
+            </div>
+          </CCol>
+          <CCol lg={6} md={6} sm={6}>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-success" disabled={submitCon} onClick={() => nextTab()}>
                 Submit
               </button>
             </div>
@@ -377,4 +399,4 @@ const formControl = () => {
   )
 }
 
-export default formControl
+export default PatientTreatmentDetails

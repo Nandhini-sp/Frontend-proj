@@ -1,20 +1,29 @@
 import React from 'react'
 import Login from './views/pages/login/Login'
+import CallDetails from './views/CallDetails/CallDetails'
+import Assessment from './views/Assessment/Assessment'
+import Treatment from './views/Treatment/Treatment'
 // import Reports from './views/reports'
 
-const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
-const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
-const Cards = React.lazy(() => import('./views/base/cards/Cards'))
+const Accordion = React.lazy(() => import('./views/base/PatientCallDetails/PatientCallDetails'))
+const Breadcrumbs = React.lazy(() => import('./views/base/VehicleCallDetails/VehicleCallDetails'))
+const Cards = React.lazy(() => import('./views/base/IncidentCallDetails/IncidentCallDetails'))
 
 // Buttons
-const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'))
-const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'))
-const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns'))
+const Buttons = React.lazy(() =>
+  import('./views/buttons/PatientAssessmentHistory/PatientAssessmentHistory'),
+)
+const ButtonGroups = React.lazy(() => import('./views/buttons/PrimaryAssessment/PrimaryAssessment'))
+const Dropdowns = React.lazy(() =>
+  import('./views/buttons/PatientAssessmentDetails/PatientAssessmentDetails'),
+)
 
 //Forms
 
-const FormControl = React.lazy(() => import('./views/forms/form-control/FormControl'))
-const Select = React.lazy(() => import('./views/forms/select/Select'))
+const FormControl = React.lazy(() =>
+  import('./views/forms/PatientTreatmentDetails/PatientTreatmentDetails'),
+)
+const Select = React.lazy(() => import('./views/forms/VitalSign/VitalSign'))
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
 // Reports
@@ -50,20 +59,20 @@ const routes = [
   { path: '/', exact: true, name: 'Base' },
   // { path: '/dashboard', name: 'Dashboard', element: Dashboard },
 
-  { path: '/callDetails', name: 'Call Details', element: Cards, exact: true },
-  { path: '/callDetails/PatientDetails', name: 'Patient Details', element: Accordion },
-  { path: '/callDetails/VehicleDetails', name: 'Vehicle Details', element: Breadcrumbs },
-  { path: '/callDetails/IncidentDetails', name: 'Incident Details', element: Cards },
+  { path: '/CallDetails', name: 'Call Details', element: CallDetails },
+  // { path: '/callDetails/PatientDetails', name: 'Patient Details', element: Accordion },
+  // { path: '/callDetails/VehicleDetails', name: 'Vehicle Details', element: Breadcrumbs },
+  // { path: '/callDetails/IncidentDetails', name: 'Incident Details', element: Cards },
 
-  { path: '/assessment', name: 'Assessment', element: Buttons, exact: true },
-  { path: '/assessment/PatientHistory', name: 'Patient History', element: Buttons },
-  { path: '/assessment/PatientAssessment', name: 'Patient Assessment', element: Dropdowns },
-  { path: '/assessment/PrimaryAssessment', name: 'Primary Assessment', element: ButtonGroups },
-  { path: '/charts', name: 'Charts', element: Charts },
+  { path: '/Assessment', name: 'Assessment', element: Assessment },
+  // { path: '/assessment/PatientHistory', name: 'Patient History', element: Buttons },
+  // { path: '/assessment/PatientAssessment', name: 'Patient Assessment', element: Dropdowns },
+  // { path: '/assessment/PrimaryAssessment', name: 'Primary Assessment', element: ButtonGroups },
+  // { path: '/charts', name: 'Charts', element: Charts },
 
-  { path: '/treatment', name: 'Treatment', element: FormControl, exact: true },
-  { path: '/treatment/PatientDetails', name: 'Patient Details', element: FormControl },
-  { path: '/treatment/VitalSign', name: 'Vital Sign', element: Select },
+  { path: '/Treatment', name: 'Treatment', element: Treatment },
+  // { path: '/treatment/PatientDetails', name: 'Patient Details', element: FormControl },
+  // { path: '/treatment/VitalSign', name: 'Vital Sign', element: Select },
   { path: '/login', name: 'Login', element: Login },
   { path: '/register', name: 'Register', element: Login },
 

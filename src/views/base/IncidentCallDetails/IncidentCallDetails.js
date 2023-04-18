@@ -20,7 +20,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { Input } from 'reactstrap'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 
-const Cards = () => {
+const IncidentCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetails }) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const [disabel, setdisabel] = useState(true)
@@ -531,7 +531,14 @@ const Cards = () => {
       </CContainer>
 
       <CRow>
-        <CCol xs={12}>
+        <CCol lg={6} md={6} sm={6}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-secondary" onClick={() => setActiveKey('vehicle')}>
+              Back
+            </button>
+          </div>
+        </CCol>
+        <CCol lg={6} md={6} sm={6}>
           <div class="d-grid gap-2 col-6 mx-auto">
             <button
               class="btn btn-success"
@@ -597,4 +604,4 @@ const Cards = () => {
   )
 }
 
-export default Cards
+export default IncidentCallDetails

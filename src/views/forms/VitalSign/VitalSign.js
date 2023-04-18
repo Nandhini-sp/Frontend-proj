@@ -19,7 +19,7 @@ import 'rc-time-picker/assets/index.css'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const Select = () => {
+const VitalSign = ({ setActiveKey, activeKey, setTreatment, treatment }) => {
   const [visible, setVisible] = useState(false)
   const [time, setTime] = useState('')
   const [disabel, setdisabel] = useState(true)
@@ -372,7 +372,14 @@ const Select = () => {
 
       <CRow item xs={12}>
         <CRow>
-          <CCol xs={12}>
+          <CCol lg={6} md={6} sm={6}>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-secondary" onClick={() => setActiveKey('patientDetails')}>
+                Back
+              </button>
+            </div>
+          </CCol>
+          <CCol lg={6} md={6} sm={6}>
             <div class="d-grid gap-2 col-6 mx-auto">
               <button
                 class="btn btn-success"
@@ -425,4 +432,4 @@ const Select = () => {
   )
 }
 
-export default Select
+export default VitalSign

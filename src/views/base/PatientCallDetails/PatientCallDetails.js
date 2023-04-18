@@ -23,7 +23,7 @@ import { Input } from 'reactstrap'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const accordion = () => {
+const PatientCallDetails = ({ setActiveKey, activeKey, setCallDetails, callDetails }) => {
   const [visible, setVisible] = useState(false)
   const [submitCon, setsubmitCon] = useState(true)
   const [disabel, setdisabel] = useState(true)
@@ -226,6 +226,34 @@ const accordion = () => {
     } else {
       failure('Enter valid emails!')
     }
+  }
+
+  const nextTab = () => {
+    setCallDetails((callDetails) => ({
+      ...callDetails,
+      firstName: '',
+      sureName: '',
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      postalCode: '',
+      telePhone: '',
+      DOB: '',
+      age: '',
+      gender: '',
+      aadhar: '',
+      medicalInsurance: '',
+      typeOfInsurance: '',
+      governmentInsurance_insuranceId: '',
+      governmentInsurance_coverageAmount: '',
+      governmentInsurance_benefits: '',
+      privateInsurance_insuranceId: '',
+      privateInsurance_benefits: '',
+      hospitalChart: '',
+      comments: '',
+    }))
+    setActiveKey('vehicle')
   }
 
   return (
@@ -581,14 +609,17 @@ const accordion = () => {
       </CRow>
 
       <CRow>
-        <CCol lg={12} md={12} sm={12}>
+        <CCol lg={6} md={6} sm={6}>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button
-              class="btn btn-success"
-              disabled={submitCon}
-              onClick={() => setVisible(!visible)}
-            >
-              Submit
+            <button class="btn btn-secondary" disabled>
+              Back
+            </button>
+          </div>
+        </CCol>
+        <CCol lg={6} md={6} sm={6}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" disabled={submitCon} onClick={() => nextTab()}>
+              Next
             </button>
           </div>
         </CCol>
@@ -647,4 +678,4 @@ const accordion = () => {
   )
 }
 
-export default accordion
+export default PatientCallDetails

@@ -17,7 +17,7 @@ import {
 import { ToastContainer, toast } from 'react-toastify'
 import AuthAxios from 'src/Interceptors/AuthAxios'
 
-const ButtonGroups = () => {
+const PrimaryAssessment = ({ setActiveKey, activeKey, setAssessment, assessment }) => {
   const [visible, setVisible] = useState(false)
   const success = (e) => toast.success(e)
   const failure = (e) => toast.error(e)
@@ -100,6 +100,19 @@ const ButtonGroups = () => {
     } else {
       failure('Enter valid emails!')
     }
+  }
+
+  const nextTab = () => {
+    setAssessment((callDetails) => ({
+      ...callDetails,
+      neroResponse: '',
+      bodySystem: '',
+      glasGlow: '',
+      generalAssessment: '',
+      airway: '',
+      symptoms: '',
+    }))
+    setActiveKey('patientAssessment')
   }
 
   return (
@@ -201,13 +214,16 @@ const ButtonGroups = () => {
       </CContainer>
 
       <CRow>
-        <CCol xs={12}>
+        <CCol lg={6} md={6} sm={6}>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button
-              class="btn btn-success"
-              disabled={submitCon}
-              onClick={() => setVisible(!visible)}
-            >
+            <button class="btn btn-secondary" onClick={() => setActiveKey('patientHistory')}>
+              Back
+            </button>
+          </div>
+        </CCol>
+        <CCol lg={6} md={6} sm={6}>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" disabled={submitCon} onClick={() => nextTab()}>
               Submit
             </button>
           </div>
@@ -253,4 +269,4 @@ const ButtonGroups = () => {
   )
 }
 
-export default ButtonGroups
+export default PrimaryAssessment
