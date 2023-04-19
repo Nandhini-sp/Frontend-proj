@@ -3,6 +3,9 @@ import Login from './views/pages/login/Login'
 import CallDetails from './views/CallDetails/CallDetails'
 import Assessment from './views/Assessment/Assessment'
 import Treatment from './views/Treatment/Treatment'
+import CallDetailsReport from './views/reports/CallDetailsReport'
+import AssessmentReport from './views/reports/AssessmentReport'
+import TreatmentReport from './views/reports/TreatmentReport'
 // import Reports from './views/reports'
 
 const Accordion = React.lazy(() => import('./views/base/PatientCallDetails/PatientCallDetails'))
@@ -80,6 +83,10 @@ const routes = [
   // { path: '/reports/calldetails', name: 'CallDetails', element: CallDetails },
   // { path: '/reports/assessment', name: 'Assessment', element: Assessment},
   // { path: '/reports/treatment', name: 'Treatment', element: Treatment },
+
+  { path: '/reports/CallDetailsReport', name: 'CallDetails Report', element: CallDetailsReport },
+  { path: '/reports/AssessmentReport', name: 'Assessment Report', element: AssessmentReport },
+  { path: '/reports/TreatmentReport', name: 'Treatment Report', element: TreatmentReport },
 
   { path: '/reports/calldetails/patientdetails', name: 'Patient Report', element: PatientDetails },
   { path: '/reports/calldetails/vehicledetails', name: 'Vehicle Report', element: VehicleDetails },
